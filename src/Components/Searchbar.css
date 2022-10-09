@@ -1,0 +1,17 @@
+input{
+    background: url("../Images/serach.png") no-repeat scroll 7px 7px;
+    padding-left:40px;
+    border: none;
+    outline:none;
+ }
+
+ input:active{
+    outline:none;
+ }
+
+    .topbar__search{
+        width:80%;
+        border: 1px solid rgba(0, 0, 0, 0.34);
+        border-radius: 20px;
+        height: 35px;
+    }
