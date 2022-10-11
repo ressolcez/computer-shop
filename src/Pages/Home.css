@@ -1,11 +1,8 @@
 .products-heading{
-  text-align: center;
- color: #324d67;
-
+ margin-top:2.5%;
 }
 .products-heading h2{
   font-size: 30px;
   font-weight: 800;
   margin: 0;
-  margin-bottom: 5%;
 }

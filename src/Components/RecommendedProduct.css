@@ -1,4 +1,4 @@
-.MostOrderProduct__wrapper{
+.RecommendedProduct__wrapper{
     background-color: red;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@
     margin-bottom: 2.5%;
 }
 
-.MostOrderProduct__wrapper:hover{
+.RecommendedProduct__wrapper:hover{
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
@@ -39,6 +39,9 @@
     font-weight: 500;
 }
 
+.stars__container{
+    padding-left: 5%;
+}
 
 .price__btn__container{
     width:100%;
@@ -56,7 +59,7 @@
 
 @media only screen and (max-width: 1300px) {
 
-    .MostOrderProduct__wrapper{
+    .RecommendedProduct__wrapper{
         width: 32%;
     }
     
@@ -64,13 +67,13 @@
 
     @media only screen and (max-width: 750px) {
 
-        .MostOrderProduct__wrapper{
+        .RecommendedProduct__wrapper{
             width: 49%;
         }
 
         @media only screen and (max-width: 470px) {
 
-            .MostOrderProduct__wrapper{
+            .RecommendedProduct__wrapper{
                 width: 100%;
             }
         }

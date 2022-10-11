@@ -1,10 +1,6 @@
 import React from 'react'
 import "./MostOrderProduct.css"
 import Komputer from "../Images/komputer2.jpg"
-import styled from "styled-components";
-
-
-
 
 function MostOrderProduct() {
   return (
@@ -17,7 +13,6 @@ function MostOrderProduct() {
         <div className='price__container'>asd</div>
         <div className='btn__container'>asd</div>
       </div>
-
     </div>
   )
 }

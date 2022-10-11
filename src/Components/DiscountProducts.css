@@ -1,0 +1,27 @@
+.DiscountProducts__wrappper{
+    margin-top:2%;
+}
+
+.carousel__item{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+}
+
+.carousel__item__img__cont{
+    display: flex;
+    justify-content: center;
+    height:50%;
+}
+
+.carousel__item__img__cont img{
+    height:100%;
+    object-fit: scale-down;
+}
+
+.carousel__desc{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15%;
+}

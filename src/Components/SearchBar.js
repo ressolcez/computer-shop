@@ -20,8 +20,8 @@ const StyledDataResult = styled.div`
   }
 
   @media (max-width: 700px) {
-    margin-left:10%;
-    width: 74%;
+    width: 94%;
+    margin-left:0%;
 }
 `
 

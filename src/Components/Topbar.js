@@ -5,14 +5,8 @@ import ShoppingCart from "../Images/shopping_cart.png"
 import User from "../Images/user.png"
 import BookData from "../Data.json"
 import SearchBar from './SearchBar'
-import styled from "styled-components";
-
-
-
 
 function Topbar() {
-
-
     return (
         <div className="topbar__wrapper" role="navigation">
 

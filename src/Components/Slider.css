@@ -1,0 +1,102 @@
+.carousel__wrappper{
+    height:400px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top:5%;
+    margin-bottom: 2.5%;
+}
+
+.carousel__wrappper__image{
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    padding-right: 10%;
+}
+
+.carousel__wrapper__description{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel__wrapper__title{
+    height: 50%;
+    font-weight: 800;
+    display: flex;
+    align-items: flex-end;
+    font-size: 70px;
+}
+
+.carousel__wrapper__othertext{
+    height: 50%;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+
+.inside__img{
+    height: 100%;
+    object-fit: contain;
+}
+
+@media only screen and (max-width: 900px) {
+    .carousel__wrappper{
+        height:350px;
+    }
+    .carousel__wrapper__title{
+        font-size: 60px;
+    }
+    
+}
+
+@media only screen and (max-width: 800px) {
+    .carousel__wrappper{
+        height:300px;
+    }
+    .carousel__wrapper__title{
+        font-size: 50px;
+    }
+
+    .carousel__wrapper__othertext{
+        font-size: 17px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .carousel__wrappper{
+        height:250px;
+    }
+    .carousel__wrapper__title{
+        font-size: 40px;
+    }
+    .carousel__wrapper__othertext{
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .carousel__wrappper{
+        height:200px;
+    }
+    .carousel__wrapper__title{
+        font-size: 30px;
+    }
+    .carousel__wrapper__othertext{
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .carousel__wrappper{
+        height:160px;
+    }
+    .carousel__wrapper__title{
+        font-size: 25px;
+    }
+    .carousel__wrapper__othertext{
+        font-size: 13px;
+    }
+}
