@@ -81,7 +81,7 @@ function SearchBar({ placeholder, data }) {
             placeholder={placeholder}
             value={wordEntered}
             onChange={handleFilter}
-            className = "topbar__search" 
+            className = "topbar__search"
           />
          
         </div>

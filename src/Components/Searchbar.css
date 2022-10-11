@@ -1,11 +1,11 @@
-input{
+.topbar__search{
     background: url("../Images/serach.png") no-repeat scroll 7px 7px;
     padding-left:40px;
     border: none;
     outline:none;
  }
 
- input:active{
+ .topbar__search:active{
     outline:none;
  }
 

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home"
-
+import ProductDetails from './Pages/ProductDetails';
 
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
       <Route exact path="/" element={<Home/>}/>
+      <Route  path="/ProductDetail" element={<ProductDetails/>}/>
       </Routes>
     </BrowserRouter>
   );
