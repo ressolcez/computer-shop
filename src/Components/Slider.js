@@ -3,9 +3,10 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Slider.css"
 import Komputer from "../Images/komputer2.jpg"
+import {Link } from "react-router-dom";
 
 
-function Slider() {
+function Slider({products}) {
     const responsive = {
         superLargeDesktop: {
           breakpoint: { max: 4000, min: 3000 },
@@ -28,58 +29,21 @@ function Slider() {
 
   return (
     <Carousel responsive={responsive}>
+         {products.map((product)=>(
         <div className='carousel__wrappper'>
             <div className='carousel__wrappper__image'>
                 <img className='inside__img' src = {Komputer} alt = "computer"/>
             </div>
             <div className='carousel__wrapper__description'>
                 <div className='carousel__wrapper__title'>
-                    title
+                    {product.productName}
                 </div>
-                <div className='s'>
-                    blablala
-                </div>
-            </div>
-        </div>
-        <div className='carousel__wrappper'>
-            <div className='carousel__wrappper__image'>
-                <img className='inside__img' src = {Komputer} alt = "computer"/>
-            </div>
-            <div className='carousel__wrapper__description'>
-                <div className='carousel__wrapper__title'>
-                    title
-                </div>
-                <div className='s'>
-                    blablala
+                <div>
+                    {product.short_Description}
                 </div>
             </div>
         </div>
-        <div className='carousel__wrappper'>
-            <div className='carousel__wrappper__image'>
-                <img className='inside__img' src = {Komputer} alt = "computer"/>
-            </div>
-            <div className='carousel__wrapper__description'>
-                <div className='carousel__wrapper__title'>
-                    title
-                </div>
-                <div className='s'>
-                    blablala
-                </div>
-            </div>
-        </div>
-        <div className='carousel__wrappper'>
-            <div className='carousel__wrappper__image'>
-                <img className='inside__img' src = {Komputer} alt = "computer"/>
-            </div>
-            <div className='carousel__wrapper__description'>
-                <div className='carousel__wrapper__title'>
-                    title
-                </div>
-                <div className='s'>
-                    blablala
-                </div>
-            </div>
-        </div>
+        ))}
 </Carousel>
   )
 }

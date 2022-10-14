@@ -1,15 +1,13 @@
 
-.Product__Detail__Wrapper{
+.Cart__wrapper{
     margin-left: 10%;
     margin-top: 1%;
     margin-right: 10%;
   }
   
   @media only screen and (max-width: 500px) {
-    .Product__Detail__Wrapper{
-      margin-left: 1%;
+    .Cart__wrapper{
       margin-top: 1%;
-      margin-right: 1%;
     }
   }
   

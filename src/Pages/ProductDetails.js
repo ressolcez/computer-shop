@@ -18,7 +18,7 @@ const StyledTitle = styled.h2`
 
 export default function ProductDetails() {
   return (
-    <>
+    <div className='Product__Detail__Wrapper'>
         <Topbar/>
         <ItemDetail/>
         <StyledDivider/>
@@ -29,6 +29,6 @@ export default function ProductDetails() {
         <AddOpinion/>
         <StyledDivider/>
         <Footer/>
-    </>
+    </div>
   )
 }
