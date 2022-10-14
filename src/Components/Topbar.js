@@ -1,17 +1,29 @@
 
-import './Topbar.css'
-import Logo from "../Images/Logo.png"
-import ShoppingCart from "../Images/shopping_cart.png"
-import User from "../Images/user.png"
-import BookData from "../Data.json"
-import SearchBar from './SearchBar'
+import './Topbar.css';
+import Logo from "../Images/Logo.png";
+import ShoppingCart from "../Images/shopping_cart.png";
+import User from "../Images/user.png";
+import BookData from "../Data.json";
+import SearchBar from './SearchBar';
+import {Link } from "react-router-dom";
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  &:hover{
+    color: black;
+  }
+`
 
 function Topbar() {
     return (
         <div className="topbar__wrapper" role="navigation">
 
             <div className="topbar__leftBox">
-                <img src={Logo} alt="Logo" className= "topbar__img"/>
+                <StyledLink to={"/"}>
+                    <img src={Logo} alt="Logo" className= "topbar__img"/>
+                </StyledLink>
             </div>
             <div className="topbar__middleBox">
                 <SearchBar data={BookData}/>
@@ -22,10 +34,14 @@ function Topbar() {
                 <img src={User} alt = "User"/>
                 <span className = "topbar__rightBox_spanItem">Twoje konto</span>
                 </div>
+                <StyledLink to={"/Cart"}>
                     <div className = "topbar__rightBox__cart">
-                            <img src={ShoppingCart} alt = "ShoppingCart"/>
+                                
+                                    <img src={ShoppingCart} alt = "ShoppingCart"/>
+                               
                             <span className = "topbar__rightBox_spanItem">Twój Koszyk</span>
                     </div>
+                </StyledLink>  
             </div>
 
         </div>

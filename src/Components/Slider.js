@@ -30,7 +30,7 @@ function Slider({products}) {
   return (
     <Carousel responsive={responsive}>
          {products.map((product)=>(
-        <div className='carousel__wrappper'>
+        <div key={product.productId} className='carousel__wrappper'>
             <div className='carousel__wrappper__image'>
                 <img className='inside__img' src = {Komputer} alt = "computer"/>
             </div>

@@ -20,14 +20,35 @@ const StyledSpinner = styled.div`text-align:center; margin-top:50vh;`
 
 const Home = () => {  
 
-    const [sliderProduct, setSliderProducts] = useState([]);
+    const [sliderProduct, setSliderProduct] = useState([]);
+    const [discountProduct, setDiscountProduct] = useState([]);
+    const [mostOrderProducts, setMostOrderProducts] = useState([]);
+    const [recommendedProduct, setRecommendedProduct] = useState([]);
+
+
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         HomePageServices.getSliderContent().then((response) => {
-           setSliderProducts(response.data);
+           setSliderProduct(response.data);
            setLoading(false);
          });
+
+         HomePageServices.getSliderContent().then((response) => {
+            setDiscountProduct(response.data);
+            setLoading(false);
+          });
+
+          HomePageServices.getMostOrderProducts().then((response) => {
+            setMostOrderProducts(response.data);
+            setLoading(false);
+          });
+
+          HomePageServices.getRecommendedProducts().then((response) => {
+            setRecommendedProduct(response.data);
+            setLoading(false);
+          });
+
        }, []);
 
        if (isLoading) {
@@ -51,17 +72,17 @@ const Home = () => {
                 <div className="products-heading">
                     <h2>Najczęściej kupowane przedmioty</h2>
                 </div>
-                <MostOrderProducts/>
+                <MostOrderProducts products = {mostOrderProducts}/>
                 <StyledDivider/>
                 <div className="products-heading">
                     <h2>Przeceny!</h2>
                 </div>
-                <DiscountProducts/>
+                <DiscountProducts products = {discountProduct}/>
                 <StyledDivider/>
                 <div className="products-heading">
                     <h2>Najlepiej oceniane produkty!</h2>
                 </div>
-                <RecommendedProducts/>
+                <RecommendedProducts products = {recommendedProduct}/>
                 <StyledDivider/>
                 <Footer/>
             </main>

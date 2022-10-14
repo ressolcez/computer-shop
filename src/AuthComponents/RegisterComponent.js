@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'
 import {
   MDBBtn,
   MDBContainer,
@@ -10,8 +10,25 @@ import {
 }
 from 'mdb-react-ui-kit';
 import Logo from "../Images/Logo.png"
+import AuthServices from "../Services/AuthServices"
 
 function RegisterComponent() {
+
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+
+  const [login, setLogin] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [address, setAddress] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const registerUser = (e) => {
+    const newUser = {name,surname,login,email,password,address}
+    AuthServices.registerUser(newUser)
+    window.location.reload(false);
+}
+
   return (
     <MDBContainer fluid>
 
@@ -29,19 +46,21 @@ function RegisterComponent() {
 
               <MDBRow>
                 <MDBCol col='6'>
-                  <MDBInput wrapperClass='mb-4' label='First name' id='form1' type='text'/>
+                  <MDBInput wrapperClass='mb-4' label='Imie' id='name' type='text' onChange={(e) => setName(e.target.value)}/>
                 </MDBCol>
 
                 <MDBCol col='6'>
-                  <MDBInput wrapperClass='mb-4' label='Last name' id='form1' type='text'/>
+                  <MDBInput wrapperClass='mb-4' label='Nazwisko' id='surname' type='text' onChange={(e) => setSurname(e.target.value)}/>
                 </MDBCol>
               </MDBRow>
              
-              <MDBInput wrapperClass='mb-4 w-100' label='Email address' id='formControlLg' type='Login' size="lg"/>
-              <MDBInput wrapperClass='mb-4 w-100' label='Hasło' id='formControlLg' type='Haslo' size="lg"/>
-              <MDBInput wrapperClass='mb-4 w-100' label='Powtórz hasło' id='formControlLg' type='Haslo' size="lg"/>
+              <MDBInput wrapperClass='mb-4 w-100' label='Nazwa Użytkownika' id='userName' type='text' size="lg" onChange={(e) => setLogin(e.target.value)}/>
+              <MDBInput wrapperClass='mb-4 w-100' label='Adres Email' id='Email' type='text' size="lg" onChange={(e) => setEmail(e.target.value)}/>
+              <MDBInput wrapperClass='mb-4 w-100' label='Hasło' id='Password' type="password" size="lg" onChange={(e) => setPassword(e.target.value)}/>
+              <MDBInput wrapperClass='mb-4 w-100' label='Address' id='addresss' type='text' size="lg" onChange={(e) => setAddress(e.target.value)}/>
+              <MDBInput wrapperClass='mb-4 w-100' label='Powtórz hasło' id='repeat_password' type="password" size="lg" onChange={(e) => setConfirmPassword(e.target.value)}/>
 
-              <MDBBtn size='lg'>
+              <MDBBtn size='lg' onClick = {(e) => registerUser(e)}>
                 Zarejestruj
               </MDBBtn>
             </MDBCardBody>

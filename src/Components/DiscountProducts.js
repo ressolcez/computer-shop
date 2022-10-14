@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import computer from "../Images/komputer2.jpg"
 
 
-function DiscountProducts() {
+function DiscountProducts({products}) {
 
     const responsive = {
         superLargeDesktop: {
@@ -34,11 +34,10 @@ function DiscountProducts() {
   return (
     <div className='DiscountProducts__wrappper'>
         <Carousel responsive={responsive}>
-            <div className='carousel__item'>
+        {products.map((product)=>(
+            <div className='carousel__item' key={product.productId}>
                 <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
+                    <img src={computer} alt = "komputer"/>
                 </div>
                 <div className='carousel__desc'>
                     <div className='carousel__desc__title'>
@@ -50,195 +49,7 @@ function DiscountProducts() {
                     </div>
                 </div>
             </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className='carousel__item'>
-                <div className='carousel__item__img__cont'>
-                    <img src={computer} alt = "komputer">
-                    
-                    </img>    
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
-                        <div>
-                        <text>price2</text>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-
+             ))}
         </Carousel>
         </div>
         )
