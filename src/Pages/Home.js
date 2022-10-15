@@ -17,7 +17,6 @@ const StyledDivider = styled(Divider)`
 `
 const StyledSpinner = styled.div`text-align:center; margin-top:50vh; margin-left:70vh;`
 
-
 const Home = () => {  
 
     const [sliderProduct, setSliderProduct] = useState([]);
@@ -48,6 +47,22 @@ const Home = () => {
             setRecommendedProduct(response.data);
             setLoading(false);
           });
+
+
+        fetch('http://localhost:8080/api/authentication', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+          },
+        }).then(response => response.json())   
+        .then( json => {
+          console.log(json.status)
+       } 
+       ).catch(error => {
+          console.log(error);
+        });
+
 
        }, []);
 
