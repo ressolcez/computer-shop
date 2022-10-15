@@ -3,6 +3,16 @@ import "./RecommendedProduct.css"
 import Rating from "@mui/material/Rating";
 import computer from "../Images/komputer2.jpg"
 import HomePageServices from '../Services/HomePageServices';
+import {Link } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+  color: black;
+  &:hover{
+    color: black;
+    text-decoration: none;
+  }
+`
 
 function RecommendedProduct({product}) {
 
@@ -13,7 +23,7 @@ function RecommendedProduct({product}) {
             HomePageServices.getOpinionsToProduct(product.productId).then((responseOpinion) => {
                 setOpinions(responseOpinion.data);
               });
-       }, []);
+       }, [product.productId]);
 
 
     const handleRating = () => {
@@ -30,7 +40,7 @@ function RecommendedProduct({product}) {
           finalSum = finalSum.toFixed(1);
     
           
-          if(liczba_ocen == 0 ){
+          if(liczba_ocen === 0 ){
             finalSum = 0;
           }
     
@@ -38,13 +48,14 @@ function RecommendedProduct({product}) {
             <Rating value={parseFloat(finalSum)} readOnly precision={0.5} size="small"/>
           );
 }
-
-
   return (
+    <>
     <div className='RecommendedProduct__wrapper' >
+    <StyledLink to={"/"+product.categoryModel.category_id+"/"+product.productId} >
     <div className='img__container'>
       <img src ={computer} alt ="computer" ></img>
     </div>
+    </StyledLink>
     <div className='title__container'>{product.productName}</div>
     <div className='stars__container'> 
     {handleRating()}
@@ -56,6 +67,7 @@ function RecommendedProduct({product}) {
       </div>
     </div>
   </div>
+  </>
   )
 }
 

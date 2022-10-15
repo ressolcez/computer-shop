@@ -17,6 +17,7 @@ class HomePageServices{
     }
     
     getRecommendedProducts(){
+        console.log("wysylam")
         return axios.get(baseURL+"/recommendedProduct")
     }
     

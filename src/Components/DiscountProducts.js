@@ -2,9 +2,17 @@ import React from 'react'
 import "./DiscountProducts.css"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import styled from 'styled-components';
 import computer from "../Images/komputer2.jpg"
+import {Link } from "react-router-dom";
+import styled from "styled-components";
 
+const StyledLink = styled(Link)`
+  color: black;
+  &:hover{
+    color: black;
+    text-decoration: none;
+  }
+`
 
 function DiscountProducts({products}) {
 
@@ -37,7 +45,9 @@ function DiscountProducts({products}) {
         {products.map((product)=>(
             <div className='carousel__item' key={product.productId}>
                 <div className='carousel__item__img__cont'>
+                <StyledLink to={"/"+product.categoryModel.category_id+"/"+product.productId}>
                     <img src={computer} alt = "komputer"/>
+                </StyledLink>
                 </div>
                 <div className='carousel__desc'>
                     <div className='carousel__desc__title'>

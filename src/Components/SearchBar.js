@@ -53,7 +53,7 @@ const StyledPrice = styled.div`
     text-font:bold;
 `
 
-function SearchBar({ placeholder, data }) {
+function SearchBar({products }) {
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
   
@@ -61,8 +61,8 @@ function SearchBar({ placeholder, data }) {
 
       const searchWord = event.target.value;
       setWordEntered(searchWord);
-      const newFilter = data.filter((value) => {
-        return value.shortName.toLowerCase().includes(searchWord.toLowerCase());
+      const newFilter = products.filter((value) => {
+        return value.productName.toLowerCase().includes(searchWord.toLowerCase());
       });
   
       if (searchWord === "") {
@@ -78,7 +78,6 @@ function SearchBar({ placeholder, data }) {
         <div>
           <input
             type="text"
-            placeholder={placeholder}
             value={wordEntered}
             onChange={handleFilter}
             className = "topbar__search"
@@ -89,11 +88,11 @@ function SearchBar({ placeholder, data }) {
             <StyledDataResult>
             {filteredData.slice(0, 15).map((value, key) => {
               return (
-                <StyledDataItem>
-                 <ImgC src = {value.image}/>
+                <StyledDataItem key = {value.productId}>
+                 <ImgC />
                     <TitleC>
-                    <TitleProductName>{value.shortName}</TitleProductName>
-                    <StyledPrice>{value.price},00zł</StyledPrice>
+                    <TitleProductName>{value.productName}</TitleProductName>
+                    <StyledPrice>{value.new_price},00zł</StyledPrice>
                     </TitleC>
                 </StyledDataItem>     
               );

@@ -1,12 +1,13 @@
 
+import React, { useState,useEffect } from 'react'
 import './Topbar.css';
 import Logo from "../Images/Logo.png";
 import ShoppingCart from "../Images/shopping_cart.png";
 import User from "../Images/user.png";
-import BookData from "../Data.json";
 import SearchBar from './SearchBar';
 import {Link } from "react-router-dom";
 import styled from 'styled-components';
+import TopBarServices from "../Services/TopBarServices"
 
 const StyledLink = styled(Link)`
   color: black;
@@ -17,6 +18,17 @@ const StyledLink = styled(Link)`
 `
 
 function Topbar() {
+
+
+    const [allProducts, setAllProducts] = useState([]);
+
+    useEffect(() => {
+        TopBarServices.getAllProducts().then((response) => {
+           setAllProducts(response.data);
+         });
+       }, []);
+
+
     return (
         <div className="topbar__wrapper" role="navigation">
 
@@ -26,7 +38,7 @@ function Topbar() {
                 </StyledLink>
             </div>
             <div className="topbar__middleBox">
-                <SearchBar data={BookData}/>
+                <SearchBar products={allProducts}/>
             </div>
 
             <div className="topbar__rightBox">
@@ -38,7 +50,7 @@ function Topbar() {
                     <div className = "topbar__rightBox__cart">
                                 
                                     <img src={ShoppingCart} alt = "ShoppingCart"/>
-                               
+                
                             <span className = "topbar__rightBox_spanItem">Twój Koszyk</span>
                     </div>
                 </StyledLink>  

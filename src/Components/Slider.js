@@ -4,7 +4,15 @@ import "react-multi-carousel/lib/styles.css";
 import "./Slider.css"
 import Komputer from "../Images/komputer2.jpg"
 import {Link } from "react-router-dom";
+import styled from "styled-components";
 
+const StyledLink = styled(Link)`
+  color: black;
+  &:hover{
+    color: black;
+    text-decoration: none;
+  }
+`
 
 function Slider({products}) {
     const responsive = {
@@ -32,7 +40,9 @@ function Slider({products}) {
          {products.map((product)=>(
         <div key={product.productId} className='carousel__wrappper'>
             <div className='carousel__wrappper__image'>
+            <StyledLink to={"/"+product.categoryModel.category_id+"/"+product.productId}>
                 <img className='inside__img' src = {Komputer} alt = "computer"/>
+             </StyledLink>
             </div>
             <div className='carousel__wrapper__description'>
                 <div className='carousel__wrapper__title'>

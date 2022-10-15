@@ -1,9 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import "./RecommendedProducts.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Rating from "@mui/material/Rating";
-import computer from "../Images/komputer2.jpg"
-import HomePageServices from '../Services/HomePageServices';
 import RecommendedProduct from './RecommendedProduct';
 
 function RecommendedProducts({products}) {
