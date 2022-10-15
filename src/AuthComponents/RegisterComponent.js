@@ -14,19 +14,17 @@ import AuthServices from "../Services/AuthServices"
 
 function RegisterComponent() {
 
-  const [name, setName] = useState('')
-  const [surname, setSurname] = useState('')
-
-  const [login, setLogin] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [address, setAddress] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [address, setAddress] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const registerUser = (e) => {
     const newUser = {name,surname,login,email,password,address}
     AuthServices.registerUser(newUser)
-    window.location.reload(false);
 }
 
   return (
