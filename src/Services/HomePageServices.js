@@ -23,10 +23,7 @@ class HomePageServices{
     
     getOpinionsToProduct(productId){
         return axios.get("http://localhost:8080/api/opinion/opinionsToProduct/"+productId)
-    }
-
-    
-    
+    } 
 }
 
 export default new HomePageServices()

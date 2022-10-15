@@ -51,10 +51,11 @@ function DiscountProducts({products}) {
                 </div>
                 <div className='carousel__desc'>
                     <div className='carousel__desc__title'>
-                        <p>Title</p>
-                        <text>price</text>
+                        <p>{product.productName}</p>
+                        {product.old_Price} PLN
+                          
                         <div>
-                        <text>price2</text>
+                        {product.new_Price} PLN
                         </div>
                     </div>
                 </div>

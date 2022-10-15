@@ -3,8 +3,9 @@ import "./ItemDetail.css"
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 
+function ItemDetail({product}) {
 
-const images = [
+  const images = [
     {
       original: 'https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/9/pr_2022_9_9_9_47_35_177_02.jpg',
       thumbnail: 'https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/9/pr_2022_9_9_9_47_35_177_02.jpg',
@@ -19,8 +20,6 @@ const images = [
     },
   ];
 
-function ItemDetail() {
-
   return (
     <div className='ItemDetail__wrapper'>
         <div className='ItemDetail__images__wrapper'>
@@ -29,11 +28,11 @@ function ItemDetail() {
         <div className='ItemDetail__description_wrapper'> 
 
         <div className="product-description">
-              <h1>name</h1>
-              <p>desc</p>
+              <h1>{product.productName}</h1>
+              <p>{product.short_Description}</p>
             </div>
             <div className="product-price">
-              <span>13123123 PLN</span>
+              <span>{product.new_Price} zł</span>
               <btn className="cart-btn">Kup</btn>
             </div>
         </div>

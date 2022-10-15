@@ -25,3 +25,7 @@
     flex-direction: column;
     padding-left: 15%;
 }
+
+.carousel__desc__title{
+    margin-top:5%;
+}

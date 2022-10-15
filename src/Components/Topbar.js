@@ -22,6 +22,7 @@ function Topbar() {
 
     const [allProducts, setAllProducts] = useState([]);
 
+
     useEffect(() => {
         TopBarServices.getAllProducts().then((response) => {
            setAllProducts(response.data);

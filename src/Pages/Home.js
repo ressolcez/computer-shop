@@ -15,7 +15,7 @@ import HomePageServices from '../Services/HomePageServices';
 const StyledDivider = styled(Divider)`
   background-color: black;
 `
-const StyledSpinner = styled.div`text-align:center; margin-top:50vh;`
+const StyledSpinner = styled.div`text-align:center; margin-top:50vh; margin-left:70vh;`
 
 
 const Home = () => {  

@@ -5,6 +5,7 @@ import computer from "../Images/komputer2.jpg"
 import HomePageServices from '../Services/HomePageServices';
 import {Link } from "react-router-dom";
 import styled from "styled-components";
+import {useCart} from "react-use-cart";
 
 const StyledLink = styled(Link)`
   color: black;
@@ -17,6 +18,7 @@ const StyledLink = styled(Link)`
 function RecommendedProduct({product}) {
 
     const [opinions ,setOpinions] = useState([])
+    const { addItem } = useCart();
 
 
     useEffect(() => {
@@ -48,6 +50,7 @@ function RecommendedProduct({product}) {
             <Rating value={parseFloat(finalSum)} readOnly precision={0.5} size="small"/>
           );
 }
+
   return (
     <>
     <div className='RecommendedProduct__wrapper' >
@@ -63,7 +66,7 @@ function RecommendedProduct({product}) {
     <div className='price__btn__container'>
       <div className='price__container'>{product.new_Price} PLN</div>
       <div className='btn__container'>
-      <button type="button" className="btn btn-success btn-sm"> <i class="bi bi-cart"></i>Success</button>
+      <button type="button" className="btn btn-success btn-sm" onClick={() => addItem(product.productId)}> <i class="bi bi-cart"></i>Success</button>
       </div>
     </div>
   </div>
