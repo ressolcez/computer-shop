@@ -5,7 +5,7 @@ const baseURL = "http://localhost:8080/api/products";
 class TopBarServices{
 
     getAllProducts(){
-        return axios.get(baseURL)
+        return axios.get(baseURL);
     }    
 }
 

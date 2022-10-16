@@ -19,17 +19,17 @@ function LoginComponent() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginUser = () => {
-  
-      AuthServices.loginUser(login,password).then(response => response.json())   
-      .then( json => {
-        if(json.token !== -1){
-          localStorage.setItem('token', json.token);
-        }
-     } 
-     ).catch(error => {
-        console.log(error);
-      });
+   const loginUser = () => {
+      AuthServices.loginUser(login,password)
+      .then(response => response.json())   
+        .then( json => {
+          if(json.token !== -1){
+            localStorage.setItem('token', json.token);
+          }
+      } 
+      ).catch(error => {
+          console.log(error);
+        });
   }
 
   return (

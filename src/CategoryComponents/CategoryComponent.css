@@ -1,0 +1,217 @@
+.category__wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2%;
+}
+
+.category__filters__wrappper{
+    width:20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    margin-bottom: 3%;
+    font-weight: 750;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+
+.single__category__filters{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.price__flters{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input__price{
+    width: 35%;
+    border-radius: 8px;
+
+}
+
+.product__detail__filters{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top:3%;
+}
+
+.center__box{
+    display: flex;
+    flex-direction: column;
+}
+
+            .category__product__wrappper{
+                width: 80%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+
+        .single__product__wrapper{
+            background-color: red;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            width: 24%;
+            height: 250px;
+            background-color: white;
+            -webkit-box-shadow: 1px 5px 6px -4px rgba(162, 163, 171, 1);
+            -moz-box-shadow: 1px 5px 6px -4px rgba(162, 163, 171, 1);
+            box-shadow: 1px 5px 6px -4px rgba(162, 163, 171, 1);
+            margin-bottom: 2.5%;
+        }
+
+        .img__container{
+            width:100%;
+            height: 200px;
+        }
+
+        .img__container img{
+            width:100%;
+            height:150px;
+            object-fit: scale-down;
+        }
+
+        .title__container{
+            width:100%;
+            height: 25px;
+            padding-left: 5%;
+            font-weight: 500;
+        }
+
+
+        .price__btn__container{
+            width:100%;
+            height: 25px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-left:5%;
+            padding-right: 5%;
+        }
+
+        .price__container{
+            font-weight: 800;
+        }
+
+
+ @media only screen and (max-width: 1450px) {
+    .single__product__wrapper{
+        width: 32%;
+    }
+            
+}
+
+@media only screen and (max-width: 970px) {
+    .single__product__wrapper{
+        width: 47%;
+    }         
+}
+
+@media only screen and (max-width: 860px) {
+    .category__filters__wrappper{
+        width:100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 8%;
+    }
+
+    .single__category__filters{
+        width: 33%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .price__flters{
+        width: 33%;
+    }
+    
+    .product__detail__filters{
+        width: 33%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .category__product__wrappper{
+        width: 100%;
+    }
+
+    .center__box{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .center__prices{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pricee{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .input__price{
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    .single__category__filters{
+        width: 50%;
+        order: 1;
+    }
+    
+    .price__flters{
+        width: 100%;
+        order: 2;
+    }
+    
+    .product__detail__filters{
+        width: 50%;
+        order: 1;
+        margin-top: 0%;
+    }
+
+    .category__filters__wrappper{
+        margin-bottom: 20%;
+    }
+
+}
+
+@media only screen and (max-width: 300px) {
+
+    .single__category__filters{
+        width: 100%;
+        order: 1;
+    }
+    
+    .price__flters{
+        width: 100%;
+        order: 3;
+    }
+    
+    .product__detail__filters{
+        width: 100%;
+        order: 2;
+    }
+
+    .single__product__wrapper{
+        width: 100%;
+    }
+}
+    

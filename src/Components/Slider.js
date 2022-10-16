@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
+import {Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Slider.css"
 import Komputer from "../Images/komputer2.jpg"
-import {Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledLink = styled(Link)`
@@ -34,7 +34,6 @@ function Slider({products}) {
         }
       };
 
-
   return (
     <Carousel responsive={responsive}>
          {products.map((product)=>(
@@ -54,7 +53,7 @@ function Slider({products}) {
             </div>
         </div>
         ))}
-</Carousel>
+    </Carousel>
   )
 }
 

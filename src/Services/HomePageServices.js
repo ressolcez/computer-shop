@@ -4,24 +4,23 @@ const baseURL = "http://localhost:8080/api/products";
 
 class HomePageServices{
 
-    getSliderContent(){
+     getSliderContent(){
         return axios.get(baseURL+"/slider")
     }    
 
-    getDiscountContent(){
-        return axios.get(baseURL+"/discount")
+     getDiscountContent(){
+        return axios.get(baseURL+"/slider")
     }    
 
-    getMostOrderProducts(){
+     getMostOrderProducts(){
         return axios.get(baseURL+"/mostOrderProduct")
     }
     
-    getRecommendedProducts(){
-        console.log("wysylam")
+     getRecommendedProducts(){
         return axios.get(baseURL+"/recommendedProduct")
     }
     
-    getOpinionsToProduct(productId){
+     getOpinionsToProduct(productId){
         return axios.get("http://localhost:8080/api/opinion/opinionsToProduct/"+productId)
     } 
 }

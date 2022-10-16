@@ -24,13 +24,14 @@ const StyledDataResult = styled.div`
     padding: 5px;
     margin-left:5%;
 
-    @media (max-width: 835px) {
-      width: 36%;
+    @media (max-width: 950px) {
+      width: 47%;
+      margin-left:6%;
   }
 
   @media (max-width: 700px) {
-    width: 80%;
-    margin-left:0%;
+    width: 96%;
+    margin-left:1%;
 
 }
 

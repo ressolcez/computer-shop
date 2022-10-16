@@ -67,7 +67,7 @@ function Opinions({opinions}) {
     <Container>
         {handleRating()}
 
-      <Table responsivestriped bordered hover size="sm">
+      <Table bordered hover size="sm">
        
         </Table>
 
