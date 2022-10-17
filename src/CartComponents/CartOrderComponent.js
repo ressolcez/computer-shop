@@ -45,7 +45,7 @@ function CartOrderComponent() {
                         PLN 200
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
         <div className='cart__order__wrapper'>
             
