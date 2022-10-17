@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
@@ -9,6 +8,7 @@ import {
   MDBInput
 }
 from 'mdb-react-ui-kit';
+import Button from '@mui/material/Button';
 
 import Logo from "../Images/Logo.png"
 import AuthServices from "../Services/AuthServices"
@@ -51,9 +51,7 @@ function LoginComponent() {
 
               <p className="text-center">Nie masz konta? <a href="#!">Zarejestruj</a></p>
 
-              <MDBBtn size='lg' onClick = {(e) => loginUser(e)}>
-                Login
-              </MDBBtn>
+              <Button variant="contained">Login</Button>
 
             </MDBCardBody>
           </MDBCard>

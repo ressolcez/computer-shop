@@ -25,17 +25,13 @@ export default function ProductDetails() {
   const [product, setProduct] = useState([]);
   const [opinions, setOpinions] = useState([]);
 
-  const [isLoading, setLoading] = useState(true);
-
   useEffect(() => {
       ProductDetailsServices.getProductById(productId).then((response) => {
          setProduct(response.data);
-         setLoading(false);
        });
 
        ProductDetailsServices.getOpinionsToProduct(productId).then((response) => {
         setOpinions(response.data);
-        setLoading(false);
       });
     }, []);
 

@@ -1,4 +1,5 @@
 import React, {useEffect } from 'react'
+import CartOrderComponent from '../CartComponents/CartOrderComponent'
 import ItemsCart from '../CartComponents/ItemsCart'
 import Footer from '../Components/Footer'
 import Topbar from '../Components/Topbar'
@@ -12,7 +13,7 @@ function Cart() {
   return (
         <div className='Cart__wrapper'>
         <Topbar/>
-        <ItemsCart/>
+        <CartOrderComponent/>
         <Footer/>
         </div>
   )

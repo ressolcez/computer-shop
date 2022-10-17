@@ -6,9 +6,11 @@ import "./Category.css";
 
 function Category() {
   return (
-    <div className="home__wrapper">
+    <div className="category__wrappper">
     <Topbar/>
-        <CategoryComponent/>
+        <div style= {{flex:1}}>
+          <CategoryComponent/>
+        </div>
       <Footer/>
     </div>
   )

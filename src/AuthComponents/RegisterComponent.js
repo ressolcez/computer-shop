@@ -9,6 +9,7 @@ import {
   MDBInput
 }
 from 'mdb-react-ui-kit';
+import Button from '@mui/material/Button';
 import Logo from "../Images/Logo.png"
 import AuthServices from "../Services/AuthServices"
 
@@ -58,9 +59,8 @@ function RegisterComponent() {
               <MDBInput wrapperClass='mb-4 w-100' label='Address' id='addresss' type='text' size="lg" onChange={(e) => setAddress(e.target.value)}/>
               <MDBInput wrapperClass='mb-4 w-100' label='Powtórz hasło' id='repeat_password' type="password" size="lg" onChange={(e) => setConfirmPassword(e.target.value)}/>
 
-              <MDBBtn size='lg' onClick = {(e) => registerUser(e)}>
-                Zarejestruj
-              </MDBBtn>
+              <Button variant="contained">Zarejestruj</Button>
+
             </MDBCardBody>
           </MDBCard>
 

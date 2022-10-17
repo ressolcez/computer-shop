@@ -3,34 +3,12 @@ import Rating from "@mui/material/Rating";
 import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
 import SentimentDissatisfiedOutlinedIcon from '@mui/icons-material/SentimentDissatisfiedOutlined';
 import styled from 'styled-components';
-import Table from 'react-bootstrap/Table';
+import "./Opinions.css"
+import Divider from '@mui/material/Divider';
 
-const Container = styled.div`
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+const StyledDivider = styled(Divider)`
+  background-color: black;
 `
-const NumberRate = styled.div`
-    display:flex;
-    font-size: 20px;
-`
-const NumberOfOpinions = styled.p`
-    margin: 0;
-    font-size: 20px;
-`
-
-const OpinionsTableWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`
-
-const SingleOpinionWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
-
 
 function Opinions({opinions}) {
 
@@ -54,24 +32,38 @@ function Opinions({opinions}) {
     
           return(
             <>
-            <NumberRate>
-                {finalSum}/5
-            </NumberRate>
-            <Rating value={parseFloat(finalSum)} readOnly precision={0.5} />
-            <NumberOfOpinions>Liczba opinii({liczba_ocen}) </NumberOfOpinions>
+              <div className='NumberRates'>
+                  {finalSum}/5
+              </div>
+              <Rating value={parseFloat(finalSum)} readOnly precision={0.5} />
+              <div className='NumberOfAllOpinions'>Liczba opinii({liczba_ocen}) </div>
+              <div className='opinion__number__divider'>
+                <StyledDivider/>
+              </div>
             </>
           );
     }
 
   return (
-    <Container>
+    <div className='opinions__count__rating__comment__wrappper'>
         {handleRating()}
-
-      <Table bordered hover size="sm">
-       
-        </Table>
-
-    </Container>
+          <div className='opinions__wrapper'>
+            <div className='single__opinion__wrapper'>
+                <div className='opinion__name__icon'>
+                  <InsertEmoticonOutlinedIcon/> Konrad
+                </div>
+                <div className='opinion__rating__comment'>
+                  <Rating value={4.5} readOnly precision={0.5} size = "small"/>
+                  <div className='comment'>
+                    asda
+                  </div>
+                </div>
+                <div className='opinion__divider'>
+                <StyledDivider/>  
+                </div> 
+            </div>
+          </div>
+    </div>
   )
 }
 

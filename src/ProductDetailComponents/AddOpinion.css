@@ -1,0 +1,27 @@
+.addOpinion__wrappper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.addopinion__input__container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    margin-top:1%;
+}
+
+.addOpinion__button__container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+
+}
+
+.add__opinion__input{
+    width: 70%;
+    word-wrap: break-word;
+}
