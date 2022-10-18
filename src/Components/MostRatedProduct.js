@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react'
 import "./MostRatedProduct.css"
 import Rating from "@mui/material/Rating";
 import computer from "../Images/komputer2.jpg"
-import HomePageServices from '../Services/HomePageServices';
 import {json, Link } from "react-router-dom";
 import styled from "styled-components";
 import {useCart} from "react-use-cart";
+import OpinionsService from '../Services/OpinionsService';
 
 const StyledLink = styled(Link)`
   color: black;
@@ -17,15 +17,14 @@ const StyledLink = styled(Link)`
 
 function MostRatedProduct({product}) {
 
-    const [opinions ,setOpinions] = useState([])
+    const [opinions ,setOpinions] = useState([]);
     const { addItem } = useCart();
-
-
+    
     useEffect(() => {
-            HomePageServices.getOpinionsToProduct(product.id).then((responseOpinion) => {
-                setOpinions(responseOpinion.data);
-              });
-       }, [product.productId]);
+      OpinionsService.getAllOpinionToProduct(product.id).then((response) => {
+        setOpinions(response.data);
+      });
+       }, []);
 
 
     const handleRating = () => {

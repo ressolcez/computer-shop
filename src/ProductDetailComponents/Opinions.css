@@ -29,6 +29,11 @@
     flex-wrap: wrap;
 }
 
+.pagination__cont{
+    display: flex;
+    justify-content: center;
+}
+
 .opinion__name__icon{
     width: 30%;
 }

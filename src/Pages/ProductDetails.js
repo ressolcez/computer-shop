@@ -10,6 +10,7 @@ import Divider from '@mui/material/Divider';
 import styled from 'styled-components';
 import {useParams} from "react-router-dom";
 import ProductDetailsServices from "../Services/ProductDetailsServices";
+import OpinionsService from '../Services/OpinionsService';
 
 const StyledDivider = styled(Divider)`
   background-color: black;
@@ -24,16 +25,25 @@ export default function ProductDetails() {
   
   const [product, setProduct] = useState([]);
   const [opinions, setOpinions] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
+  const [allOpinion, setAllOpinion] = useState([]);
 
   useEffect(() => {
       ProductDetailsServices.getProductById(id).then((response) => {
          setProduct(response.data);
        });
 
-       ProductDetailsServices.getOpinionsToProduct(id).then((response) => {
-        setOpinions(response.data);
+       OpinionsService.getOpinionsToProduct(id,page-1).then((response) => {
+        setOpinions(response.data.opinions);
+        setTotalNumberOfPages(response.data.totalPages);
       });
-    }, []);
+
+      OpinionsService.getAllOpinionToProduct(id).then((response) => {
+        setAllOpinion(response.data);
+      });
+
+    }, [page]);
 
   return (
     <div className='Product__Detail__Wrapper'>
@@ -42,9 +52,9 @@ export default function ProductDetails() {
         <StyledDivider/>
         <StyledTitle>Specyfikacja:</StyledTitle>
         <Specyfication/>
-         <StyledTitle>Opinie:</StyledTitle>
-        <Opinions opinions = {opinions}/>
-        <AddOpinion/>
+          <StyledTitle>Opinie:</StyledTitle>
+        <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} allOpinion = {allOpinion}/>
+        <AddOpinion productId = {product.id}/>
         <StyledDivider/>
         <Footer/>
     </div>

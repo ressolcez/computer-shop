@@ -12,7 +12,6 @@ import HomePageServices from '../Services/HomePageServices';
 import { UserContext } from '../Context/UserContext';
 import Divider from '@mui/material/Divider';
 
-
 const StyledDivider = styled(Divider)`
   background-color: black;
 `

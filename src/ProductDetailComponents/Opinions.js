@@ -1,25 +1,30 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Rating from "@mui/material/Rating";
 import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
 import SentimentDissatisfiedOutlinedIcon from '@mui/icons-material/SentimentDissatisfiedOutlined';
 import styled from 'styled-components';
 import "./Opinions.css"
 import Divider from '@mui/material/Divider';
+import Pagination from '@mui/material/Pagination';
 
 const StyledDivider = styled(Divider)`
   background-color: black;
 `
 
-function Opinions({opinions}) {
+function Opinions({opinions,setPage,page,totalNumberOfPages, allOpinion}) {
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
     const handleRating = () => {
 
         var rating = 0;
-        var liczba_ocen = opinions.length;
+        var liczba_ocen = allOpinion.length;
         
           for(var i=0; i< liczba_ocen ; i++) 
           {
-            rating += opinions[i].rate;
+            rating += allOpinion[i].rate;
           }
     
           var finalSum = rating/liczba_ocen;
@@ -46,21 +51,26 @@ function Opinions({opinions}) {
 
   return (
     <div className='opinions__count__rating__comment__wrappper'>
-      {handleRating()}
+        {handleRating()}
           <div className='opinions__wrapper'>
-            <div className='single__opinion__wrapper'>
+          {opinions.map((product)=>(
+            <div className='single__opinion__wrapper' key={product.id}>
                 <div className='opinion__name__icon'>
-                  <InsertEmoticonOutlinedIcon/> Konrad
+                  <InsertEmoticonOutlinedIcon/> {product.userModel.name}
                 </div>
                 <div className='opinion__rating__comment'>
-                  <Rating value={4.5} readOnly precision={0.5} size = "small"/>
+                  <Rating value={product.rate} readOnly precision={0.5} size = "small" />
                   <div className='comment'>
-                    asda
+                    {product.comment}
                   </div>
                 </div>
                 <div className='opinion__divider'>
                 <StyledDivider/>  
                 </div> 
+            </div>
+                ))}
+            <div className='pagination__cont'>
+              <Pagination count={totalNumberOfPages} page={page} onChange={handleChange}/>
             </div>
           </div>
     </div>
