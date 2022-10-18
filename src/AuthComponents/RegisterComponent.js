@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
@@ -63,10 +62,9 @@ function RegisterComponent() {
 
             </MDBCardBody>
           </MDBCard>
-
         </MDBCol>
       </MDBRow>
-
+      
     </MDBContainer>
   );
 }

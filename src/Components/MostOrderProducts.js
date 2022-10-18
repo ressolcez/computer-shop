@@ -15,8 +15,8 @@ function MostOrderProducts({products}) {
   return (
     <div className= "MostOrderProducts__wrappper">
        {products.map((product)=>(
-            <div className='MostOrderProduct__wrapper' key={product.productId}>
-             <StyledLink to={"/"+product.categoryModel.category_id+"/"+product.productId}>
+            <div className='MostOrderProduct__wrapper' key={product.id}>
+             <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
                 <div className='img__container'>
                   <img src ={Komputer} alt = "productImage"></img>
                 </div>

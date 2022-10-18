@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import "./RecommendedProduct.css"
+import "./MostRatedProduct.css"
 import Rating from "@mui/material/Rating";
 import computer from "../Images/komputer2.jpg"
 import HomePageServices from '../Services/HomePageServices';
@@ -15,14 +15,14 @@ const StyledLink = styled(Link)`
   }
 `
 
-function RecommendedProduct({product}) {
+function MostRatedProduct({product}) {
 
     const [opinions ,setOpinions] = useState([])
     const { addItem } = useCart();
 
 
     useEffect(() => {
-            HomePageServices.getOpinionsToProduct(product.productId).then((responseOpinion) => {
+            HomePageServices.getOpinionsToProduct(product.id).then((responseOpinion) => {
                 setOpinions(responseOpinion.data);
               });
        }, [product.productId]);
@@ -52,18 +52,18 @@ function RecommendedProduct({product}) {
 }
 
   return (
-    <div className='RecommendedProduct__wrapper' >
-    <StyledLink to={"/"+product.categoryModel.category_id+"/"+product.productId} >
+    <div className='MostRatedProduct__wrapper' >
+    <StyledLink to={"/"+product.categoryModel.name+"/"+product.id} >
     <div className='img__container'>
       <img src ={computer} alt ="computer" ></img>
     </div>
     </StyledLink>
-    <div className='title__container'>{product.productName}</div>
+    <div className='title__container'>{product.name}</div>
     <div className='stars__container'> 
     {handleRating()}
      </div>
     <div className='price__btn__container'>
-      <div className='price__container'>{product.new_Price} PLN</div>
+      <div className='price__container'>{product.price} PLN</div>
       <div className='btn__container'>
       <button type="button" className="btn btn-success btn-sm" onClick={() => addItem({"id": 1, "price": 23})}> <i className="bi bi-cart"></i>Success</button>
       </div>
@@ -72,4 +72,4 @@ function RecommendedProduct({product}) {
   )
 }
 
-export default RecommendedProduct
+export default MostRatedProduct

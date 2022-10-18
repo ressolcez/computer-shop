@@ -28,11 +28,11 @@ function ItemDetail({product}) {
         <div className='ItemDetail__description_wrapper'> 
 
         <div className="product-description">
-              <h1>{product.productName}</h1>
-              <p>{product.short_Description}</p>
+              <h1>{product.name}</h1>
+              <p>{product.description}</p>
             </div>
             <div className="product-price">
-              <span>{product.new_Price} zł</span>
+              <span>{product.price} zł</span>
               <btn className="cart-btn">Kup</btn>
             </div>
         </div>

@@ -3,6 +3,12 @@ import CartOrderComponent from '../CartComponents/CartOrderComponent'
 import Footer from '../Components/Footer'
 import Topbar from '../Components/Topbar'
 import "./Cart.css"
+import styled from "styled-components"
+import Divider from '@mui/material/Divider';
+
+const StyledDivider = styled(Divider)`
+  background-color: black;
+`
 
 function Cart() {
 
@@ -15,6 +21,7 @@ function Cart() {
         <div style= {{flex:1}}>
           <CartOrderComponent/>
         </div>
+        <StyledDivider/>
         <Footer/>
         </div>
   )

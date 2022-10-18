@@ -20,17 +20,17 @@ const StyledTitle = styled.h2`
 
 export default function ProductDetails() {
 
-  let { productId } = useParams();
+  let { id } = useParams();
   
   const [product, setProduct] = useState([]);
   const [opinions, setOpinions] = useState([]);
 
   useEffect(() => {
-      ProductDetailsServices.getProductById(productId).then((response) => {
+      ProductDetailsServices.getProductById(id).then((response) => {
          setProduct(response.data);
        });
 
-       ProductDetailsServices.getOpinionsToProduct(productId).then((response) => {
+       ProductDetailsServices.getOpinionsToProduct(id).then((response) => {
         setOpinions(response.data);
       });
     }, []);

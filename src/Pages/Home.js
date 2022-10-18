@@ -6,11 +6,12 @@ import "./Home.css"
 import Slider from "../Components/Slider";
 import DiscountProducts from "../Components/DiscountProducts";
 import Categories from "../Components/Categories";
-import Divider from '@mui/material/Divider';
 import styled from 'styled-components';
-import RecommendedProducts from "../Components/RecommendedProducts";
+import MostRatedProducts from "../Components/MostRatedProducts";
 import HomePageServices from '../Services/HomePageServices';
 import { UserContext } from '../Context/UserContext';
+import Divider from '@mui/material/Divider';
+
 
 const StyledDivider = styled(Divider)`
   background-color: black;
@@ -21,7 +22,7 @@ const Home = () => {
     const [sliderProduct, setSliderProduct] = useState([]);
     const [discountProduct, setDiscountProduct] = useState([]);
     const [mostOrderProducts, setMostOrderProducts] = useState([]);
-    const [recommendedProduct, setRecommendedProduct] = useState([]);
+    const [mostRatedProducts, setMostRatedProducts] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
     const {setUser } = useContext(UserContext);
@@ -72,7 +73,7 @@ const Home = () => {
           });
 
           HomePageServices.getRecommendedProducts().then((response) => {
-            setRecommendedProduct(response.data);
+            setMostRatedProducts(response.data);
             setLoading(false);
           });
           
@@ -103,7 +104,7 @@ const Home = () => {
                 <div className="products-heading">
                     <h2>Najlepiej oceniane produkty!</h2>
                 </div>
-                <RecommendedProducts products = {recommendedProduct}/>
+                <MostRatedProducts products = {mostRatedProducts}/>
                 <StyledDivider/>
                 <Footer/>
             </main>

@@ -46,7 +46,7 @@ function Opinions({opinions}) {
 
   return (
     <div className='opinions__count__rating__comment__wrappper'>
-        {handleRating()}
+      {handleRating()}
           <div className='opinions__wrapper'>
             <div className='single__opinion__wrapper'>
                 <div className='opinion__name__icon'>

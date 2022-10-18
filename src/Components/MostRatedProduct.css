@@ -1,4 +1,4 @@
-.RecommendedProduct__wrapper{
+.MostRatedProduct__wrapper{
     background-color: red;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@
     margin-top: 2.5%;
 }
 
-.RecommendedProduct__wrapper:hover{
+.MostRatedProduct:hover{
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
@@ -59,7 +59,7 @@
 
 @media only screen and (max-width: 1300px) {
 
-    .RecommendedProduct__wrapper{
+    .MostRatedProduct__wrapper{
         width: 32%;
     }
     
@@ -67,18 +67,16 @@
 
     @media only screen and (max-width: 750px) {
 
-        .RecommendedProduct__wrapper{
+        .MostRatedProduct__wrapper{
             width: 49%;
         }
 
         @media only screen and (max-width: 470px) {
 
-            .RecommendedProduct__wrapper{
+            .MostRatedProduct__wrapper{
                 width: 100%;
                 margin-bottom: 20px;
 
             }
         }
-    
-        
 }

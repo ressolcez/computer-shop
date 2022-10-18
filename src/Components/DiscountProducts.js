@@ -43,19 +43,19 @@ function DiscountProducts({products}) {
     <div className='DiscountProducts__wrappper'>
         <Carousel responsive={responsive}>
         {products.map((product)=>(
-            <div className='carousel__item' key={product.productId}>
+            <div className='carousel__item' key={product.id}>
                 <div className='carousel__item__img__cont'>
-                <StyledLink to={"/"+product.categoryModel.category_id+"/"+product.productId}>
+                <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
                     <img src={computer} alt = "komputer"/>
                 </StyledLink>
                 </div>
                 <div className='carousel__desc'>
                     <div className='carousel__desc__title'>
-                        <p>{product.productName}</p>
-                        {product.old_Price} PLN
+                        <p>{product.name}</p>
+                        {product.price} PLN
                           
                         <div>
-                        {product.new_Price} PLN
+                        {product.price} PLN
                         </div>
                     </div>
                 </div>
