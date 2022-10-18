@@ -81,7 +81,7 @@ function SearchBar({products }) {
       const searchWord = event.target.value;
       setWordEntered(searchWord);
       const newFilter = products.filter((value) => {
-        return value.productName.toLowerCase().includes(searchWord.toLowerCase());
+        return value.name.toLowerCase().includes(searchWord.toLowerCase());
       });
   
       if (searchWord === "") {
@@ -107,12 +107,12 @@ function SearchBar({products }) {
             <StyledDataResult>
             {filteredData.slice(0, 15).map((value) => {
               return (
-                <StyledLink to={"/"+value.categoryModel.category_id+"/"+value.productId} >
+                <StyledLink to={"/"+value.categoryModel.name+"/"+value.id} >
                 <StyledDataItem key = {value.productId}>
                  <ImgC src='https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/9/pr_2022_9_9_9_47_35_177_02.jpg'/>
                     <TitleC>
-                    <TitleProductName>{value.productName}</TitleProductName>
-                    <StyledPrice>{value.new_Price},00zł</StyledPrice>
+                    <TitleProductName>{value.name}</TitleProductName>
+                    <StyledPrice>{value.price},00zł</StyledPrice>
                     </TitleC>
                 </StyledDataItem>    
                 </StyledLink> 

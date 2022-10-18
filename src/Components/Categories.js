@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Categories.css"
 import styled from "styled-components";
-
+import CategoriesImg from "../Images/categories.jpg"
 
 const Container = styled.div`
   width: 100%;
@@ -39,7 +39,7 @@ export default function Categories() {
   return (
     <div className='categories__wrappper'> 
          <Container>
-      <Image />
+      <Image src = {CategoriesImg}/>
       <Info>
         <Title>Wszystkie kategorie</Title>
       </Info>

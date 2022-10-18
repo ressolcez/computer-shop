@@ -1,5 +1,5 @@
 import React from 'react'
-import "./DiscountProducts.css"
+import "./RecommendedProducts.css"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import computer from "../Images/komputer2.jpg"
@@ -53,9 +53,8 @@ function DiscountProducts({products}) {
                     <div className='carousel__desc__title'>
                         <p>{product.name}</p>
                         {product.price} PLN
-                          
                         <div>
-                        {product.price} PLN
+
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import Topbar from "../Components/Topbar";
 import MostOrderProducts from "../Components/MostOrderProducts";
 import "./Home.css"
 import Slider from "../Components/Slider";
-import DiscountProducts from "../Components/DiscountProducts";
+import RecommendedProducts from "../Components/RecommendedProducts";
 import Categories from "../Components/Categories";
 import styled from 'styled-components';
 import MostRatedProducts from "../Components/MostRatedProducts";
@@ -19,7 +19,7 @@ const StyledDivider = styled(Divider)`
 const Home = () => {  
 
     const [sliderProduct, setSliderProduct] = useState([]);
-    const [discountProduct, setDiscountProduct] = useState([]);
+    const [recoomendedProducts, setRecommendedProducts] = useState([]);
     const [mostOrderProducts, setMostOrderProducts] = useState([]);
     const [mostRatedProducts, setMostRatedProducts] = useState([]);
     const [isLoading, setLoading] = useState(true);
@@ -62,7 +62,7 @@ const Home = () => {
 
          
          HomePageServices.getSliderContent().then((response) => {
-            setDiscountProduct(response.data);
+            setRecommendedProducts(response.data);
             setLoading(false);
           });
           
@@ -98,7 +98,7 @@ const Home = () => {
                 <div className="products-heading">
                     <h2>Przeceny!</h2>
                 </div>
-                <DiscountProducts products = {discountProduct}/>
+                <RecommendedProducts products = {recoomendedProducts}/>
                 <StyledDivider/>
                 <div className="products-heading">
                     <h2>Najlepiej oceniane produkty!</h2>
