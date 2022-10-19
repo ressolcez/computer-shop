@@ -54,7 +54,7 @@ function DiscountProducts({products}) {
                         <p>{product.name}</p>
                         {product.price} PLN
                         <div>
-
+                        
                         </div>
                     </div>
                 </div>
