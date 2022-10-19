@@ -96,7 +96,7 @@ const Home = () => {
                 <MostOrderProducts products = {mostOrderProducts}/>
                 <StyledDivider/>
                 <div className="products-heading">
-                    <h2>Przeceny!</h2>
+                    <h2>Polecane produkty!</h2>
                 </div>
                 <RecommendedProducts products = {recoomendedProducts}/>
                 <StyledDivider/>

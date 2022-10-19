@@ -2,10 +2,23 @@ import axios from 'axios'
 
 class CategoryServices{
 
-    getFilters(categoriesFilter){
+    getFilters(categoriesFilter,manufacturerFilter,minPriceFilter,maxPriceFilter,page){
+
+    
+        if(minPriceFilter === ''){
+            minPriceFilter = 0;
+        }
+
+        if(maxPriceFilter === ''){
+            maxPriceFilter = 1000000;
+        }
 
         let categoriesFilterString = categoriesFilter.toString();
-        return axios.get('http://localhost:8080/api/products/filters', { params: { categories: categoriesFilterString } })
+        let manufacturerFilterString = manufacturerFilter.toString();
+        return axios.get('http://localhost:8080/api/products/filters', 
+        { params: 
+            { categories: categoriesFilterString, manufacturer: manufacturerFilterString, minPrice: minPriceFilter, maxPrice: maxPriceFilter, pageNumber: page} 
+        })
     }   
     
 

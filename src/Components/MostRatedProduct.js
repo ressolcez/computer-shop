@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import "./MostRatedProduct.css"
 import Rating from "@mui/material/Rating";
-import computer from "../Images/komputer2.jpg"
-import {json, Link } from "react-router-dom";
+import computer from "../Images/komputer8.jpg"
+import {Link } from "react-router-dom";
 import styled from "styled-components";
 import {useCart} from "react-use-cart";
 import OpinionsService from '../Services/OpinionsService';
+import Button from '@mui/material/Button';
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 
 const StyledLink = styled(Link)`
   color: black;
@@ -53,18 +55,20 @@ function MostRatedProduct({product}) {
   return (
     <div className='MostRatedProduct__wrapper' >
     <StyledLink to={"/"+product.categoryModel.name+"/"+product.id} >
-    <div className='img__container'>
+    <div className='img__container__rated'>
       <img src ={computer} alt ="computer" ></img>
     </div>
     </StyledLink>
-    <div className='title__container'>{product.name}</div>
+    <div className='title__container__rated'>{product.name}</div>
     <div className='stars__container'> 
     {handleRating()}
      </div>
-    <div className='price__btn__container'>
-      <div className='price__container'>{product.price} PLN</div>
-      <div className='btn__container'>
-      <button type="button" className="btn btn-success btn-sm" onClick={() => addItem({"id": 1, "price": 23})}> <i className="bi bi-cart"></i>Success</button>
+    <div className='price__btn__container__rated'>
+      <div className='price__container__rated'>{product.price} PLN</div>
+      <div className='btn__container__rated'>
+      <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
+        <AddShoppingCart style ={{width:'20px'}} />
+      </Button>
       </div>
     </div>
   </div>

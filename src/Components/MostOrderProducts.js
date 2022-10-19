@@ -3,6 +3,8 @@ import "./MostOrderProducts.css";
 import Komputer from "../Images/komputer2.jpg"
 import {Link } from "react-router-dom";
 import styled from "styled-components";
+import Button from '@mui/material/Button';
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 
 const StyledLink = styled(Link)`
   color: black;
@@ -21,10 +23,14 @@ function MostOrderProducts({products}) {
                   <img src ={Komputer} alt = "productImage"></img>
                 </div>
             </StyledLink>
-            <div className='title__container'>Sluchawki hehe</div>
-            <div className='price__btn__container'>
-              <div className='price__container'>asd</div>
-              <div className='btn__container'>asd</div>
+            <div className='title__container'>{product.name}</div>
+            <div className='price__btn__container__order'>
+              <div className='price__container__order'>{product.price} PLN</div>
+              <div className='btn__container'>
+              <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
+                <AddShoppingCart style ={{width:'20px'}} />
+              </Button>
+              </div>
             </div>
           </div>
         ))}
