@@ -19,17 +19,21 @@ const StyledLink = styled(Link)`
 function Topbar() {
 
     const [allProducts, setAllProducts] = useState([]);
-    const { user, setUser } = useContext(UserContext);
+    const [searchWord, setSearchWord] = useState('');
+
+    const { user} = useContext(UserContext);
+
 
     useEffect(() => {
-        TopBarServices.getAllProducts().then((response) => {
+        TopBarServices.getProductsFiltered(searchWord).then((response) => {
             setAllProducts(response.data);
-            console.log(allProducts)
          });
+
+         console.log(searchWord)
 
         if(!user) return 
 
-       }, [user]);
+       }, [searchWord,user]);
 
        const checkAuth = () =>{
             if(!user) return <span className = "topbar__rightBox_spanItem">Zaloguj</span>;
@@ -44,7 +48,7 @@ function Topbar() {
                 </StyledLink>
             </div>
             <div className="topbar__middleBox">
-                <SearchBar products={allProducts}/>
+                <SearchBar products={allProducts} setSearchWord = {setSearchWord}/>
             </div>
            <div className="topbar__rightBox">
                 <div className = "topbar__rightBox__account">

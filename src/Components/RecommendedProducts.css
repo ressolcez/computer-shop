@@ -5,7 +5,7 @@
 .carousel__item{
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: 265px;
 }
 
 .carousel__item__img__cont{
@@ -24,8 +24,14 @@
     display: flex;
     flex-direction: column;
     padding-left: 15%;
+    padding-right: 15%;
 }
 
-.carousel__desc__title{
-    margin-top:5%;
+.carousel__desc__price__btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.carousel__desc__price{
+    font-weight: 800;
 }

@@ -5,17 +5,16 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import CategoryServices from '../Services/CategoryServices';
 import Pagination from '@mui/material/Pagination';
+import Button from '@mui/material/Button';
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 
 function CategoryComponent() {
 
   const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [manufacturerFilter, setManufacturerFilter] = useState([]);
-
   const [products, setProducts] = useState([]);
-
   const [minPrice, setMinprice] = useState(0);
   const [maxPrice, setMaxprice] = useState(10000);
-
   const [page, setPage] = useState(1);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
 
@@ -103,14 +102,20 @@ function CategoryComponent() {
     </div>   
     <div className='category__product__wrappper'>
     {products.map((product)=>(
-        <div className='single__product__wrapper'>
-                <div className='img__container'>
+        <div className='single__product__wrapper__category'>
+                <div className='img__container__category'>
                   <img src ={computer} alt = "productImage"></img>
                 </div>
-            <div className='title__container'>{product.name}</div>
-            <div className='price__btn__container'>
-              <div className='price__container'>{product.producent}</div>
-              <div className='btn__container'>{product.price}</div>
+            <div className='title__container__category'>{product.name}</div>
+            <div className='product__category__container'><b>Kategoria: </b>{product.categoryModel.name} </div>
+            <div className='manufacturer__container'><b>Producent: </b>{product.producent} </div>
+            <div className='price__btn__container__category'>
+              <div className='price__container__category'>{product.price} PLN</div>
+              <div className='btn__container__category'>
+              <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
+                <AddShoppingCart style ={{width:'20px'}} />
+              </Button>
+              </div>
             </div>
           </div>
     ))}

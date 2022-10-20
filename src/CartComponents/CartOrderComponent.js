@@ -29,7 +29,7 @@ function CartOrderComponent() {
                         <img className='image__cart__product' src='https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A'/>
 
                     </div>
-                    <div className='item__description'>
+                    <div className='item__description__cart'>
                         <p className='name__style'><b>Nazwa: </b> XIAOMII </p>
                         <p><b>Kategoria: </b> XIAOMII </p>
                         <p><b>Producent: </b> XIAOMII </p>
@@ -37,8 +37,8 @@ function CartOrderComponent() {
                 </div>
                 <div className='item__control__price'>
                     <div className='control'>
-                        <div>
-                        <Button className='buttonControl' variant="contained" >+</Button> 0 <Button className='buttonControl' variant="contained">-</Button>
+                        <div className='items__control'>
+                        <Button style={{minWidth:'20px', marginRight:'5px'}} variant="contained" color = "success">+</Button> 0 <Button style={{minWidth:'20px', marginLeft:'5px'}} variant="contained" color = "success">-</Button>
                         </div>
                     </div>
                     <div className='price'>
@@ -66,6 +66,7 @@ function CartOrderComponent() {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ 80</SummaryItemPrice>
             </SummaryItem>
+            <Button style = {{margin:'15px'}} variant = "contained"> Zamów</Button>
         </div>
     </div>
   )

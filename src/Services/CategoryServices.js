@@ -15,7 +15,7 @@ class CategoryServices{
 
         let categoriesFilterString = categoriesFilter.toString();
         let manufacturerFilterString = manufacturerFilter.toString();
-        return axios.get('http://localhost:8080/api/products/filters', 
+        return axios.get('http://localhost:8080/api/products/filters/CategoryPageFilters', 
         { params: 
             { categories: categoriesFilterString, manufacturer: manufacturerFilterString, minPrice: minPriceFilter, maxPrice: maxPriceFilter, pageNumber: page} 
         })

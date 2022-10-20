@@ -1,11 +1,13 @@
 import axios from 'axios'
 
-const baseURL = "http://localhost:8080/api/products";
+const baseURL = "http://localhost:8080/api/products/filters/searchBarFilter/";
 
 class TopBarServices{
 
-    getAllProducts(){
-        return axios.get(baseURL);
+    getProductsFiltered(searchWord){
+        return axios.get(baseURL,{ params: 
+            { searchWord: searchWord} 
+        })
     }    
 }
 

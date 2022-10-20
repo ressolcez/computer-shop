@@ -5,6 +5,8 @@ import "react-multi-carousel/lib/styles.css";
 import computer from "../Images/komputer2.jpg"
 import {Link } from "react-router-dom";
 import styled from "styled-components";
+import Button from '@mui/material/Button';
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 
 const StyledLink = styled(Link)`
   color: black;
@@ -52,9 +54,15 @@ function DiscountProducts({products}) {
                 <div className='carousel__desc'>
                     <div className='carousel__desc__title'>
                         <p>{product.name}</p>
-                        {product.price} PLN
-                        <div>
-                        
+                        <div className='carousel__desc__price__btn'>
+                          <div className='carousel__desc__price'>
+                            {product.price} PLN
+                          </div>
+                          <div className='carousel__desc__btn'>
+                          <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
+                            <AddShoppingCart style ={{width:'20px'}} />
+                          </Button>
+                          </div>
                         </div>
                     </div>
                 </div>
