@@ -5,7 +5,7 @@ import User from "../Images/user.png";
 import Logo from "../Images/Logo.png";
 import ShoppingCart from "../Images/shopping_cart.png";
 import TopBarServices from "../Services/TopBarServices";
-import SearchBar from './SearchBar';
+import SearchBar from '../SharedComponent/SearchBar';
 import styled from 'styled-components';
 import './Topbar.css';
 

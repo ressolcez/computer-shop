@@ -1,16 +1,6 @@
-import React, { useState} from 'react'
-import "./Searchbar.css"
-import {Link } from "react-router-dom";
-import styled from "styled-components";
-
-const StyledLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-  &:hover{
-    color: black;
-    text-decoration: none;
-  }
-`
+import React from 'react';
+import StyledLink from './StyledLink';
+import "./Searchbar.css";
 
 function SearchBar({products,setSearchWord }) {
   

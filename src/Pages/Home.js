@@ -1,6 +1,6 @@
 import React, { useState,useEffect,useContext } from 'react'
-import Footer from "../Components/Footer";
-import Topbar from "../Components/Topbar";
+import Footer from '../Components/Footer';
+import Topbar from '../Components/Topbar';
 import MostOrderProducts from "../Components/MostOrderProducts";
 import "./Home.css"
 import Slider from "../Components/Slider";
