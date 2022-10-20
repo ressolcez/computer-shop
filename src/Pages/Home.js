@@ -22,10 +22,10 @@ const Home = () => {
     const [recoomendedProducts, setRecommendedProducts] = useState([]);
     const [mostOrderProducts, setMostOrderProducts] = useState([]);
     const [mostRatedProducts, setMostRatedProducts] = useState([]);
-    const [isLoading, setLoading] = useState(true);
 
     const {setUser } = useContext(UserContext);
   
+    /*
     const isAuthorized = () => {
       if(localStorage.getItem('token')) {
         fetch('http://localhost:8080/api/authentication', {
@@ -53,30 +53,27 @@ const Home = () => {
       }
   }
 
+  */
+
     useEffect(() => {
        
        HomePageServices.getSliderContent().then((response) => {
            setSliderProduct(response.data);
-           setLoading(false);
          });
 
          
          HomePageServices.getSliderContent().then((response) => {
             setRecommendedProducts(response.data);
-            setLoading(false);
           });
           
           HomePageServices.getMostOrderProducts().then((response) => {
             setMostOrderProducts(response.data);
-            setLoading(false);
           });
 
           HomePageServices.getRecommendedProducts().then((response) => {
             setMostRatedProducts(response.data);
-            setLoading(false);
           });
           
-          isAuthorized();
           
        }, []);
 

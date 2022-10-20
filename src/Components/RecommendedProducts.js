@@ -7,14 +7,7 @@ import {Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from '@mui/material/Button';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
-
-const StyledLink = styled(Link)`
-  color: black;
-  &:hover{
-    color: black;
-    text-decoration: none;
-  }
-`
+import StyledLink from '../SharedComponent/StyledLink';
 
 function DiscountProducts({products}) {
 
