@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import {useCart} from "react-use-cart";
-import "./MostRatedProduct.css"
 import Rating from "@mui/material/Rating";
-import computer from "../Images/komputer8.jpg"
-import OpinionsService from '../Services/OpinionsService';
 import Button from '@mui/material/Button';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 import StyledLink from '../SharedComponent/StyledLink';
+import OpinionsService from '../Services/OpinionsService';
+import computer from "../Images/komputer8.jpg"
+import "./MostRatedProduct.css"
+
 
 function MostRatedProduct({product}) {
 
@@ -41,7 +42,7 @@ function MostRatedProduct({product}) {
           </div>
         </StyledLink>
         <div className='title__container__rated'>{product.name}</div>
-        <div className='stars__container'> 
+        <div className='stars__container__rated'> 
           <Rating value={parseFloat(opinionsRate.finalRate)} readOnly precision={0.5} size="small"/>
         </div>
         <div className='price__btn__container__rated'>

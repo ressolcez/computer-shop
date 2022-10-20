@@ -13,37 +13,11 @@ const StyledLink = styled(Link)`
 `
 
 function SearchBar({products,setSearchWord }) {
-  /*  
-    const [filteredData, setFilteredData] = useState([]);
-    const [wordEntered, setWordEntered] = useState("");
   
-    const handleFilter = (event) => {
-
-      const searchWord = event.target.value;
-      setWordEntered(searchWord);
-      const newFilter = products.filter((value) => {
-        return value.name.toLowerCase().includes(searchWord.toLowerCase());
-      });
-  
-      if (searchWord === "") {
-        setFilteredData([]);
-      } else {
-        setFilteredData(newFilter);
-      }
-
-    };
-    
-    */
-    
     return (
       <div>
         <div>
-          <input
-            type="text"
-            className = "topbar__search"
-            onChange={(e) => setSearchWord(e.target.value)}
-          />
-         
+          <input type="text" className = "topbar__search" onChange={(e) => setSearchWord(e.target.value)}/>
         </div>
         {products.length !== 0 && (
             <div className='data__result__wrapper'>
