@@ -19,37 +19,20 @@ const StyledLink = styled(Link)`
 
 function MostRatedProduct({product}) {
 
-    const [opinions ,setOpinions] = useState([]);
-    const { addItem } = useCart();
+    const [opinionsRate ,setOpinionsRate] = useState([]);
+    const { addItem} = useCart();
     
     useEffect(() => {
-      OpinionsService.getAllOpinionToProduct(product.id).then((response) => {
-        setOpinions(response.data);
+      OpinionsService.getOpinionToProductRate(product.id).then((response) => {
+        setOpinionsRate(response.data);
       });
        }, []);
 
-
     const handleRating = () => {
-
-        var rating = 0;
-        var liczba_ocen = opinions.length;
-        
-          for(var i=0; i< liczba_ocen ; i++) 
-          {
-            rating += opinions[i].rate;
-          }
     
-          var finalSum = rating/liczba_ocen;
-          finalSum = finalSum.toFixed(1);
-    
-          
-          if(liczba_ocen === 0 ){
-            finalSum = 0;
-          }
-    
-          return(
-            <Rating value={parseFloat(finalSum)} readOnly precision={0.5} size="small"/>
-          );
+      return(
+        <Rating value={parseFloat(opinionsRate.finalRate)} readOnly precision={0.5} size="small"/>
+      );
 }
 
   return (
@@ -66,7 +49,7 @@ function MostRatedProduct({product}) {
     <div className='price__btn__container__rated'>
       <div className='price__container__rated'>{product.price} PLN</div>
       <div className='btn__container__rated'>
-      <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
+      <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success" onClick={()=>addItem({id: product.id, price: product.price})}>
         <AddShoppingCart style ={{width:'20px'}} />
       </Button>
       </div>

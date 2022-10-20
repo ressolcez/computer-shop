@@ -8,8 +8,8 @@ class OpinionsService{
         return axios.get(baseURL +productId +"/"+pageNumber);
     } 
 
-    getAllOpinionToProduct(productId){
-        return axios.get(baseURL + productId);
+    getOpinionToProductRate(productId){
+        return axios.get(baseURL +"rate/" + productId);
     } 
 
     addOpinionToProduct(opinion,productId){

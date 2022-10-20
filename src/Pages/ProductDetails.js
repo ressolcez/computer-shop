@@ -27,7 +27,7 @@ export default function ProductDetails() {
   const [opinions, setOpinions] = useState([]);
   const [page, setPage] = useState(1);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
-  const [allOpinion, setAllOpinion] = useState([]);
+  const [opinionRate, setOpinionRate] = useState([]);
 
   useEffect(() => {
       ProductDetailsServices.getProductById(id).then((response) => {
@@ -39,8 +39,8 @@ export default function ProductDetails() {
         setTotalNumberOfPages(response.data.totalPages);
       });
 
-      OpinionsService.getAllOpinionToProduct(id).then((response) => {
-        setAllOpinion(response.data);
+      OpinionsService.getOpinionToProductRate(id).then((response) => {
+        setOpinionRate(response.data);
       });
 
     }, [page]);
@@ -53,7 +53,7 @@ export default function ProductDetails() {
         <StyledTitle>Specyfikacja:</StyledTitle>
         <Specyfication/>
           <StyledTitle>Opinie:</StyledTitle>
-        <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} allOpinion = {allOpinion}/>
+        <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} opinionRate = {opinionRate}/>
         <AddOpinion productId = {product.id}/>
         <StyledDivider/>
         <Footer/>
