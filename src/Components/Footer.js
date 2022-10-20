@@ -1,5 +1,4 @@
 import React from 'react'
-import './Footer.css'
 import Logo from "../Images/Logo.png"
 import Facebook from "../Images/facebook.png"
 import Twitter from "../Images/twitter.png"
@@ -7,8 +6,7 @@ import Instagram from "../Images/instagram.png"
 import Localization from "../Images/loca.png"
 import Mail from "../Images/mail.png"
 import Call from "../Images/call.png"
-
-
+import './Footer.css'
 
 function Footer() {
     return (
@@ -19,7 +17,6 @@ function Footer() {
                 <div>  Strona służąca do</div>
                 <div>sprzedawania akcesoriów</div>
                 <div>komputerowych</div>
-
                 <div style={{marginTop: '5%'}}>
                     <a href="https://www.facebook.com/">
                         <img src={Facebook} alt = "facebook"/>
@@ -32,32 +29,27 @@ function Footer() {
                     </a>
                 </div>
             </div>
-
             <div className = "footer__middleBox">
                 <span className = "footer__title"> Przydatne linki </span>
                     <span> Strona domowa</span>
                     <span>Koszyk</span>
                     <span>Zamówienia</span>
             </div>
-
             <div className = "footer__rightBox">
                <span className = "footer__title">Kontakt</span>
 
                <div className = "footer__description">
                     <img src={Call} alt = "Call"/>
                     <span> 576304115</span>
-               </div>
-    
+               </div>   
                <div className = "footer__description">
                     <img src={Mail} alt = "Mail"/>
                     <span> Sellkon@mail.com </span>
-                </div>
-    
+                </div>  
                 <div className = "footer__description"> 
                     <img src={Localization} alt = "Loca"/>
                     <span> Kielce, ul. Mała </span>
-                </div>
-    
+                </div>   
             </div>
         </div>
     </footer>

@@ -1,18 +1,9 @@
 import React from 'react';
-import {Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
+import Komputer from "../Images/komputer2.jpg";
+import StyledLink from '../SharedComponent/StyledLink';
+import "./Slider.css";
 import "react-multi-carousel/lib/styles.css";
-import "./Slider.css"
-import Komputer from "../Images/komputer2.jpg"
-import styled from "styled-components";
-
-const StyledLink = styled(Link)`
-  color: black;
-  &:hover{
-    color: black;
-    text-decoration: none;
-  }
-`
 
 function Slider({products}) {
     const responsive = {
@@ -37,12 +28,12 @@ function Slider({products}) {
   return (
     <Carousel responsive={responsive}>
          {products.map((product)=>(
-        <div key={product.id} className='carousel__wrappper'>
-            <div className='carousel__wrappper__image'>
-            <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
-                <img className='inside__img' src = {Komputer} alt = "computer"/>
-             </StyledLink>
-            </div>
+          <div key={product.id} className='carousel__wrappper'>
+              <div className='carousel__wrappper__image'>
+              <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
+                  <img className='inside__img' src = {Komputer} alt = "computer"/>
+              </StyledLink>
+              </div>
             <div className='carousel__wrapper__description'>
                 <div className='carousel__wrapper__title'>
                     {product.name}

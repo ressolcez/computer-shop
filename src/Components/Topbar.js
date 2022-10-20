@@ -1,36 +1,24 @@
 import React, { useState,useEffect,useContext } from 'react';
-import {Link } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
 import User from "../Images/user.png";
 import Logo from "../Images/Logo.png";
 import ShoppingCart from "../Images/shopping_cart.png";
 import TopBarServices from "../Services/TopBarServices";
 import SearchBar from '../SharedComponent/SearchBar';
-import styled from 'styled-components';
+import StyledLink from '../SharedComponent/StyledLink';
 import './Topbar.css';
 
-const StyledLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-  &:hover{
-    color: black;
-  }
-`
 function Topbar() {
 
+    const { user} = useContext(UserContext);    
     const [allProducts, setAllProducts] = useState([]);
     const [searchWord, setSearchWord] = useState('');
-
-    const { user} = useContext(UserContext);
-
 
     useEffect(() => {
         TopBarServices.getProductsFiltered(searchWord).then((response) => {
             setAllProducts(response.data);
          });
-
-         console.log(searchWord)
-
+         
         if(!user) return 
 
        }, [searchWord,user]);
@@ -52,13 +40,13 @@ function Topbar() {
             </div>
            <div className="topbar__rightBox">
                 <div className = "topbar__rightBox__account">
-                <img src={User} alt = "User"/>
-                {checkAuth()}
+                    <img src={User} alt = "User"/>
+                        {checkAuth()}
                 </div>
                 <StyledLink to={"/Cart"}>
                     <div className = "topbar__rightBox__cart">                            
-                            <img src={ShoppingCart} alt = "ShoppingCart"/>          
-                            <span className = "topbar__rightBox_spanItem">Twój Koszyk</span>
+                        <img src={ShoppingCart} alt = "ShoppingCart"/>          
+                        <span className = "topbar__rightBox_spanItem">Twój Koszyk</span>
                     </div>
                 </StyledLink>  
             </div>

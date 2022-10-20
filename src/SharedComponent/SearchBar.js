@@ -31,7 +31,6 @@ function SearchBar({products,setSearchWord }) {
                     <div className='price__search'>
                       <b>Cena:&nbsp;</b> {product.price}
                     </div>
-                    
                  </div>
                 </div>    
                 </StyledLink> 
