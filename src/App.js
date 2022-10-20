@@ -9,6 +9,7 @@ import Register from './Pages/Register';
 import AdminDashboard from './Pages/AdminDashboard';
 import { CartProvider, useCart } from "react-use-cart";
 import Category from "./Pages/Category";
+import WaitPage from "./SharedComponent/WaitPage";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Route  path="/Cart" element={<Cart/>}/>
       <Route  path="/Login" element={<Login/>}/>
       <Route  path="/Register" element={<Register/>}/>
+      <Route  path="/Wait" element={<WaitPage/>}/>
       <Route  path="/Admin" element={<AdminDashboard/>}/>
       </Routes>
     </BrowserRouter>

@@ -1,5 +1,4 @@
 .MostRatedProduct__wrapper{
-    background-color: red;
     display: flex;
     flex-direction: column;
     width: 23%;
@@ -65,8 +64,17 @@
     .MostRatedProduct__wrapper{
         width: 32%;
     }
-    
+
+    .MostRatedProduct__wrapper:hover{
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: none;
+        transition:none;
     }
+    
+ }
 
     @media only screen and (max-width: 750px) {
 
