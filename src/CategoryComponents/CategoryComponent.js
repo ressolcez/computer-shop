@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import {useCart} from "react-use-cart";
 import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
@@ -6,6 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import computer from "../Images/komputer2.jpg"
 import CategoryServices from '../Services/CategoryServices';
+import SnackbarSuccess from "../SharedComponent/SnackbarSuccess";
 import "./CategoryComponent.css"
 
 function CategoryComponent() {
@@ -17,6 +19,9 @@ function CategoryComponent() {
   const [maxPrice, setMaxprice] = useState(10000);
   const [page, setPage] = useState(1);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
+  const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
+  const {addItem} = useCart();
+
 
   useEffect(() => {
     CategoryServices.getFilters(categoriesFilter,manufacturerFilter,minPrice,maxPrice,page-1).then((response) => {
@@ -31,7 +36,6 @@ function CategoryComponent() {
   };
 
   const handleCheckedCategory = (e, index,type) => {
-
     let prev;
     let itemIndex;
 
@@ -60,6 +64,18 @@ function CategoryComponent() {
       setManufacturerFilter([...prev]);
   }
   };
+
+    const handleAddToCart = (product) =>{
+      addItem(product);
+      setOpenSnackbarSuccess(true);
+    }
+
+    const handleCloseSnackbarSuccess = (reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpenSnackbarSuccess(false);
+    };
 
   return (
     <div className='category__wrapper'>
@@ -107,7 +123,7 @@ function CategoryComponent() {
                 <div className='price__btn__container__category'>
                   <div className='price__container__category'>{product.price} PLN</div>
                   <div className='btn__container__category'>
-                  <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
+                  <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success" onClick={()=> handleAddToCart(product)}>
                     <AddShoppingCart style ={{width:'20px'}} />
                   </Button>
                   </div>
@@ -121,6 +137,7 @@ function CategoryComponent() {
       </div>
     </>
     }
+    <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Dodano do koszyka"/>
     </div>
   )
 }

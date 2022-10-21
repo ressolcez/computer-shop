@@ -11,7 +11,7 @@ import "./MostRatedProduct.css"
 
 function MostRatedProduct({product}) {
 
-  const {addItem,emptyCart} = useCart();
+  const {addItem} = useCart();
   const [opinionsRate ,setOpinionsRate] = useState([]);
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
 
