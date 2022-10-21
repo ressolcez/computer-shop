@@ -1,11 +1,13 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import "./CartOrderComponent.css";
 import styled from "styled-components";
 import Button from '@mui/material/Button';
+import {useCart} from "react-use-cart";
+import SingleCartItem from './SingleCartItem';
+import OrderServices from '../Services/OrderServices';
 
-const SummaryTitle = styled.h1`
-  font-weight: 200;
-`;
+
+const SummaryTitle = styled.h1`font-weight: 200;`;
 
 const SummaryItem = styled.div`
   margin: 10px 0px;
@@ -20,35 +22,30 @@ const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 
 function CartOrderComponent() {
+
+  const { items,cartTotal } = useCart();
+
+ 
+  const handleAddOrder = () =>{
+
+    OrderServices.addOrder(1,cartTotal).then((response) => {
+      
+      {items.map((product)=>(
+        OrderServices.addOrderProduct(response.data,product.id, product.quantity)
+      ))}
+    
+    });
+  }
+
   return (
     <div className='cart__items__order__wrapper'>
         <div className='cart__items__wrapper'>
-            <div className='single__item__wrapper'>
-                <div className = 'item__image__description'>
-                    <div className='item__image'>
-                        <img className='image__cart__product' src='https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A'/>
-
-                    </div>
-                    <div className='item__description__cart'>
-                        <p className='name__style'><b>Nazwa: </b> XIAOMII </p>
-                        <p><b>Kategoria: </b> XIAOMII </p>
-                        <p><b>Producent: </b> XIAOMII </p>
-                    </div>
-                </div>
-                <div className='item__control__price'>
-                    <div className='control'>
-                        <div className='items__control'>
-                        <Button style={{minWidth:'20px', marginRight:'5px'}} variant="contained" color = "success">+</Button> 0 <Button style={{minWidth:'20px', marginLeft:'5px'}} variant="contained" color = "success">-</Button>
-                        </div>
-                    </div>
-                    <div className='price'>
-                        PLN 200
-                    </div>
-                </div>
-            </div>            
+        {items.map((product)=>(
+          <SingleCartItem product = {product}/>
+        ))}
         </div>
         <div className='cart__order__wrapper'>
-            
+
         <SummaryTitle>Podsumowanie koszyka</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
@@ -66,7 +63,7 @@ function CartOrderComponent() {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ 80</SummaryItemPrice>
             </SummaryItem>
-            <Button style = {{margin:'15px'}} variant = "contained"> Zamów</Button>
+            <Button style = {{margin:'15px'}} variant = "contained" onClick={()=> handleAddOrder()} > Zamów</Button>
         </div>
     </div>
   )

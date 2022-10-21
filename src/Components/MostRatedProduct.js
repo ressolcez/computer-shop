@@ -9,10 +9,9 @@ import OpinionsService from '../Services/OpinionsService';
 import computer from "../Images/komputer8.jpg"
 import "./MostRatedProduct.css"
 
-
 function MostRatedProduct({product}) {
 
-  const {addItem} = useCart();
+  const {addItem,emptyCart} = useCart();
   const [opinionsRate ,setOpinionsRate] = useState([]);
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
 
@@ -23,6 +22,7 @@ function MostRatedProduct({product}) {
       }, []);
 
     const handleAddToCart = () =>{
+      addItem(product);
       setOpenSnackbarSuccess(true);
     }
 
