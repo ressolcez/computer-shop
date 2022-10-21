@@ -33,7 +33,7 @@ function ItemDetail({product}) {
             </div>
             <div className="product-price">
               <span>{product.price} zł</span>
-              <btn className="cart-btn">Kup</btn>
+              <p className="cart-btn">Kup</p>
             </div>
         </div>
     </div>

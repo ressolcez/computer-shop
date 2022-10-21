@@ -23,16 +23,15 @@ const SummaryItemPrice = styled.span``;
 
 function CartOrderComponent() {
 
-  const { items,cartTotal } = useCart();
+  const { items,cartTotal,totalItems  } = useCart();
 
- 
   const handleAddOrder = () =>{
 
     OrderServices.addOrder(1,cartTotal).then((response) => {
       
-      {items.map((product)=>(
+      items.map((product)=>(
         OrderServices.addOrderProduct(response.data,product.id, product.quantity)
-      ))}
+      ))
     
     });
   }
@@ -48,20 +47,12 @@ function CartOrderComponent() {
 
         <SummaryTitle>Podsumowanie koszyka</SummaryTitle>
             <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemText>Ilość przedmiotów w koszyku</SummaryItemText>
+              <SummaryItemPrice>{totalItems}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemText>Cena</SummaryItemText>
+              <SummaryItemPrice>{cartTotal} PLN</SummaryItemPrice>
             </SummaryItem>
             <Button style = {{margin:'15px'}} variant = "contained" onClick={()=> handleAddOrder()} > Zamów</Button>
         </div>

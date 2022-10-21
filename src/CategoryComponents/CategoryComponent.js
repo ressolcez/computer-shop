@@ -1,12 +1,12 @@
 import React,{useState, useEffect} from 'react';
-import "./CategoryComponent.css"
-import computer from "../Images/komputer2.jpg"
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import CategoryServices from '../Services/CategoryServices';
 import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import computer from "../Images/komputer2.jpg"
+import CategoryServices from '../Services/CategoryServices';
+import "./CategoryComponent.css"
 
 function CategoryComponent() {
 
@@ -18,55 +18,48 @@ function CategoryComponent() {
   const [page, setPage] = useState(1);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
 
+  useEffect(() => {
+    CategoryServices.getFilters(categoriesFilter,manufacturerFilter,minPrice,maxPrice,page-1).then((response) => {
+      setTotalNumberOfPages(response.data.totalPages);
+      setProducts(response.data.products);
+    });
+
+  }, [categoriesFilter,manufacturerFilter,minPrice,maxPrice,page]);
+
   const handlePageChange = (event, value) => {
     setPage(value);
   };
 
-
   const handleCheckedCategory = (e, index,type) => {
 
-    console.log(index)
     let prev;
     let itemIndex;
 
     if(type === 1){
 
-    prev = categoriesFilter;
-    itemIndex = prev.indexOf(index);
+      prev = categoriesFilter;
+      itemIndex = prev.indexOf(index);
 
-    if (itemIndex !== -1) {
-      prev.splice(itemIndex, 1);
-    } else {
-      prev.push(index);
-    }
-    setCategoriesFilter([...prev]);
+      if (itemIndex !== -1) {
+        prev.splice(itemIndex, 1);
+      } else {
+        prev.push(index);
+      }
+      setCategoriesFilter([...prev]);
     
   }else{
 
-    prev = manufacturerFilter;
-    itemIndex = prev.indexOf(index);
+      prev = manufacturerFilter;
+      itemIndex = prev.indexOf(index);
 
-    if (itemIndex !== -1) {
-      prev.splice(itemIndex, 1);
-    } else {
-      prev.push(index);
-    }
-    setManufacturerFilter([...prev]);
+      if (itemIndex !== -1) {
+        prev.splice(itemIndex, 1);
+      } else {
+        prev.push(index);
+      }
+      setManufacturerFilter([...prev]);
   }
   };
-
-
-  useEffect(() => {
-       
-      CategoryServices.getFilters(categoriesFilter,manufacturerFilter,minPrice,maxPrice,page-1).then((response) => {
-        setTotalNumberOfPages(response.data.totalPages);
-        setProducts(response.data.products);
-      });
-
-      
-       
-    }, [categoriesFilter,manufacturerFilter,minPrice,maxPrice,page]);
-
 
   return (
     <div className='category__wrapper'>
@@ -100,30 +93,34 @@ function CategoryComponent() {
         </div>
 
     </div>   
+    {products.length !== 0  &&
+    <>
     <div className='category__product__wrappper'>
-    {products.map((product)=>(
-        <div className='single__product__wrapper__category'>
-                <div className='img__container__category'>
-                  <img src ={computer} alt = "productImage"></img>
+        {products.map((product)=>(
+            <div className='single__product__wrapper__category'>
+                    <div className='img__container__category'>
+                      <img src ={computer} alt = "productImage"></img>
+                    </div>
+                <div className='title__container__category'>{product.name}</div>
+                <div className='product__category__container'><b>Kategoria: </b>{product.categoryModel.name} </div>
+                <div className='manufacturer__container'><b>Producent: </b>{product.producent} </div>
+                <div className='price__btn__container__category'>
+                  <div className='price__container__category'>{product.price} PLN</div>
+                  <div className='btn__container__category'>
+                  <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
+                    <AddShoppingCart style ={{width:'20px'}} />
+                  </Button>
+                  </div>
                 </div>
-            <div className='title__container__category'>{product.name}</div>
-            <div className='product__category__container'><b>Kategoria: </b>{product.categoryModel.name} </div>
-            <div className='manufacturer__container'><b>Producent: </b>{product.producent} </div>
-            <div className='price__btn__container__category'>
-              <div className='price__container__category'>{product.price} PLN</div>
-              <div className='btn__container__category'>
-              <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
-                <AddShoppingCart style ={{width:'20px'}} />
-              </Button>
               </div>
-            </div>
-          </div>
-    ))}
+        ))}
     </div>
-    <div style={{display:'flex', justifyContent:'center', width: '100%'}}>
-    <Pagination count={totalNumberOfPages} page={page} onChange={handlePageChange} size="large"  variant="outlined" />          
-
-    </div>
+  
+      <div className='pagination__container'>
+        <Pagination count={totalNumberOfPages} page={page} onChange={handlePageChange} size="large"  variant="outlined" />         
+      </div>
+    </>
+    }
     </div>
   )
 }

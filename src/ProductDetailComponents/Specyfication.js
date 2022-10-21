@@ -8,7 +8,7 @@ function Specyfication() {
     <tbody>
             <tr>
             <td> Procesor  </td>
-            <td class="text-xs-left">asd</td>
+            <td className = "text-xs-left">asd</td>
             </tr>
             <tr>
             <td> Chipset  </td>

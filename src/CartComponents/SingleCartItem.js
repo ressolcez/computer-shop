@@ -1,8 +1,14 @@
 import React from 'react';
 import './SingleCartItem.css';
 import Button from '@mui/material/Button';
+import {useCart } from "react-use-cart";
 
 function SingleCartItem({product}) {
+
+    const {
+        updateItemQuantity,
+      } = useCart();
+
   return (
             <div className='single__item__wrapper'>
             <div className = 'item__image__description'>
@@ -12,18 +18,19 @@ function SingleCartItem({product}) {
                 </div>
                 <div className='item__description__cart'>
                     <p className='name__style'><b>Nazwa: </b> {product.name} </p>
-                    <p><b>Kategoria: </b> {product.categoryModel.name} </p>
-                    <p><b>Producent: </b> {product.producent} </p>
+                    <p className='name__style'><b>Kategoria: </b> {product.categoryModel.name} </p>
+                    <p className='name__style'><b>Producent: </b> {product.producent} </p>
                 </div>
             </div>
             <div className='item__control__price'>
                 <div className='control'>
                     <div className='items__control'>
-                    <Button style={{minWidth:'20px', marginRight:'5px'}} variant="contained" color = "success">+</Button> 0 <Button style={{minWidth:'20px', marginLeft:'5px'}} variant="contained" color = "success">-</Button>
+                    <Button onClick={() => updateItemQuantity(product.id, product.quantity + 1)} style={{minWidth:'20px', marginRight:'2px'}} variant="contained" color = "success">+</Button> {product.quantity} 
+                    <Button onClick={() => updateItemQuantity(product.id, product.quantity - 1)} style={{minWidth:'20px', marginLeft:'10px'}} variant="contained" color = "success">-</Button>
                     </div>
                 </div>
                 <div className='price'>
-                    PLN 200
+                    {product.price * product.quantity} PLN
                 </div>
             </div>
         </div>  

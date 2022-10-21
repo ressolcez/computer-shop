@@ -54,6 +54,7 @@ export default function ProductDetails() {
         <Specyfication/>
           <StyledTitle>Opinie:</StyledTitle>
         <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} opinionRate = {opinionRate}/>
+        <StyledTitle>Dodaj opinie:</StyledTitle>
         <AddOpinion productId = {product.id}/>
         <StyledDivider/>
         <Footer/>
