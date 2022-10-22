@@ -11,6 +11,7 @@ function Cart() {
   const {user, setUser} = useContext(UserContext);
 
   useEffect(() => {
+
        if(localStorage.getItem('token')){
            AuthServices.isAuthorized().then((response) => {
              if(response.data.status === 'pass'){
@@ -23,7 +24,7 @@ function Cart() {
            });
          }  
 
-    }, [setUser]);
+    }, []);
 
   return (
         <div className='Cart__wrapper'>
@@ -35,7 +36,7 @@ function Cart() {
           <CartOrderComponent user = {user}/>
         </div>
         <StyledDivider/>
-        <Footer/>
+          <Footer/>
         </div>
   )
 }

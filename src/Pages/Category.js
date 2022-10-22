@@ -25,7 +25,7 @@ function Category() {
         });
       }  
 
- }, [setUser]);
+ }, []);
 
   return (
     <div className="category__wrappper">

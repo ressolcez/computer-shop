@@ -56,7 +56,7 @@ export default function ProductDetails() {
         });
       }  
 
-    }, [page,setUser,id]);
+    }, [page]);
 
   return (
     <div className='Product__Detail__Wrapper'>

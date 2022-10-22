@@ -53,7 +53,7 @@ const Home = () => {
               });
             }  
 
-       }, [setUser]);
+       }, []);
 
     return (
             <main className="home__wrapper">
