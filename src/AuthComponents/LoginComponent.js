@@ -17,20 +17,16 @@ function LoginComponent() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
-  /*
-   const loginUser = () => {
-      AuthServices.loginUser(login,password)
-      .then(response => response.json())   
-        .then( json => {
-          if(json.token !== -1){
-            localStorage.setItem('token', json.token);
-          }
-      } 
-      ).catch(error => {
-          console.log(error);
-        });
-  }
-*/
+const loginUser = () => {
+      const credential = {login,password}
+
+      AuthServices.loginUser(credential).then((response) => {
+        if(response.data.token !== '-1'){
+          localStorage.setItem('token',response.data.token);
+        }
+      });
+
+}
 
   return (
     <MDBContainer fluid>
@@ -47,7 +43,7 @@ function LoginComponent() {
               <MDBInput wrapperClass='mb-4 w-100' label='Nazwa użytkownika' type='login' size="lg" onChange={(e) => setLogin(e.target.value)}/>
               <MDBInput wrapperClass='mb-4 w-100' label='Hasło' type='password' size="lg" onChange={(e) => setPassword(e.target.value)}/>
               <p className="text-center">Nie masz konta? <a href="#!">Zarejestruj</a></p>
-              <Button variant="contained">Login</Button>
+              <Button onClick={()=>loginUser()} variant="contained">Login</Button>
             </MDBCardBody>
           </MDBCard>
 

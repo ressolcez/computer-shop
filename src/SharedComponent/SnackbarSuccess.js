@@ -10,7 +10,6 @@ const Alert = React.forwardRef(function Alert(
   });
 
 const SnackbarSuccess = ({openSnackbarSuccess, handleCloseSnackbarSuccess,message}) => {
-
     return (
         <Snackbar open={openSnackbarSuccess} autoHideDuration={3000} onClose={handleCloseSnackbarSuccess}>
         <Alert onClose={handleCloseSnackbarSuccess} severity="success" sx={{ width: '100%' }}>

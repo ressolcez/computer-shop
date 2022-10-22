@@ -1,4 +1,5 @@
 import React, { useState,useEffect,useContext } from 'react'
+import { UserContext } from '../Context/UserContext';
 import Divider from '@mui/material/Divider';
 import Footer from '../Components/Footer';
 import Topbar from '../Components/Topbar';
@@ -9,7 +10,7 @@ import Categories from "../Components/Categories";
 import styled from 'styled-components';
 import MostRatedProducts from "../Components/MostRatedProducts";
 import HomePageServices from '../Services/HomePageServices';
-import { UserContext } from '../Context/UserContext';
+import AuthServices from '../Services/AuthServices';
 import "./Home.css"
 
 const StyledDivider = styled(Divider)`
@@ -24,37 +25,7 @@ const Home = () => {
     const [mostRatedProducts, setMostRatedProducts] = useState([]);
 
     const {setUser } = useContext(UserContext);
-  
-    /*
-    const isAuthorized = () => {
-      if(localStorage.getItem('token')) {
-        fetch('http://localhost:8080/api/authentication', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': localStorage.getItem('token')
-          },
-        }).then(response => response.json())   
-        .then( json => {
-          console.log(json.status)
-          if(json.status === 'pass'){
-                const user = {
-                  username: "bob",
-                  email: "bob@bob.com"
-                }
-              setUser(user)
-          }else{
-            setUser(null);
-          }
-       } 
-       ).catch(error => {
-          console.log(error);
-        });
-      }
-  }
-
-  */
-
+ 
     useEffect(() => {
        
        HomePageServices.getSliderContent().then((response) => {
@@ -74,7 +45,19 @@ const Home = () => {
             setMostRatedProducts(response.data);
           });
           
-          
+
+          if(localStorage.getItem('token')){
+              AuthServices.isAuthorized().then((response) => {
+                if(response.data.status === 'pass'){
+                  const user = {
+                    userId: response.data.user_id,
+                    role: response.data.role
+                  }
+                  setUser(user)
+                }
+              });
+            }  
+
        }, []);
 
     return (

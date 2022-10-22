@@ -23,7 +23,6 @@ function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
             <div className='NumberRates'>
                 {opinionRate.finalRate}/5
               </div>
-
               <Rating value= {parseFloat(opinionRate.finalRate)} readOnly precision={0.5} />
             <div className='NumberOfAllOpinions'>Liczba opinii({opinionRate.numberOfOpinions}) </div>
             <div className='opinion__number__divider'>
@@ -56,7 +55,7 @@ function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
       )
     }
 
-return <div className='info__zero__opinion'>Ten produkt nie ma jeszcze opinii</div>
+      return <div className='info__zero__opinion'>Ten produkt nie ma jeszcze opinii</div>
 
 }
 

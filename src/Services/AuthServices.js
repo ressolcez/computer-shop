@@ -9,17 +9,27 @@ class AuthServices{
         return axios.post(baseURL, user)
     }
 
-    loginUser(login,password){
-        
-        return fetch('http://localhost:8080/api/authentication', 
-        {
-            method: 'POST',
-            headers: 
-                {
-                    'Content-Type': 'application/json'},
-                    body: JSON.stringify ({
-                        login: login, password: password})
-                    })
+    isAuthorized(){
+      return axios.get('http://localhost:8080/api/authentication', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('token')
+        }
+       })
+    }
+
+    loginUser(credential){
+      return axios.post("http://localhost:8080/api/authentication",credential);
+    }
+
+    logoutUser(){
+      let token = localStorage.getItem('token');
+      return axios.post('http://localhost:8080/api/authentication/logout',token, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('token')
+        }
+      })
     }
 }
 

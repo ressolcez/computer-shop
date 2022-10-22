@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo,useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {UserContext} from "./Context/UserContext";
 import Home from "./Pages/Home"
@@ -18,22 +18,22 @@ function App() {
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   return (
-  <CartProvider>
-  <UserContext.Provider value={value}>
-    <BrowserRouter>
-      <Routes>
-      <Route exact path="/" element={<Home/>}/>
-      <Route  path="/:name/:id" element={<ProductDetails/>}/>
-      <Route  path="/Category" element={<Category/>}/>
-      <Route  path="/Cart" element={<Cart/>}/>
-      <Route  path="/Login" element={<Login/>}/>
-      <Route  path="/Register" element={<Register/>}/>
-      <Route  path="/Wait" element={<WaitPage/>}/>
-      <Route  path="/Admin" element={<AdminDashboard/>}/>
-      </Routes>
-    </BrowserRouter>
-  </UserContext.Provider>
-  </CartProvider>
+    <CartProvider>
+    <UserContext.Provider value={value}>
+      <BrowserRouter>
+        <Routes>
+        <Route  path="/" element={<Home/>}/>
+        <Route  path="/:name/:id" element={<ProductDetails/>}/>
+        <Route  path="/Category" element={<Category/>}/>
+        <Route  path="/Cart" element={<Cart/>}/>
+        <Route  path="/Login" element={<Login/>}/>
+        <Route  path="/Register" element={<Register/>}/>
+        <Route  path="/Wait" element={<WaitPage/>}/>
+        <Route  path="/Admin" element={<AdminDashboard/>}/>
+        </Routes>
+      </BrowserRouter>
+    </UserContext.Provider>
+    </CartProvider>
   );
 }
 

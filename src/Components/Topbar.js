@@ -6,15 +6,17 @@ import ShoppingCart from "../Images/shopping_cart.png";
 import TopBarServices from "../Services/TopBarServices";
 import SearchBar from '../SharedComponent/SearchBar';
 import StyledLink from '../SharedComponent/StyledLink';
+import AuthServices from '../Services/AuthServices';
 import './Topbar.css';
 
 function Topbar() {
 
-    const { user} = useContext(UserContext);    
+    const { user,setUser} = useContext(UserContext);    
     const [allProducts, setAllProducts] = useState([]);
     const [searchWord, setSearchWord] = useState('');
 
     useEffect(() => {
+        
         TopBarServices.getProductsFiltered(searchWord).then((response) => {
             setAllProducts(response.data);
          });
@@ -23,9 +25,11 @@ function Topbar() {
 
        }, [searchWord,user]);
 
-       const checkAuth = () =>{
-            if(!user) return <span className = "topbar__rightBox_spanItem">Zaloguj</span>;
-            return <span className = "topbar__rightBox_spanItem">Wyloguj</span>
+       const logoutUser = () =>
+       {
+        AuthServices.logoutUser();
+        localStorage.removeItem('token')
+        setUser(null);
        }
 
     return (
@@ -41,7 +45,14 @@ function Topbar() {
            <div className="topbar__rightBox">
                 <div className = "topbar__rightBox__account">
                     <img src={User} alt = "User"/>
-                        {checkAuth()}
+                        {!user ? ( 
+                            <StyledLink to = {"/Login"}>
+                                <span className = "topbar__rightBox_spanItem">Zaloguj</span>
+                             </StyledLink>
+                        ) : (
+                        <span className = "topbar__rightBox_spanItem" onClick={()=>logoutUser()}>Wyloguj</span>     
+                        )
+                        }           
                 </div>
                 <StyledLink to={"/Cart"}>
                     <div className = "topbar__rightBox__cart">                            
