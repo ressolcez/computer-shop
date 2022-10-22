@@ -25,3 +25,19 @@
     width: 70%;
     word-wrap: break-word;
 }
+
+.no__login__user__info{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .no__login__user__info{
+        height:100px;
+    }    
+ }

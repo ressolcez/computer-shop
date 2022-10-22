@@ -24,7 +24,7 @@ const Home = () => {
     const [mostOrderProducts, setMostOrderProducts] = useState([]);
     const [mostRatedProducts, setMostRatedProducts] = useState([]);
 
-    const {setUser } = useContext(UserContext);
+    const {user,setUser } = useContext(UserContext);
  
     useEffect(() => {
        
@@ -50,7 +50,7 @@ const Home = () => {
               AuthServices.isAuthorized().then((response) => {
                 if(response.data.status === 'pass'){
                   const user = {
-                    userId: response.data.user_id,
+                    userId: response.data.user_Id,
                     role: response.data.role
                   }
                   setUser(user)
@@ -62,7 +62,7 @@ const Home = () => {
 
     return (
             <main className="home__wrapper">
-                <Topbar/>
+                <Topbar user = {user} setUser = {setUser}/>
                 <Slider products = {sliderProduct}/>
                 <StyledDivider/>
                 <div className="products-heading">

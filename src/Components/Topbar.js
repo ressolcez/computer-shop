@@ -9,27 +9,23 @@ import StyledLink from '../SharedComponent/StyledLink';
 import AuthServices from '../Services/AuthServices';
 import './Topbar.css';
 
-function Topbar() {
+function Topbar({user,setUser}) {
 
-    const { user,setUser} = useContext(UserContext);    
     const [allProducts, setAllProducts] = useState([]);
     const [searchWord, setSearchWord] = useState('');
 
     useEffect(() => {
-        
         TopBarServices.getProductsFiltered(searchWord).then((response) => {
             setAllProducts(response.data);
          });
-         
-        if(!user) return 
-
-       }, [searchWord,user]);
+       }, [searchWord]);
 
        const logoutUser = () =>
        {
-        AuthServices.logoutUser();
-        localStorage.removeItem('token')
-        setUser(null);
+            AuthServices.logoutUser();
+            localStorage.removeItem('token')
+            setUser(null);
+            window.location.reload(false)
        }
 
     return (
@@ -49,10 +45,10 @@ function Topbar() {
                             <StyledLink to = {"/Login"}>
                                 <span className = "topbar__rightBox_spanItem">Zaloguj</span>
                              </StyledLink>
-                        ) : (
-                        <span className = "topbar__rightBox_spanItem" onClick={()=>logoutUser()}>Wyloguj</span>     
-                        )
-                        }           
+                                ) : (
+                                <span className = "topbar__rightBox_spanItem" onClick={()=>logoutUser()}>Wyloguj</span>     
+                                )
+                            }           
                 </div>
                 <StyledLink to={"/Cart"}>
                     <div className = "topbar__rightBox__cart">                            
