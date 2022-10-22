@@ -1,8 +1,8 @@
 import React, { useState,useEffect,useContext } from 'react'
+import Divider from '@mui/material/Divider';
 import Footer from '../Components/Footer';
 import Topbar from '../Components/Topbar';
 import MostOrderProducts from "../Components/MostOrderProducts";
-import "./Home.css"
 import Slider from "../Components/Slider";
 import RecommendedProducts from "../Components/RecommendedProducts";
 import Categories from "../Components/Categories";
@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import MostRatedProducts from "../Components/MostRatedProducts";
 import HomePageServices from '../Services/HomePageServices';
 import { UserContext } from '../Context/UserContext';
-import Divider from '@mui/material/Divider';
+import "./Home.css"
 
 const StyledDivider = styled(Divider)`
   background-color: black;

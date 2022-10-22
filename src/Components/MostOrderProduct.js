@@ -5,7 +5,6 @@ import Rating from "@mui/material/Rating";
 import StyledLink from '../SharedComponent/StyledLink';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 import OpinionsService from '../Services/OpinionsService';
-import Komputer from "../Images/komputer2.jpg";
 import "./MostOrderProduct.css";
 
 function MostOrderProduct({product}) {
@@ -35,7 +34,7 @@ function MostOrderProduct({product}) {
         <div className='MostOrderProduct__wrapper' key={product.id}>
             <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
                 <div className='img__container'>
-                    <img src ={Komputer} alt = "productImage"></img>
+                    <img src = {require('../Images/komputer5.jpg')} alt = "productImage"></img>
                 </div>
             </StyledLink>
             <div className='title__container'>{product.name}</div>

@@ -6,7 +6,6 @@ import {useCart} from "react-use-cart";
 import SingleCartItem from './SingleCartItem';
 import OrderServices from '../Services/OrderServices';
 
-
 const SummaryTitle = styled.h1`font-weight: 200;`;
 
 const SummaryItem = styled.div`

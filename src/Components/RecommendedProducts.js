@@ -1,15 +1,10 @@
-import React from 'react'
-import "./RecommendedProducts.css"
+import React from 'react';
 import Carousel from "react-multi-carousel";
+import RecommendedProduct from './RecommendedProduct';
 import "react-multi-carousel/lib/styles.css";
-import computer from "../Images/komputer2.jpg"
-import {Link } from "react-router-dom";
-import styled from "styled-components";
-import Button from '@mui/material/Button';
-import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
-import StyledLink from '../SharedComponent/StyledLink';
+import "./RecommendedProducts.css";
 
-function DiscountProducts({products}) {
+function RecommendedProducts({products}) {
 
     const responsive = {
         superLargeDesktop: {
@@ -35,31 +30,10 @@ function DiscountProducts({products}) {
       }
 
   return (
-    <div className='DiscountProducts__wrappper'>
+    <div className='RecommendedProducts__wrappper'>
         <Carousel responsive={responsive}>
         {products.map((product)=>(
-            <div className='carousel__item' key={product.id}>
-                <div className='carousel__item__img__cont'>
-                <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
-                    <img src={computer} alt = "komputer"/>
-                </StyledLink>
-                </div>
-                <div className='carousel__desc'>
-                    <div className='carousel__desc__title'>
-                        <p>{product.name}</p>
-                        <div className='carousel__desc__price__btn'>
-                          <div className='carousel__desc__price'>
-                            {product.price} PLN
-                          </div>
-                          <div className='carousel__desc__btn'>
-                          <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success">
-                            <AddShoppingCart style ={{width:'20px'}} />
-                          </Button>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <RecommendedProduct product = {product} key={product.id}/>
              ))}
         </Carousel>
         </div>
@@ -68,4 +42,4 @@ function DiscountProducts({products}) {
 
 
 
-export default DiscountProducts
+export default RecommendedProducts
