@@ -8,6 +8,7 @@ import {
   MDBInput
 }
 from 'mdb-react-ui-kit';
+import {useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Logo from "../Images/Logo.png"
 import AuthServices from "../Services/AuthServices"
@@ -16,6 +17,8 @@ function LoginComponent() {
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
 
 const loginUser = () => {
       const credential = {login,password}
@@ -23,6 +26,7 @@ const loginUser = () => {
       AuthServices.loginUser(credential).then((response) => {
         if(response.data.token !== '-1'){
           localStorage.setItem('token',response.data.token);
+          navigate('/', {replace: true});
         }
       });
 

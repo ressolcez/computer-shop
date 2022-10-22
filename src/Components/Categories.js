@@ -1,17 +1,9 @@
-import React from 'react'
-import {Link } from "react-router-dom";
-import "./Categories.css"
+import React from 'react';
 import styled from "styled-components";
 import CategoriesImg from "../Images/categories.jpg"
+import StyledLink from '../SharedComponent/StyledLink';
+import "./Categories.css";
 
-const StyledLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-  &:hover{
-    color: black;
-    text-decoration: none;
-  }
-`
 const Container = styled.div`
   width: 100%;
   height: 350px;

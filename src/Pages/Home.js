@@ -18,6 +18,7 @@ const Home = () => {
     const [recoomendedProducts, setRecommendedProducts] = useState([]);
     const [mostOrderProducts, setMostOrderProducts] = useState([]);
     const [mostRatedProducts, setMostRatedProducts] = useState([]);
+    const [isLoading, setLoading] = useState(true);
 
     const {user,setUser } = useContext(UserContext);
  
