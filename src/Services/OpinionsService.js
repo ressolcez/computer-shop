@@ -12,8 +12,8 @@ class OpinionsService{
         return axios.get(baseURL +"rate/" + productId);
     } 
 
-    addOpinionToProduct(opinion,productId){
-        return axios.post("http://localhost:8080/api/opinion/"+productId+"/"+1,opinion);
+    addOpinionToProduct(opinion,productId,userId){
+        return axios.post("http://localhost:8080/api/opinion/"+productId+"/"+userId,opinion);
     }
 }
 

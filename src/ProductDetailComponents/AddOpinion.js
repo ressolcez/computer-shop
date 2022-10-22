@@ -6,9 +6,7 @@ import TextField from '@mui/material/TextField';
 import OpinionsService from '../Services/OpinionsService';
 import Rating from "@mui/material/Rating";
 
-function AddOpinion({productId}) {
-
-   const {user,setUser} = useContext(UserContext);
+function AddOpinion({productId,user}) {
 
    const [comment,setComment] = useState('');
    const [rate,setRate] = useState(0)
@@ -17,7 +15,7 @@ function AddOpinion({productId}) {
    const handleAddOpinion = () =>{
          const opinion = {comment,rate};
 
-         OpinionsService.addOpinionToProduct(opinion,productId).then((response) => {
+         OpinionsService.addOpinionToProduct(opinion,productId,user.userId).then((response) => {
               window.location.reload("false");
           });
 

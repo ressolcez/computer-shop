@@ -1,6 +1,7 @@
 import React from 'react'
 import Rating from "@mui/material/Rating";
 import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import styled from 'styled-components';
 import "./Opinions.css"
 import Divider from '@mui/material/Divider';
@@ -29,15 +30,16 @@ function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
                   <StyledDivider/>
             </div>
             <div className='opinions__wrapper'>
-            {opinions.map((product)=>(
-              <div className='single__opinion__wrapper' key={product.id}>
+            {opinions.map((opinion)=>(
+              <div className='single__opinion__wrapper' key={opinion.id}>
                   <div className='opinion__name__icon'>
-                    <InsertEmoticonOutlinedIcon/> {product.userModel.name}
+                    {opinion.rate > 3 ? <SentimentVeryDissatisfiedIcon/> : <InsertEmoticonOutlinedIcon/>}
+                     {opinion.userModel.name}
                   </div>
                   <div className='opinion__rating__comment'>
-                    <Rating value={product.rate} readOnly precision={0.5} size = "small" />
+                    <Rating value={opinion.rate} readOnly precision={0.5} size = "small" />
                     <div className='comment'>
-                      {product.comment}
+                      {opinion.comment}
                     </div>
                   </div>
                   <div className='opinion__divider'>

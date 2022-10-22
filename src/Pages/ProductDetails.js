@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
+import { UserContext } from '../Context/UserContext';
 import "./ProductDetails.css";
 import Topbar from '../Components/Topbar';
 import Footer from '../Components/Footer';
@@ -11,6 +12,7 @@ import styled from 'styled-components';
 import {useParams} from "react-router-dom";
 import ProductDetailsServices from "../Services/ProductDetailsServices";
 import OpinionsService from '../Services/OpinionsService';
+import AuthServices from '../Services/AuthServices';
 
 const StyledDivider = styled(Divider)`
   background-color: black;
@@ -29,6 +31,8 @@ export default function ProductDetails() {
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
   const [opinionRate, setOpinionRate] = useState([]);
 
+  const {user,setUser } = useContext(UserContext);
+
   useEffect(() => {
       ProductDetailsServices.getProductById(id).then((response) => {
          setProduct(response.data);
@@ -43,19 +47,31 @@ export default function ProductDetails() {
         setOpinionRate(response.data);
       });
 
+      if(localStorage.getItem('token')){
+        AuthServices.isAuthorized().then((response) => {
+          if(response.data.status === 'pass'){
+            const user = {
+              userId: response.data.user_Id,
+              role: response.data.role
+            }
+            setUser(user)
+          }
+        });
+      }  
+
     }, [page]);
 
   return (
     <div className='Product__Detail__Wrapper'>
-        <Topbar/>
+        <Topbar user= {user} setUser = {setUser}/>
         <ItemDetail product = {product}/>
         <StyledDivider/>
-        <StyledTitle>Specyfikacja:</StyledTitle>
+          <StyledTitle>Specyfikacja:</StyledTitle>
         <Specyfication/>
           <StyledTitle>Opinie:</StyledTitle>
         <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} opinionRate = {opinionRate}/>
-        <StyledTitle>Dodaj opinie:</StyledTitle>
-        <AddOpinion productId = {product.id}/>
+          <StyledTitle>Dodaj opinie:</StyledTitle>
+        <AddOpinion productId = {product.id} user = {user}/>
         <StyledDivider/>
         <Footer/>
     </div>
