@@ -3,20 +3,14 @@ import { UserContext } from '../Context/UserContext';
 import CartOrderComponent from '../CartComponents/CartOrderComponent';
 import Footer from '../Components/Footer';
 import Topbar from '../Components/Topbar';
-import styled from "styled-components";
-import Divider from '@mui/material/Divider';
+import StyledDivider from '../SharedComponent/StyledDivider';
 import AuthServices from '../Services/AuthServices';
 import "./Cart.css"
-
-const StyledDivider = styled(Divider)`
-  background-color: black;
-`
 
 function Cart() {
   const {user, setUser} = useContext(UserContext);
 
   useEffect(() => {
-
        if(localStorage.getItem('token')){
            AuthServices.isAuthorized().then((response) => {
              if(response.data.status === 'pass'){
@@ -29,7 +23,7 @@ function Cart() {
            });
          }  
 
-    }, []);
+    }, [setUser]);
 
   return (
         <div className='Cart__wrapper'>
@@ -41,7 +35,7 @@ function Cart() {
           <CartOrderComponent user = {user}/>
         </div>
         <StyledDivider/>
-          <Footer/>
+        <Footer/>
         </div>
   )
 }

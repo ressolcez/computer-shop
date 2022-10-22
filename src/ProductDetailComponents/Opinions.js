@@ -33,7 +33,7 @@ function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
             {opinions.map((opinion)=>(
               <div className='single__opinion__wrapper' key={opinion.id}>
                   <div className='opinion__name__icon'>
-                    {opinion.rate > 3 ? <SentimentVeryDissatisfiedIcon/> : <InsertEmoticonOutlinedIcon/>}
+                    {opinion.rate < 3 ? <SentimentVeryDissatisfiedIcon/> : <InsertEmoticonOutlinedIcon/>}
                      {opinion.userModel.name}
                   </div>
                   <div className='opinion__rating__comment'>

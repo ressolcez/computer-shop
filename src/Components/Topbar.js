@@ -1,5 +1,4 @@
-import React, { useState,useEffect,useContext } from 'react';
-import { UserContext } from "../Context/UserContext";
+import React, { useState,useEffect } from 'react';
 import User from "../Images/user.png";
 import Logo from "../Images/Logo.png";
 import ShoppingCart from "../Images/shopping_cart.png";

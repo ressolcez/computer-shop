@@ -1,5 +1,4 @@
-import React,{useState,useEffect,useContext} from 'react';
-import { UserContext } from "../Context/UserContext";
+import React,{useState} from 'react';
 import {useCart} from "react-use-cart";
 import "./CartOrderComponent.css";
 import styled from "styled-components";

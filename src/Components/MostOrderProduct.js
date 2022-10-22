@@ -16,7 +16,7 @@ function MostOrderProduct({product}) {
         OpinionsService.getOpinionToProductRate(product.id).then((response) => {
           setOpinionsRate(response.data);
           });
-    }, []);
+    }, [product.id]);
 
     const handleAddToCart = () =>{
         setOpenSnackbarSuccess(true);

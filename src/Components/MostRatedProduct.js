@@ -19,7 +19,7 @@ function MostRatedProduct({product}) {
       OpinionsService.getOpinionToProductRate(product.id).then((response) => {
         setOpinionsRate(response.data);
         });
-      }, []);
+      }, [product.id]);
 
     const handleAddToCart = () =>{
       addItem(product);

@@ -1,4 +1,4 @@
-import React, { useState, useMemo,useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {UserContext} from "./Context/UserContext";
 import Home from "./Pages/Home"
@@ -7,7 +7,7 @@ import Cart from './Pages/Cart';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import AdminDashboard from './Pages/AdminDashboard';
-import { CartProvider, useCart } from "react-use-cart";
+import { CartProvider } from "react-use-cart";
 import Category from "./Pages/Category";
 import WaitPage from "./SharedComponent/WaitPage";
 
