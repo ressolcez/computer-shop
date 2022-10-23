@@ -2,59 +2,22 @@ import React from 'react'
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Specyfication() {
+function Specyfication({details}) {
+  console.log(details)
   return (
     <Table striped bordered hover>
     <tbody>
-            <tr>
-            <td> Procesor  </td>
-            <td className = "text-xs-left">asd</td>
-            </tr>
-            <tr>
-            <td> Chipset  </td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td> Karta graficzna  </td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td> Wielkość pamięci karty graficznej  </td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td>Wbudowane napędy optyczne</td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td>Łączność</td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td>Zasilacz</td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td> Podświetlenie obudowy  </td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td> System operacyjny  </td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td> Szerokość  </td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td> Wysokość  </td>
-            <td>asd</td>
-            </tr>
-            <tr>
-            <td> Głębokość</td>
-            <td>asd</td>
-            </tr>
-        </tbody>
+      {details &&
+        Object.keys(details).slice(1).map((key, i)=>(
+            <> 
+            <tr key={i}>
+              <td> {key}  </td>
+              <td>{details[key]} </td>
+            </tr>   
+            </>  
+        ))
+    }
+    </tbody>
     </Table>
   )
 }

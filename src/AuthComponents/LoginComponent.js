@@ -12,10 +12,12 @@ import {useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Logo from "../Images/Logo.png"
 import AuthServices from "../Services/AuthServices"
+import "./LoginComponent.css";
 
 function LoginComponent() {
 
   const [login, setLogin] = useState('');
+  const [loginInfo, setLoginInfo] = useState('correct__info');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
@@ -27,6 +29,8 @@ const loginUser = () => {
         if(response.data.token !== '-1'){
           localStorage.setItem('token',response.data.token);
           navigate('/', {replace: true});
+        }else{
+          setLoginInfo('incorret__info');
         }
       });
 
@@ -43,7 +47,7 @@ const loginUser = () => {
           <MDBCard className='bg-white my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '500px'}}>
             <MDBCardBody className='p-5 w-100 d-flex flex-column'>
               <h3 className="text-center">Zaloguj</h3>
-              <p className="text-black-50 mb-3">Please enter your login and password!</p>
+              <p className={loginInfo}>Login lub hasło są niepoprawne!</p>
               <MDBInput wrapperClass='mb-4 w-100' label='Nazwa użytkownika' type='login' size="lg" onChange={(e) => setLogin(e.target.value)}/>
               <MDBInput wrapperClass='mb-4 w-100' label='Hasło' type='password' size="lg" onChange={(e) => setPassword(e.target.value)}/>
               <p className="text-center">Nie masz konta? <a href="#!">Zarejestruj</a></p>

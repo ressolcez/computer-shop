@@ -5,7 +5,7 @@ const baseURL = "http://localhost:8080/api";
 class ProductDetailsServices{
 
     getProductById(productId){
-        return axios.get(baseURL+"/products/"+productId);
+        return axios.get(baseURL+"/products/specyfiction/"+productId);
     }
     
 }

@@ -10,6 +10,7 @@ import Register from './Pages/Register';
 import AdminDashboard from './Pages/AdminDashboard';
 import Category from "./Pages/Category";
 import WaitPage from "./SharedComponent/WaitPage";
+import UserRecentOrders from "./Pages/UserRecentOrders";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route  path="/Register" element={<Register/>}/>
           <Route  path="/Wait" element={<WaitPage/>}/>
           <Route  path="/Admin" element={<AdminDashboard/>}/>
+          <Route  path="/Orders" element={<UserRecentOrders/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

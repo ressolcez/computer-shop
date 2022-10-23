@@ -23,6 +23,7 @@ export default function ProductDetails() {
   let { id } = useParams();
   
   const [product, setProduct] = useState([]);
+  const [details, setDetails] = useState([]);
   const [opinions, setOpinions] = useState([]);
   const [page, setPage] = useState(1);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
@@ -32,7 +33,8 @@ export default function ProductDetails() {
 
   useEffect(() => {
       ProductDetailsServices.getProductById(id).then((response) => {
-         setProduct(response.data);
+         setProduct(response.data.product);
+         setDetails(response.data.details)
        });
 
        OpinionsService.getOpinionsToProduct(id,page-1).then((response) => {
@@ -64,7 +66,7 @@ export default function ProductDetails() {
         <ItemDetail product = {product}/>
         <StyledDivider/>
           <StyledTitle>Specyfikacja:</StyledTitle>
-        <Specyfication/>
+        <Specyfication details = {details}/>
           <StyledTitle>Opinie:</StyledTitle>
         <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} opinionRate = {opinionRate}/>
           <StyledTitle>Dodaj opinie:</StyledTitle>
