@@ -97,9 +97,7 @@ function Topbar({user,setUser}) {
                 </div>
                 <StyledLink to={"/Cart"}>
                     <div className = "topbar__rightBox__cart"> 
-                    <Badge badgeContent={4} color="success">                           
                         <img src={ShoppingCart} alt = "ShoppingCart"/>    
-                    </Badge>      
                         <span className = "topbar__rightBox_spanItem">Twój Koszyk</span>
                     </div>
                 </StyledLink>  

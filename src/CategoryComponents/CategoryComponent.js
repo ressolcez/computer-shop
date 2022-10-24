@@ -5,7 +5,8 @@ import Button from '@mui/material/Button';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import computer from "../Images/komputer2.jpg"
+import computer from "../Images/komputer2.jpg";
+import StyledLink from '../SharedComponent/StyledLink';
 import CategoryServices from '../Services/CategoryServices';
 import SnackbarSuccess from "../SharedComponent/SnackbarSuccess";
 import "./CategoryComponent.css"
@@ -115,7 +116,9 @@ function CategoryComponent() {
         {products.map((product)=>(
             <div className='single__product__wrapper__category'>
                     <div className='img__container__category'>
-                      <img src ={computer} alt = "productImage"></img>
+                      <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
+                        <img src ={computer} alt = "productImage"/>
+                      </StyledLink>
                     </div>
                 <div className='title__container__category'>{product.name}</div>
                 <div className='product__category__container'><b>Kategoria: </b>{product.categoryModel.name} </div>

@@ -1,24 +1,37 @@
 import React, {useState} from 'react'
 import Button from '@mui/material/Button';
-import './AddOpinion.css'
 import TextField from '@mui/material/TextField';
-import OpinionsService from '../Services/OpinionsService';
 import Rating from "@mui/material/Rating";
+import OpinionsService from '../Services/OpinionsService';
+import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
+import './AddOpinion.css';
+
 
 function AddOpinion({productId,user}) {
 
+   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
    const [comment,setComment] = useState('');
    const [rate,setRate] = useState(0)
 
 
    const handleAddOpinion = () =>{
-         const opinion = {comment,rate};
 
-         OpinionsService.addOpinionToProduct(opinion,productId,user.userId).then((response) => {
-              window.location.reload("false");
-          });
+      const opinion = {comment,rate};
+      OpinionsService.addOpinionToProduct(opinion,productId,user.userId).then((response) => {
+         setTimeout(() => {
+            window.location.reload("false");
+          }, 1000);
+      });
 
+      setOpenSnackbarSuccess(true);
    }
+
+   const handleCloseSnackbarSuccess = (reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpenSnackbarSuccess(false);
+    };
 
   return (
    <>
@@ -42,6 +55,7 @@ function AddOpinion({productId,user}) {
          <div className='no__login__user__info'> Zaloguj się aby dodać opinie.</div>
       )
       }
+      <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Dodano Opinie"/>
    </>
   )
 }
