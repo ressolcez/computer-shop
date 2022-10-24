@@ -5,7 +5,7 @@ import LoginComponent from '../AuthComponents/LoginComponent'
 function Login() {
   return (
     <>
-            <LoginComponent/>
+      <LoginComponent/>
     </>
   )
 }

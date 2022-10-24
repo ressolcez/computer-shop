@@ -7,28 +7,21 @@ import ItemDetail from '../ProductDetailComponents/ItemDetail';
 import Specyfication from '../ProductDetailComponents/Specyfication';
 import Opinions from '../ProductDetailComponents/Opinions';
 import AddOpinion from '../ProductDetailComponents/AddOpinion';
-import styled from 'styled-components';
 import ProductDetailsServices from "../Services/ProductDetailsServices";
 import OpinionsService from '../Services/OpinionsService';
 import AuthServices from '../Services/AuthServices';
 import StyledDivider from '../SharedComponent/StyledDivider';
 import "./ProductDetails.css";
 
-const StyledTitle = styled.h2`
-  margin-top: 2%;
-`
-
 export default function ProductDetails() {
 
   let { id } = useParams();
-  
   const [product, setProduct] = useState([]);
   const [details, setDetails] = useState([]);
   const [opinions, setOpinions] = useState([]);
   const [page, setPage] = useState(1);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
   const [opinionRate, setOpinionRate] = useState([]);
-
   const {user,setUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -65,11 +58,11 @@ export default function ProductDetails() {
         <Topbar user= {user} setUser = {setUser}/>
         <ItemDetail product = {product}/>
         <StyledDivider/>
-          <StyledTitle>Specyfikacja:</StyledTitle>
+        <h2 className='title__product__details'>Specyfikacja:</h2>
         <Specyfication details = {details}/>
-          <StyledTitle>Opinie:</StyledTitle>
+        <h2 className='title__product__details'>Opinie:</h2>
         <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} opinionRate = {opinionRate}/>
-          <StyledTitle>Dodaj opinie:</StyledTitle>
+        <h2 className='title__product__details'>Dodaj opinie:</h2>
         <AddOpinion productId = {product.id} user = {user}/>
         <StyledDivider/>
         <Footer/>

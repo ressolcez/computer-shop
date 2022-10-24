@@ -4,6 +4,10 @@
     margin-top: 1%;
     margin-right: 10%;
   }
+
+  .title__product__details{
+    margin-top: 2%;
+  }
   
   @media only screen and (max-width: 950px) {
     .Product__Detail__Wrapper{
