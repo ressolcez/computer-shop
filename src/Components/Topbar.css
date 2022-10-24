@@ -34,6 +34,7 @@ body {
 
     .topbar__rightBox_spanItem{
         display: flex;
+        cursor: pointer;
     }
 
 
@@ -41,6 +42,12 @@ body {
     flex: 60%;
     text-align: center;
 }
+
+.css-3bmhjh-MuiPaper-root-MuiPopover-paper{
+    border: 0.5px solid rgb(196, 192, 192);
+}
+
+
 
     @media only screen and (max-width: 700px) {
 
