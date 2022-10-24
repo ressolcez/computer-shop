@@ -1,4 +1,4 @@
-.userRecentOrders__wrapper{
+.userEditAccount__wrapper{
     margin-left: 10%;
     margin-top: 1%;
     margin-right: 10%;
@@ -7,15 +7,8 @@
     min-height: 100vh;
 }
 
-.UserRecentOrders__wrapper{
-  display: flex;
-  justify-content: center;
-  margin-top: 1%;
-  margin-bottom: 2%;
-}
-
 @media only screen and (max-width: 950px) {
-    .userRecentOrders__wrapper{
+    .userEditAccount__wrapper{
       margin-left: 1%;
       margin-top: 1%;
       margin-right: 1%;

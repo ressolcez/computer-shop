@@ -11,6 +11,7 @@ import AdminDashboard from './Pages/AdminDashboard';
 import Category from "./Pages/Category";
 import WaitPage from "./SharedComponent/WaitPage";
 import UserRecentOrders from "./Pages/UserRecentOrders";
+import UserEditAccount from "./Pages/UserEditAccount";
 
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
           <Route  path="/Register" element={<Register/>}/>
           <Route  path="/Wait" element={<WaitPage/>}/>
           <Route  path="/Admin" element={<AdminDashboard/>}/>
-          <Route  path="/Orders" element={<UserRecentOrders/>}/>
+          <Route  path="/EditProfile" element={<UserEditAccount/>}/>
+          <Route  path="/RecentOrders" element={<UserRecentOrders/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

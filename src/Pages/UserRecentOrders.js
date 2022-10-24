@@ -1,9 +1,10 @@
-import React, { useState,useEffect,useContext } from 'react'
+import React, {useEffect,useContext } from 'react'
 import { UserContext } from '../Context/UserContext';
 import AuthServices from '../Services/AuthServices';
 import Footer from '../Components/Footer';
 import Topbar from '../Components/Topbar';
-import UserRecentOrderComponent from '../UserOrderComponent/UserRecentOrderComponent';
+import UserRecentOrderComponent from '../UserAccountComponent/UserRecentOrderComponent';
+import StyledDivider from '../SharedComponent/StyledDivider';
 import "./UserRecentOrders.css";
 
 
@@ -30,9 +31,13 @@ function UserRecentOrders() {
   return (
     <main className='userRecentOrders__wrapper'>
         <Topbar user = {user} setUser = {setUser}/>
+        <div className='UserRecentOrders__wrapper'>
+          <h3>Twoje zamówienia: </h3>
+        </div>
         <div style= {{flex:1}}>
             <UserRecentOrderComponent user = {user}/>
         </div>
+        <StyledDivider/>
         <Footer/>
     </main>
   )

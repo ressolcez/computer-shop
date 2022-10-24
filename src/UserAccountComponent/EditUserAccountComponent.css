@@ -1,0 +1,54 @@
+.editUserAccountComponent__wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.edit__user__data{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.name__input{
+    width: 48%;
+}
+
+.surname__input{
+    width: 48%;
+}
+
+.email__input{
+    width: 100%;
+}
+
+.edit__button__container{
+  width: 100%;
+  display: flex;
+  margin-top:1%;
+  justify-content: flex-end;
+  margin-bottom: 2%;
+}
+
+    .edit__user__login__data{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .login__input{
+        width: 100%;
+    }
+
+    .password__input{
+        margin-top:2%;
+        width: 100%;
+    }
+
+    .confirmPassword__input{
+        margin-top:2%;
+        width: 100%;
+    }
