@@ -13,6 +13,7 @@
     -webkit-box-shadow: 1px 5px 6px -4px rgba(162, 163, 171, 1);
     -moz-box-shadow: 1px 5px 6px -4px rgba(162, 163, 171, 1);
     box-shadow: 1px 5px 6px -4px rgba(162, 163, 171, 1);
+    margin-top:2%;
 }
 
 .order__title{

@@ -1,16 +1,28 @@
-import React, {useEffect,useContext } from 'react'
+import React, {useEffect,useContext,useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { UserContext } from '../Context/UserContext';
 import AuthServices from '../Services/AuthServices';
 import Footer from '../Components/Footer';
 import Topbar from '../Components/Topbar';
-import UserRecentOrderComponent from '../UserAccountComponent/UserRecentOrderComponent';
+import UserRecentOrdersComponent from '../UserAccountComponent/UserRecentOrdersComponent';
 import StyledDivider from '../SharedComponent/StyledDivider';
+import OrderServices from '../Services/OrderServices';
 import "./UserRecentOrders.css";
 
 
 function UserRecentOrders() {
 
+    const navigate = useNavigate();
     const {user,setUser } = useContext(UserContext);
+    const [orders, setOrders] = useState([])
+  
+    const getUserOders = (userId) => {
+             
+      OrderServices.getUserOrders(userId).then((response) => {
+        setOrders(response.data);
+      });
+
+    }
 
     useEffect(() => {
        
@@ -22,20 +34,22 @@ function UserRecentOrders() {
                      role: response.data.role
                    }
                    setUser(user)
+                   getUserOders(user.userId)
                  }
                });
+             }else{
+              navigate("/");
              }  
- 
         }, []);
 
   return (
     <main className='userRecentOrders__wrapper'>
         <Topbar user = {user} setUser = {setUser}/>
         <div className='UserRecentOrders__wrapper'>
-          <h3>Twoje zamówienia: </h3>
+          <h3 className='userOrder__title'>Twoje zamówienia: </h3>
         </div>
         <div style= {{flex:1}}>
-            <UserRecentOrderComponent user = {user}/>
+            <UserRecentOrdersComponent user = {user} orders = {orders}/>
         </div>
         <StyledDivider/>
         <Footer/>

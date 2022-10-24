@@ -14,6 +14,10 @@
   margin-bottom: 2%;
 }
 
+.userOrder__title{
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 950px) {
     .userRecentOrders__wrapper{
       margin-left: 1%;
