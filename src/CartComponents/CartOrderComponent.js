@@ -1,11 +1,12 @@
 import React,{useState} from 'react';
 import {useCart} from "react-use-cart";
-import "./CartOrderComponent.css";
 import styled from "styled-components";
 import Button from '@mui/material/Button';
 import SingleCartItem from './SingleCartItem';
 import OrderServices from '../Services/OrderServices';
 import CartModalFail from '../SharedComponent/CartModalFail';
+import "./CartOrderComponent.css";
+
 
 const SummaryTitle = styled.h1`font-weight: 200;`;
 
