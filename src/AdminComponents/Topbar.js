@@ -1,25 +1,37 @@
-import React from "react";
-import "./Topbar.css";
+import React,{useState} from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import { Tooltip,Avatar } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import Leftbar from "./Leftbar";
 
-export default function Topbar() {
+function Topbar() {
+  const [isDrawerOpen,setIsDrawerOpen ] = useState(false);
+
   return (
-    <div className="topbar">
-      <div className="topbarWrapper">
-        <div className="topLeft">
-          <span className="logo">lamaadmin</span>
-        </div>
-        <div className="topRight">
-          <div className="topbarIconContainer">
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-          </div>
-          <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
-        </div>
-      </div>
-    </div>
-  );
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick = {() => setIsDrawerOpen(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+
+      </AppBar>
+    </Box>
+    <Leftbar isDrawerOpen = {isDrawerOpen} setIsDrawerOpen = {setIsDrawerOpen}/>
+  </>
+  )
 }
+
+export default Topbar

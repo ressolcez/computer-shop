@@ -7,11 +7,11 @@ import ProductDetails from './Pages/ProductDetails';
 import Cart from './Pages/Cart';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import AdminDashboard from './Pages/AdminDashboard';
 import Category from "./Pages/Category";
 import WaitPage from "./SharedComponent/WaitPage";
 import UserRecentOrders from "./Pages/UserRecentOrders";
 import UserEditAccount from "./Pages/UserEditAccount";
+import AdminHome from "./Pages/Admin/AdminHome";
 
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
           <Route  path="/Login" element={<Login/>}/>
           <Route  path="/Register" element={<Register/>}/>
           <Route  path="/Wait" element={<WaitPage/>}/>
-          <Route  path="/Admin" element={<AdminDashboard/>}/>
+          <Route  path="/Admin" element={<AdminHome/>}/>
           <Route  path="/EditProfile" element={<UserEditAccount/>}/>
           <Route  path="/RecentOrders" element={<UserRecentOrders/>}/>
         </Routes>

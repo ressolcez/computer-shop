@@ -36,24 +36,6 @@
         max-height: 130px;
     }
 
-        .products__inorder__wrapper::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        .products__inorder__wrapper::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-            border-radius: 10px;
-            background: rgba(0,0,0,0.05);
-        }
-        .products__inorder__wrapper::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            background: linear-gradient(left, #999, #888);
-            -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.8);
-        }
-        .products__inorder__wrapper::-webkit-scrollbar-thumb:hover{
-            background: linear-gradient(left, #888, #777);
-        }
-
     .single__productInOrder__wrappper{
         width: 100%;
         display: flex;
