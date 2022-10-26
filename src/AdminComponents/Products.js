@@ -1,23 +1,30 @@
 import React,{useEffect,useState} from 'react';
 import axios from 'axios';
-import { arSD, DataGrid } from '@mui/x-data-grid';
+import {DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import ProductServices from '../Services/ProductServices';
+import "./Products.css";
+import { Button } from '@mui/material';
+import AddProductModal from '../SharedComponent/AddProductModal';
+import EditProductModal from '../SharedComponent/EditProductModal';
 
   
 function Products() {
 
-  const [products,setProducts] = useState([])
-  const [category,setCategory] = useState([])
+  const [products,setProducts] = useState([]);
+  const [id,setId] = useState(1);
 
+  const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
+  const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
+
+  const handleCloseModalAddProduct = () => setOpenModalAddProduct(false);
+  const handleCloseModalEditProduct = () => setOpenModalEditProduct(false);
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/products/').then((response) => {
      setProducts(response.data);
-     setCategory(response.data.categoryModel);
     });
   }, []);
 
@@ -27,102 +34,97 @@ function Products() {
     window.location.reload(false)
   }
 
-/*
-  const [queryOptions, setQueryOptions] = React.useState({});
-  const onFilterChange = React.useCallback((filterModel) => {
-    setQueryOptions(filterModel);
-    
-    console.log(filterModel.items[0].value)
-  }, []);
-*/
 
-const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
-  {
-    field: 'name',
-    headerName: 'Nazwa',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'slider',
-    headerName: 'Slider',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'producent',
-    headerName: 'Producent',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'descritpion',
-    headerName: 'Opis',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'image',
-    headerName: 'Zdjęcie',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'price',
-    headerName: 'Cena',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'categoryName',
-    headerName: 'Kategoria',
-    width: 110,
-    editable: true,
-    valueSetter: (params) => {
-      console.log(params)
-      return {...params.row,categoryModel:{...params.row.categoryModel,categoryName:params.value}}
-    },  
-    renderCell: (params) => {
-      return (
-        <div>
-          {params.row.categoryModel.categoryName}
-        </div>
-      )
-    }    
-  },
-  
-  {
-      field: 'fullNamed',
-      headerName: 'Akcja',
-      width: 80,
-      renderCell: (params) => {
-            return (
-              <div style = {{display:'flex', justifyContent: 'center'}}>
-                <IconButton onClick={() => console.log(params.id, params.row.name)}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton onClick={() => deleteProduct(params.id)}>
-                  <DeleteIcon />
-                </IconButton>
-                </div>
-            );
-        }
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 90 },
+    {
+      field: 'name',
+      headerName: 'Nazwa',
+      width: 150,
     },
-];
-
+    {
+      field: 'slider',
+      headerName: 'Slider',
+      width: 100,
+    },
+    {
+      field: 'producent',
+      headerName: 'Producent',
+      width: 150,
+    },
+    {
+      field: 'description',
+      headerName: 'Opis',
+      width: 650,
+    },
+    {
+      field: 'image',
+      headerName: 'Zdjęcie',
+      width: 200,
+    },
+    {
+      field: 'price',
+      headerName: 'Cena',
+      width: 150,
+    },
+    {
+      field: 'categoryName',
+      headerName: 'Kategoria',
+      width: 150,
+      valueSetter: (params) => {
+        return {...params.row,categoryModel:{...params.row.categoryModel,categoryName:params.value}}
+      },  
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.categoryModel.categoryName}
+          </div>
+        )
+      }    
+    },
+    {
+        field: 'fullNamed',
+        headerName: 'Akcja',
+        width: 80,
+        renderCell: (params) => {
+              return (
+                <div style = {{display:'flex', justifyContent: 'center'}}>
+                  <IconButton onClick={() => {
+                    setId(params.id);
+                    setOpenModalEditProduct(true);
+                  }}>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton onClick={() => deleteProduct(params.id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                  </div>
+              );
+          }
+      },
+  ];
 
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={products}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
-      />
-    </Box>
+    <div className='admin__product__wrapper'>
+    <AddProductModal openModal = {openModalAddProduct} handleCloseModal = {handleCloseModalAddProduct}/>
+    <EditProductModal openModal = {openModalEditProduct} handleCloseModal = {handleCloseModalEditProduct} id = {id}/>
+
+      <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Produkty</h1>
+      <div className='admin__add__product'>
+        <Button color = "success" variant = 'contained' onClick={()=> setOpenModalAddProduct(true)}>Dodaj produkt</Button>
+      </div>
+      <div className='table__wrapper'>
+        <DataGrid
+          rows={products}
+          columns={columns}
+          pageSize={11}
+          rowsPerPageOptions={[11]}
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+
+        </div>
+    </div>
   )
 }
 

@@ -14,6 +14,7 @@ function Topbar() {
     <>
       <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
+        <div style = {{display:'flex',justifyContent:'space-between'}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -26,7 +27,8 @@ function Topbar() {
             <MenuIcon />
           </IconButton>
         </Toolbar>
-
+        <h2>asdas</h2>
+        </div>
       </AppBar>
     </Box>
     <Leftbar isDrawerOpen = {isDrawerOpen} setIsDrawerOpen = {setIsDrawerOpen}/>

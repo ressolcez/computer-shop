@@ -6,7 +6,6 @@ function AdminProducts() {
   return (
     <>
       <Topbar/>
-        Produkty:
       <Products/>
     </>
   )
