@@ -121,7 +121,7 @@ function CategoryComponent() {
                       </StyledLink>
                     </div>
                 <div className='title__container__category'>{product.name}</div>
-                <div className='product__category__container'><b>Kategoria: </b>{product.categoryModel.name} </div>
+                <div className='product__category__container'><b>Kategoria: </b>{product.categoryModel.categoryName} </div>
                 <div className='manufacturer__container'><b>Producent: </b>{product.producent} </div>
                 <div className='price__btn__container__category'>
                   <div className='price__container__category'>{product.price} PLN</div>
