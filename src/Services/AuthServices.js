@@ -4,6 +4,15 @@ const baseURL = "http://localhost:8080/api/user";
 
 class AuthServices{
     
+    checkEmailExist(email){
+      return axios.get("http://localhost:8080/api/user/validation/" + email);
+    }
+
+    checkLoginExist(login){
+      return axios.get("http://localhost:8080/api/user/validation/login/" + login);
+    }
+
+
     registerUser(user)
     {
       console.log(user)

@@ -1,17 +1,20 @@
 import * as yup from "yup";
+import AuthServices from "../../Services/AuthServices";
 
 const validationSchema = yup.object({
-  
+
     email: yup
       .string()
       .email('Wprowadź poprawny adres email')
       .required('Adres email jest wymagany'),
+    asd: yup
+    .string(),
 
     password: yup
       .string()
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        "Hasło musi zawierać minimum 8 znaków w tym małą i wielką literę cyfrę i znak specjalny"
+        "Hasło musi zawierać minimum 8 znaków, w tym małą i wielką literę cyfrę i znak specjalny"
       )
       .max(40, 'Hasło nie może być dłuższe niż 40 znaków')
       .required('Hasło jest wymagane'),
