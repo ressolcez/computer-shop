@@ -13,13 +13,15 @@ function AddProductModal({openModal,handleCloseModal}) {
     const [image,setImage] = useState('');
     const [price,setPrice] = useState(10000);
     const [category,setCategory] = useState(1);
+    const [errors,setErrors] = useState([]);
 
     const addProduct = () =>{
         const product = {name,slider,producent,description,image,price};
         ProductServices.addProduct(category,product).then((response) => {
             window.location.reload(false);
-        });
-        handleCloseModal();
+        }).catch((error) => {
+          setErrors(error.response.data.errors)
+      })
     }
 
     return (
@@ -31,6 +33,11 @@ function AddProductModal({openModal,handleCloseModal}) {
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                {errors && errors.map((error)=>(
+                <div style = {{display:'flex', justifyContent:'center',color:'red',padding:'5px',fontSize:'18px'}}>
+                  {error}
+                </div>
+                ))}
                 <Form.Label>Nazwa</Form.Label>
                 <Form.Control
                   autoFocus

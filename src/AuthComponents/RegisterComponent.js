@@ -51,6 +51,7 @@ function RegisterComponent() {
         }).catch((error) => { 
         
           setErrors(error.response.data)
+          setSuccess(null);
   
         })
   

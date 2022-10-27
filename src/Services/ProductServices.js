@@ -11,7 +11,11 @@ class ProductServices{
     }
 
     editProduct(categoryId,productId,product){
-        return axios.put("http://localhost:8080/api/products/"+productId + "/" + categoryId, product);
+        return axios.put("http://localhost:8080/api/products/"+productId + "/" + categoryId, product)
+    }
+
+    getAllProducts(){
+        return axios.get('http://localhost:8080/api/products/')
     }
 
 }

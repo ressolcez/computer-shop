@@ -11,9 +11,8 @@ import AddProductModal from '../SharedComponent/AddProductModal';
 import EditProductModal from '../SharedComponent/EditProductModal';
 
   
-function Products() {
+function Products({products}) {
 
-  const [products,setProducts] = useState([]);
   const [id,setId] = useState(1);
 
   const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
@@ -21,13 +20,6 @@ function Products() {
 
   const handleCloseModalAddProduct = () => setOpenModalAddProduct(false);
   const handleCloseModalEditProduct = () => setOpenModalEditProduct(false);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/products/').then((response) => {
-     setProducts(response.data);
-    });
-  }, []);
-
 
   const deleteProduct = (productId) =>{
     ProductServices.deleteProduct(productId);
