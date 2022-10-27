@@ -10,6 +10,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import LogoutIcon from '@mui/icons-material/Logout';
 import StyledDivider from "../SharedComponent/StyledDivider"
+import StyledLink from "../SharedComponent/StyledLink";
 import "./Leftbar.css";
 
 function Leftbar({isDrawerOpen,setIsDrawerOpen}) {
@@ -54,22 +55,26 @@ function Leftbar({isDrawerOpen,setIsDrawerOpen}) {
                         </div>
                         <div className='drawer__category__item'>
                         <ListItem style = {{display: 'flex', justifyContent:'center', width: '100%'}}>
+                            <StyledLink to ="/Admin/Products">
                             <ListItemButton>
                             <ListItemIcon>
                                 <ImportantDevicesIcon/>
                             </ListItemIcon>
                             <ListItemText primary= 'Przedmioty'/>
                             </ListItemButton>
+                            </StyledLink>
                         </ListItem>
                         </div>
                         <div className='drawer__category__item'>
                         <ListItem style = {{display: 'flex', justifyContent:'center', width: '100%'}}>
+                        <StyledLink to ="/Admin/Orders">
                             <ListItemButton>
                             <ListItemIcon>
                                 <DescriptionIcon/>
                             </ListItemIcon>
                             <ListItemText primary= 'Zamówienia'/>
                             </ListItemButton>
+                        </StyledLink>
                         </ListItem>
                         </div>
                         <div className='drawer__category__item'>

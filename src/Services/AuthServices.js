@@ -6,7 +6,8 @@ class AuthServices{
     
     registerUser(user)
     {
-        return axios.post(baseURL, user)
+      console.log(user)
+        return axios.post(baseURL+"/2", user)
     }
 
     isAuthorized(){

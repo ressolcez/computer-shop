@@ -25,7 +25,7 @@ function App() {
     <UserContext.Provider value={value}>
       <BrowserRouter>
         <Routes>
-          <Route  path="/" element={<Home/>}/>
+          <Route exact path="/" element={<Home/>}/>
           <Route  path="/:name/:id" element={<ProductDetails/>}/>
           <Route  path="/Category" element={<Category/>}/>
           <Route  path="/Cart" element={<Cart/>}/>
