@@ -19,6 +19,10 @@ class OrderServices{
     getUserOrders(userId){
         return axios.get(baseURLOrders + "userOrder/" + userId)
     }
+
+    getOrderById(orderId){
+        return axios.get("http://localhost:8080/api/orders/" + orderId);
+    }
   
 }
 
