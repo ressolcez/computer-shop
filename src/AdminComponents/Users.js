@@ -6,17 +6,17 @@ import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import { Button } from '@mui/material';
 import AddUserModal from '../SharedComponent/AddUserModal';
+import EditUserModal from '../SharedComponent/EditUserModal';
 import "./Users.css"
 
 function Users({users}) {
 
   const [openModalAddUser, setOpenModalAddUser] = useState(false);
   const [openModalEditUser, setOpenModalEditUser] = useState(false);
+  const [id,setId] = useState(1);
 
   const handleCloseModalAddUser = () => setOpenModalAddUser(false);
   const handleCloseModalEditUser = () => setOpenModalEditUser(false);
-
-
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -74,7 +74,10 @@ const columns = [
       renderCell: (params) => {
             return (
               <div style = {{display:'flex', justifyContent: 'center'}}>
-                <IconButton>
+                <IconButton onClick={() => {
+                    setId(params.id);
+                    setOpenModalEditUser(true);
+                  }}>
                   <EditIcon />
                 </IconButton>
                 <IconButton>
@@ -90,6 +93,8 @@ const columns = [
 return (
   <div className='admin__users__wrapper'>
     <AddUserModal openModal = {openModalAddUser} handleCloseModal = {handleCloseModalAddUser}/>
+    <EditUserModal openModal = {openModalEditUser} handleCloseModal = {handleCloseModalEditUser} id = {id}/>
+    
     <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Użytkownicy</h1>
     <div className='admin__add__user'>
       <Button color = "success" variant = 'contained' onClick={() => setOpenModalAddUser(true)}>Dodaj użytkownika</Button>

@@ -4,55 +4,56 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useFormik } from 'formik';
 import UserServices from '../Services/UsersServices';
-import AuthServices from '../Services/AuthServices';
 
+function EditUserModal({openModal,handleCloseModal,id}) {
 
-function AddUserModal({openModal,handleCloseModal}) {
-
-  const [errors,setErrors] = useState([]);
-  const [success,setSuccess] = useState();
+    const [errors,setErrors] = useState([]);
+    const [success,setSuccess] = useState();
 
     const formik = useFormik({
-      initialValues: {
-        email: '',
-        password: '',
-        name: '',
-        surname: '',
-        login: '',
-        address: '',
-        houseNumber: '',
-        postalCode: '',
-        role: 1
-      },
-      onSubmit: (values) => {
+        initialValues: {
+          email: '',
+          password: '',
+          name: '',
+          surname: '',
+          login: '',
+          address: '',
+          houseNumber: '',
+          postalCode: '',
+          role: 1
+        },
+        onSubmit: (values) => {
 
-        console.log(values.email)
-                 
-        UserServices.addUser(values,values.role).then((response) => {
-          setSuccess('Poprawnie dodano użytkownika')
-          formik.resetForm()
-          setErrors([])
+            UserServices.updateUser(values,values.role,id).then((response) => {
+                setSuccess('Poprawnie edytowano użytkownika')
+                formik.resetForm()
+                setErrors([])
+            }).catch((error) => {
+              setErrors(error.response.data)
+              setSuccess()          
+            })
 
-      }).catch((error) => {
+        },
+      });
 
-        setErrors(error.response.data)
-        setSuccess()
-    
-      })
-      },
-    });
-
-    return (
-        <>
+  return (
+     <>
         <Modal show={openModal} onHide={handleCloseModal}>
         <Form onSubmit={formik.handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Dodawanie Produktu</Modal.Title>
+            <Modal.Title>Edytowanie Produktu</Modal.Title>
           </Modal.Header>
           <Modal.Body>
               <Form.Group className="mb-3" >
                 {success && <p style = {{display:'flex', justifyContent:'center', color:'green', fontSize:'18px'}}>{success}</p>}
-                <Form.Label>Email</Form.Label>
+                <Form.Label>Identyfikator</Form.Label>
+                <Form.Control
+                  autoFocus
+                  id = 'id'
+                  value={id}
+                  disabled
+                />
+                <Form.Label className='pt-3'>Email</Form.Label>
                 <Form.Control
                   autoFocus
                   id = 'email'
@@ -136,8 +137,7 @@ function AddUserModal({openModal,handleCloseModal}) {
           </Form>
         </Modal>
       </>
-    )
-
+  )
 }
 
-export default AddUserModal
+export default EditUserModal

@@ -35,13 +35,12 @@ function RegisterComponent() {
 
           AuthServices.registerUser(values);
           formik.resetForm({values: ''})  
-          setErrors(null)
+          setErrors('')
           setSuccess('Poprawnie Stworzono użytkownika, możesz przejsć do logowania')      
         }).catch((error) => { 
-        
+      
           setErrors(error.response.data)
-          setSuccess(null);
-  
+          setSuccess('');
         })
   
       }).catch((error) => { 
@@ -60,7 +59,8 @@ function RegisterComponent() {
           <div className='register__image'>
             <img src = {Logo} alt = 'logo'/>
           </div>
-          {errors && <p className='error__register'>{errors}</p>}
+          {errors.email && <p className='error__register'>{errors.email}</p>}
+          {errors.login && <p className='error__register'>{errors.login}</p>}
           {success && <p className='correct__register'>{success}</p>}
           <div className='register__input'>
           <form onSubmit={formik.handleSubmit}>

@@ -2,24 +2,28 @@ import React, { useState,useEffect,useContext } from 'react';
 import { UserContext } from '../../Context/UserContext';
 import Topbar from '../../AdminComponents/TopBar';
 import AuthServices from '../../Services/AuthServices';
+import OrdersServices from '../../Services/OrdersServices';
+import Orders from '../../AdminComponents/Orders';
 
-import React from 'react'
-
-const {user,setUser } = useContext(UserContext);
-const [orders,setOrders] = useState([]);
-
-useEffect(() => {  
-      ProductServices.getAllProducts().then((response) => {
-       setProducts(response.data);
-      });
-
- }, []);
 
 
 function AdminOrders() {
+
+  const {user,setUser } = useContext(UserContext);
+  const [orders,setOrders] = useState([]);
+  
+  useEffect(() => {  
+        OrdersServices.getAllOrders().then((response) => {
+         setOrders(response.data);
+        });
+   }, []);
+
   return (
-    <div>AdminOrders</div>
-  )
+    <>
+      <Topbar/>
+      <Orders orders = {orders}/>
+    </>
+    )
 }
 
 export default AdminOrders

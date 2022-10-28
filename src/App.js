@@ -14,6 +14,8 @@ import UserEditAccount from "./Pages/UserEditAccount";
 import AdminHome from "./Pages/Admin/AdminHome";
 import AdminProducts from "./Pages/Admin/AdminProducts";
 import AdminUsers from "./Pages/Admin/AdminUsers";
+import Orders from "./AdminComponents/Orders";
+import AdminOrders from "./Pages/Admin/AdminOrders";
 
 
 function App() {
@@ -38,6 +40,7 @@ function App() {
           <Route  path="/Admin/Users" element={<AdminUsers/>}/>
           <Route  path="/EditProfile" element={<UserEditAccount/>}/>
           <Route  path="/RecentOrders" element={<UserRecentOrders/>}/>
+          <Route  path="/Admin/Orders" element={<AdminOrders/>}/>
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
