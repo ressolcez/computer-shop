@@ -11,6 +11,7 @@ class ProductServices{
     }
 
     editProduct(categoryId,productId,product){
+        console.log(categoryId,productId,product)
         return axios.put("http://localhost:8080/api/products/"+productId + "/" + categoryId, product)
     }
 

@@ -1,14 +1,14 @@
 import React,{useEffect,useState} from 'react';
-import axios from 'axios';
 import {DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import ProductServices from '../Services/ProductServices';
-import "./Products.css";
 import { Button } from '@mui/material';
 import AddProductModal from '../SharedComponent/AddProductModal';
 import EditProductModal from '../SharedComponent/EditProductModal';
+import "./Products.css";
+
 
   
 function Products({products}) {

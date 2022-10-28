@@ -33,7 +33,7 @@ const validationSchema = yup.object({
       surname: yup
       .string()
       .matches(/^[A-Za-z ]*$/, 'Wprowadź poprawne nazwisko')
-      .max(60, 'Nazwisko nie może być dłuższe niż 40 znaków')
+      .max(60, 'Nazwisko nie może być dłuższe niż 60 znaków')
       .required('Nazwisko jest wymagane'),
 
       login: yup

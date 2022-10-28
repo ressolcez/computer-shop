@@ -10,7 +10,7 @@ import validationSchema from '../SharedComponent/validations/newUserValidations'
 function RegisterComponent() {
 
   const[errors,setErrors] = useState('');
-  const[success,setSuccess] = useState('')
+  const[success,setSuccess] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -20,7 +20,6 @@ function RegisterComponent() {
       name: '',
       surname: '',
       login: '',
-      password: '',
       address: '',
       housenumber: '',
       postalCode: ''
@@ -29,22 +28,12 @@ function RegisterComponent() {
     validationSchema: validationSchema,
     validateOnBlur: false,
     onSubmit: (values) => {
-      let email = values.email;
-      let name = values.name;
-      let surname = values.surname;
-      let login = values.login;
-      let password = values.password;
-      let address = values.address;
-      let housenumber = values.housenumber;
-      let postalCode = values.postalCode;
 
-      const newUser = {email,name,surname,login,password,address,housenumber,postalCode}
-
-       AuthServices.checkEmailExist(email).then((response) => { 
+       AuthServices.checkEmailExist(values.email).then((response) => { 
       
-        AuthServices.checkLoginExist(login).then((response) => { 
+        AuthServices.checkLoginExist(values.login).then((response) => { 
 
-          AuthServices.registerUser(newUser);
+          AuthServices.registerUser(values);
           formik.resetForm({values: ''})  
           setErrors(null)
           setSuccess('Poprawnie Stworzono użytkownika, możesz przejsć do logowania')      

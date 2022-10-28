@@ -5,9 +5,19 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import { Button } from '@mui/material';
+import AddUserModal from '../SharedComponent/AddUserModal';
 import "./Users.css"
 
 function Users({users}) {
+
+  const [openModalAddUser, setOpenModalAddUser] = useState(false);
+  const [openModalEditUser, setOpenModalEditUser] = useState(false);
+
+  const handleCloseModalAddUser = () => setOpenModalAddUser(false);
+  const handleCloseModalEditUser = () => setOpenModalEditUser(false);
+
+
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
   {
@@ -28,12 +38,12 @@ const columns = [
   {
     field: 'email',
     headerName: 'Email',
-    width: 250,
+    width: 200,
   },
   {
     field: 'address',
     headerName: 'Adres',
-    width: 350,
+    width: 200,
   },
   {
     field: 'houseNumber',
@@ -42,7 +52,12 @@ const columns = [
   },
   {
     field: 'postalCode',
-    headerName: 'KodPocztowy',
+    headerName: 'Kod Pocztowy',
+    width: 200,
+  },
+  {
+    field: 'roleName',
+    headerName: 'Rola',
     width: 150, 
     renderCell: (params) => {
       return (
@@ -74,9 +89,10 @@ const columns = [
 
 return (
   <div className='admin__users__wrapper'>
+    <AddUserModal openModal = {openModalAddUser} handleCloseModal = {handleCloseModalAddUser}/>
     <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Użytkownicy</h1>
     <div className='admin__add__user'>
-      <Button color = "success" variant = 'contained' >Dodaj użytkownika</Button>
+      <Button color = "success" variant = 'contained' onClick={() => setOpenModalAddUser(true)}>Dodaj użytkownika</Button>
     </div>
     <div className='table__wrapper__user'>
       <DataGrid
@@ -87,7 +103,6 @@ return (
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
       />
-
       </div>
   </div>
 )
