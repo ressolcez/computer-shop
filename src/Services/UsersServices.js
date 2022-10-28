@@ -14,6 +14,10 @@ class UsersServices{
     updateUser(user,roleId,userId){
         return axios.put("http://localhost:8080/api/user/"+roleId + "/" + userId,user)
     }
+
+    getUserById(userId){
+        return axios.get("http://localhost:8080/api/user/"+userId);
+    }
 }
 
 export default new UsersServices()

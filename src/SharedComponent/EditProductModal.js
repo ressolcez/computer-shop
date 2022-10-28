@@ -5,38 +5,34 @@ import Modal from 'react-bootstrap/Modal';
 import ProductServices from '../Services/ProductServices';
 import { useFormik } from 'formik';
 
-function EditProductModal({openModal,handleCloseModal,id}) {
+function EditProductModal({openModal,handleCloseModal,product}) {
 
     const [errors,setErrors] = useState([]);
-    const [success,setSuccess] = useState();
-
-
+    const [success,setSuccess] = useState();  
     const formik = useFormik({
       initialValues: {
-        name: '',
-        slider: true,
-        producent: '',
-        description: '',
-        image: '',
-        price: 1000,
+        id: product.id,
+        name: product.name,
+        slider: product.slider,
+        producent: product.producent,
+        description: product.description,
+        image: product.image,
+        price: product.price,
         category: 1,
       },
+      enableReinitialize: true,
       onSubmit: (values) => {
-
-        console.log(values)
-        console.log(id)
-
-        ProductServices.editProduct(values.category,id,values).then((response) => {
+        ProductServices.editProduct(values.category,values.id,values).then((response) => {
             setErrors([])
             setSuccess('Poprawnie Edytowano przedmiot')
-            formik.resetForm()
+            window.location.reload(false)
+            formik.resetForm({values: ''})
         }).catch((error) => {
           setErrors(error.response.data)
       })
       },
     });
-
-    return (
+    return (    
         <>
         <Modal show={openModal} onHide={handleCloseModal}>
         <Form onSubmit={formik.handleSubmit}> 
@@ -49,7 +45,7 @@ function EditProductModal({openModal,handleCloseModal,id}) {
                 <Form.Label>id</Form.Label>
                 <Form.Control
                   id = "id"
-                  value={id}
+                  value={formik.values.id}
                   autoFocus
                   disabled
                 />

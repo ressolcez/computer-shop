@@ -56,15 +56,17 @@ export default function ProductDetails() {
   return (
     <div className='Product__Detail__Wrapper'>
         <Topbar user= {user} setUser = {setUser}/>
-        <ItemDetail product = {product}/>
-        <StyledDivider/>
-        <h2 className='title__product__details'>Specyfikacja:</h2>
-        <Specyfication details = {details}/>
-        <h2 className='title__product__details'>Opinie:</h2>
-        <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} opinionRate = {opinionRate}/>
-        <h2 className='title__product__details'>Dodaj opinie:</h2>
-        <AddOpinion productId = {product.id} user = {user}/>
-        <StyledDivider/>
+        <div style= {{flex:1}}>
+          <ItemDetail product = {product}/>
+          <StyledDivider/>
+          <h2 className='title__product__details'>Specyfikacja:</h2>
+          <Specyfication details = {details}/>
+          <h2 className='title__product__details'>Opinie:</h2>
+          <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} opinionRate = {opinionRate}/>
+          <h2 className='title__product__details'>Dodaj opinie:</h2>
+          <AddOpinion productId = {product.id} user = {user}/>
+          <StyledDivider/>
+          </div>
         <Footer/>
     </div>
   )

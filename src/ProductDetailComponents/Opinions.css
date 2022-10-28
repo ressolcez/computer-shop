@@ -27,6 +27,8 @@
     height: 100px;
     display: flex;
     flex-wrap: wrap;
+    max-height: 100px;
+    overflow: auto;
 }
 
 .pagination__cont{
@@ -51,7 +53,7 @@
 }
 
 .comment{
-    word-wrap: break-word;
+   word-wrap: break-word;
 }
 
 .opinion__divider{

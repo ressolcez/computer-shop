@@ -9,11 +9,9 @@ import AddProductModal from '../SharedComponent/AddProductModal';
 import EditProductModal from '../SharedComponent/EditProductModal';
 import "./Products.css";
 
-
-  
 function Products({products}) {
 
-  const [id,setId] = useState(1);
+  const [product,setProduct] = useState();
 
   const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
   const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
@@ -25,7 +23,6 @@ function Products({products}) {
     ProductServices.deleteProduct(productId);
     window.location.reload(false)
   }
-
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -82,8 +79,8 @@ function Products({products}) {
               return (
                 <div style = {{display:'flex', justifyContent: 'center'}}>
                   <IconButton onClick={() => {
-                    setId(params.id);
                     setOpenModalEditProduct(true);
+                    setProduct({id : params.id,name: params.row.name, description: params.row.description,slider: params.row.slider, producent: params.row.producent, image: params.row.image, price: params.row.price})                    
                   }}>
                     <EditIcon />
                   </IconButton>
@@ -99,7 +96,7 @@ function Products({products}) {
   return (
     <div className='admin__product__wrapper'>
     <AddProductModal openModal = {openModalAddProduct} handleCloseModal = {handleCloseModalAddProduct}/>
-    <EditProductModal openModal = {openModalEditProduct} handleCloseModal = {handleCloseModalEditProduct} id = {id}/>
+    {product && <EditProductModal openModal = {openModalEditProduct} handleCloseModal = {handleCloseModalEditProduct} product = {product}/>}
 
       <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Produkty</h1>
       <div className='admin__add__product'>
@@ -114,7 +111,6 @@ function Products({products}) {
           disableSelectionOnClick
           experimentalFeatures={{ newEditingApi: true }}
         />
-
         </div>
     </div>
   )

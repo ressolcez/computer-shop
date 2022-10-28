@@ -76,7 +76,7 @@ function Topbar({user,setUser}) {
                                   horizontal: 'left',
                                 }}
                                 >
-                                    <StyledLink to={"/"}>
+                                    <StyledLink to={"/User/Profile"}>
                                         <Typography style = {{cursor:'pointer'}} sx = {{p: 1}}><ManageAccountsIcon/> Profil</Typography>
                                     </StyledLink>
                                     <StyledDivider/>
