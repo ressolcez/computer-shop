@@ -23,6 +23,15 @@ class OrderServices{
     getOrderById(orderId){
         return axios.get("http://localhost:8080/api/orders/" + orderId);
     }
+
+    changeOrderStatus(orderId,orderStatus){
+        return axios.put('http://localhost:8080/api/orders/' + orderId,{},
+        { params: { orderStatus: orderStatus
+        } 
+        })
+    }
+
+    
   
 }
 

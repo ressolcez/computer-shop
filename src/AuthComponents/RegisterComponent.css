@@ -12,8 +12,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid rgb(194, 186, 186);
+    border-radius: 1rem;
 }
 
 .register__image{

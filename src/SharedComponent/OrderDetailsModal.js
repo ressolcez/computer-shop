@@ -11,10 +11,11 @@ function OrderDetailsModal({openModal,handleCloseModal,order }) {
   return (
     <>
     <Modal className='modal-lg' show={openModal} onHide={handleCloseModal}>
+      
       <Modal.Header closeButton>
         <Modal.Title>Zamówienie numer {order.id}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className='modal__body__order_details'>
       {order.orderProductModels.map((order)=>(
         <div className='single__productInOrder__wrappper__admin'>
             <div className='single__product__image__admin'>

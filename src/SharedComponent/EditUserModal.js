@@ -5,26 +5,28 @@ import Modal from 'react-bootstrap/Modal';
 import { useFormik } from 'formik';
 import UserServices from '../Services/UsersServices';
 
-function EditUserModal({openModal,handleCloseModal,id}) {
+function EditUserModal({openModal,handleCloseModal,user}) {
 
     const [errors,setErrors] = useState([]);
     const [success,setSuccess] = useState();
 
     const formik = useFormik({
         initialValues: {
-          email: '',
-          password: '',
-          name: '',
-          surname: '',
-          login: '',
-          address: '',
-          houseNumber: '',
-          postalCode: '',
+          id: user.id,
+          email: user.email,
+          password: user.password,
+          name: user.name,
+          surname: user.surname,
+          login: user.login,
+          address: user.address,
+          houseNumber: user.houseNumber,
+          postalCode: user.postalCode,
           role: 1
         },
+        enableReinitialize: true,
         onSubmit: (values) => {
 
-            UserServices.updateUser(values,values.role,id).then((response) => {
+            UserServices.updateUser(values,values.role,values.id).then((response) => {
                 setSuccess('Poprawnie edytowano użytkownika')
                 formik.resetForm()
                 setErrors([])
@@ -50,7 +52,7 @@ function EditUserModal({openModal,handleCloseModal,id}) {
                 <Form.Control
                   autoFocus
                   id = 'id'
-                  value={id}
+                  value={formik.values.id}
                   disabled
                 />
                 <Form.Label className='pt-3'>Email</Form.Label>

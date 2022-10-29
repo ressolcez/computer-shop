@@ -6,39 +6,25 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
 import OrderDetailsModal from '../SharedComponent/OrderDetailsModal';
 import OrderServices from '../Services/OrderServices';
-import Form from 'react-bootstrap/Form';
+import EditOrderModal from '../SharedComponent/EditOrderModal';
 import "./Orders.css";
-import { isEmptyArray, isEmptyChildren } from 'formik';
-
-
 
 
 function Orders({orders}) {
   
   const [openModalProductDetails, setOpenModalProductDetails] = useState(false);
   const handleCloseModalProductDetails = () => setOpenModalProductDetails(false);
+
+  const [openModalEditOrder, setOpenModalEditOrder] = useState(false);
+  const handleCloseModalEditOrder = () => setOpenModalEditOrder(false);
+
   const [order, setOrder] = useState();
-  const [queryOptions, setQueryOptions] = React.useState({});
-
-    
-useEffect(() => {  
-  if (Object.keys(queryOptions).length === 0) {
-    console.log('Object is empty');
-  }else{
-    console.log('query!!!')
-  }
-}, [queryOptions]);
-
-
+  const [editOrder, setEditOrder] = useState();
+  
   const getOrderById = (orderId) => {
     OrderServices.getOrderById(orderId).then((response) => {
       setOrder(response.data);
     });
-  }
-
-  const changeOrderStatus = (status) =>{
-
-    console.log(status)
   }
 
   const columns = [
@@ -56,7 +42,6 @@ useEffect(() => {
     {
       field: 'status',
       headerName: 'Status',
-      editable: true,
       width: 200,
     },
     {
@@ -81,10 +66,14 @@ useEffect(() => {
         renderCell: (params) => {
               return (
                 <div style = {{display:'flex', justifyContent: 'center'}}>
-                  <IconButton onClick={() => {
-                  changeOrderStatus(params.row.status);
-                 }}>
-                    <EditIcon />
+                  <IconButton onClick = {()=>{
+                    setEditOrder({id: params.id, status: params.row.status})
+                    setOpenModalEditOrder(true)
+                  }
+                  }
+                  
+                    >
+                    <EditIcon/>
                   </IconButton>
                   <IconButton >
                     <DeleteIcon />
@@ -92,7 +81,6 @@ useEffect(() => {
                   <IconButton onClick={() => {
                     setOpenModalProductDetails(true)
                     getOrderById(params.row.id)
-              
                 }}>
                     <SearchIcon />
                   </IconButton>
@@ -102,21 +90,17 @@ useEffect(() => {
       },
   ];
 
-  const handleSortModelChange = React.useCallback((sortModel) => {
-    setQueryOptions({ sortModel: [...sortModel] });
-  }, []);
-
   return (
     <div className='admin__product__wrapper'>
     <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Zamówienia</h1>
       <div className='table__wrapper'>
+      {editOrder && <EditOrderModal openModal = {openModalEditOrder} handleCloseModal = {handleCloseModalEditOrder} order = {editOrder}/>}
       {order && <OrderDetailsModal openModal = {openModalProductDetails} handleCloseModal = {handleCloseModalProductDetails} order = {order}/>}
       <DataGrid
           rows={orders}
           columns={columns}
           disableColumnFilter 
           sortingMode="server"
-          onSortModelChange={handleSortModelChange}
           pageSize={11}
           rowsPerPageOptions={[11]}
           disableSelectionOnClick

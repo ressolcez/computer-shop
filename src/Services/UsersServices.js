@@ -18,6 +18,10 @@ class UsersServices{
     getUserById(userId){
         return axios.get("http://localhost:8080/api/user/"+userId);
     }
+
+    changeUserDataByUser(userId,user){
+        return axios.put("http://localhost:8080/api/user/"+userId,user,{})
+    }
 }
 
 export default new UsersServices()

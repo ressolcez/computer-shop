@@ -134,14 +134,14 @@ function CategoryComponent() {
               </div>
         ))}
     </div>
-  
-      <div className='pagination__container'>
-        <Pagination count={totalNumberOfPages} page={page} onChange={handlePageChange} size="large"  variant="outlined" />         
-      </div>
     </>
     }
     <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Dodano do koszyka"/>
+      <div className='pagination__container'>
+        <Pagination count={totalNumberOfPages} page={page} onChange={handlePageChange} size="large"  variant="outlined" />         
+      </div>
     </div>
+
   )
 }
 

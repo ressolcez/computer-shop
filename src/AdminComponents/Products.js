@@ -97,7 +97,6 @@ function Products({products}) {
     <div className='admin__product__wrapper'>
     <AddProductModal openModal = {openModalAddProduct} handleCloseModal = {handleCloseModalAddProduct}/>
     {product && <EditProductModal openModal = {openModalEditProduct} handleCloseModal = {handleCloseModalEditProduct} product = {product}/>}
-
       <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Produkty</h1>
       <div className='admin__add__product'>
         <Button color = "success" variant = 'contained' onClick={()=> setOpenModalAddProduct(true)}>Dodaj produkt</Button>

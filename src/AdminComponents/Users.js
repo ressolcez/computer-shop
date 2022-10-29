@@ -14,6 +14,7 @@ function Users({users}) {
   const [openModalAddUser, setOpenModalAddUser] = useState(false);
   const [openModalEditUser, setOpenModalEditUser] = useState(false);
   const [id,setId] = useState(1);
+  const [user,setUser] = useState();
 
   const handleCloseModalAddUser = () => setOpenModalAddUser(false);
   const handleCloseModalEditUser = () => setOpenModalEditUser(false);
@@ -77,6 +78,8 @@ const columns = [
                 <IconButton onClick={() => {
                     setId(params.id);
                     setOpenModalEditUser(true);
+                    setUser({id: params.id, name: params.row.id, surname: params.row.surname, login: params.row.login, email: params.row.email, address: params.row.address, houseNumber: params.row.houseNumber, posalCode: params.row.postalCode})
+
                   }}>
                   <EditIcon />
                 </IconButton>
@@ -93,7 +96,7 @@ const columns = [
 return (
   <div className='admin__users__wrapper'>
     <AddUserModal openModal = {openModalAddUser} handleCloseModal = {handleCloseModalAddUser}/>
-    <EditUserModal openModal = {openModalEditUser} handleCloseModal = {handleCloseModalEditUser} id = {id}/>
+    {user && <EditUserModal openModal = {openModalEditUser} handleCloseModal = {handleCloseModalEditUser} user = {user} id = {id}/>}
     
     <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Użytkownicy</h1>
     <div className='admin__add__user'>

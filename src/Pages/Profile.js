@@ -12,7 +12,7 @@ function Profile() {
 
     const {user,setUser } = useContext(UserContext);
     
-    const [userData,setUserData] = useState([])
+    const [userData,setUserData] = useState()
 
     useEffect(() => {
            if(localStorage.getItem('token')){
@@ -37,7 +37,7 @@ function Profile() {
     <div className='profile__wrapper'>
         <Topbar user = {user} setUser = {setUser}/>
         <div style= {{flex:1}}>
-            <ProfileComponent userdata = {userData}/>
+            {userData &&<ProfileComponent userdata = {userData}/>}
         </div>
         <StyledDivider/>
         <Footer/>
