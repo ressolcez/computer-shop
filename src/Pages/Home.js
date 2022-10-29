@@ -10,6 +10,7 @@ import Categories from "../Components/Categories";
 import MostRatedProducts from "../Components/MostRatedProducts";
 import HomePageServices from '../Services/HomePageServices';
 import AuthServices from '../Services/AuthServices';
+import WaitPage from "../SharedComponent/WaitPage";
 import "./Home.css"
 
 const Home = () => {  
@@ -20,24 +21,28 @@ const Home = () => {
     const [mostRatedProducts, setMostRatedProducts] = useState([]);
 
     const {user,setUser } = useContext(UserContext);
+    const [loading, setLoading] = useState(true)
  
     useEffect(() => {
        
        HomePageServices.getSliderContent().then((response) => {
            setSliderProduct(response.data);
+           setLoading(false);
          });
-
          
          HomePageServices.getSliderContent().then((response) => {
             setRecommendedProducts(response.data);
+            setLoading(false);
           });
           
           HomePageServices.getMostOrderProducts().then((response) => {
             setMostOrderProducts(response.data);
+            setLoading(false);
           });
 
           HomePageServices.getRecommendedProducts().then((response) => {
             setMostRatedProducts(response.data);
+            setLoading(false);
           });
           
 
@@ -51,11 +56,13 @@ const Home = () => {
                   setUser(user)
                 }
               });
-            }  
+            }
 
        }, []);
 
-    return (
+       if (loading) return <WaitPage/>
+
+    return (      
             <main className="home__wrapper">
                 <Topbar user = {user} setUser = {setUser}/>
                 <Slider products = {sliderProduct}/>
