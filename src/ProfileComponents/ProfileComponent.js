@@ -36,7 +36,7 @@ function ProfileComponent({userdata}) {
     <div className="row">
         <div className="col-md-5 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-              <img className="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"/>
+              <img className="rounded-circle mt-5" width="150px" src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"/>
               <span className="font-weight-bold">{userdata.login}</span>
               <span className="text-black-50">{userdata.email}</span>
               <Button className='mt-2' variant="danger">Usuń Konto</Button>

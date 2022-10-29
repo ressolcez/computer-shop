@@ -9,11 +9,10 @@ class OrderServices{
         return axios.delete("http://localhost:8080/api/orders" + orderId);
     }
 
-    addOrder(userId,totalPrice){
-        return axios.post(baseURLOrders+userId,{},
-        { params: 
-            { totalPrice: totalPrice} 
-        })
+    addOrder(userId,order,totalPrice){
+        const newOrder = {totalPrice: totalPrice, address: order.address, houseNumber: order.houseNumber, postalCode: order.postalCode}
+        console.log(newOrder)
+        return axios.post(baseURLOrders+userId,newOrder)
     } 
 
     addOrderProduct(orderId,productId,quantity){

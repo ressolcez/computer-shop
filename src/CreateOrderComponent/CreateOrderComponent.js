@@ -1,27 +1,38 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {useCart} from "react-use-cart";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import StyledDivider from '../SharedComponent/StyledDivider';
 import OrderServices from '../Services/OrderServices';
 import "./CreateOrderComponent.css"
+import { useFormik } from 'formik';
 
 
-function CreateOrder({user}) {
+function CreateOrder({user,userdata}) {
 
   const { items,cartTotal,totalItems  } = useCart();
-
-  const handleAddOrder = () =>{
-
-    OrderServices.addOrder(user.userId,cartTotal).then((response) => {
-      items.map((product)=>(
-        OrderServices.addOrderProduct(response.data,product.id, product.quantity)
-      ))
-    });
-  }
-
+  const [errors,setErrors] = useState([])
 
   
+  const formik = useFormik({
+    initialValues: {
+      name: userdata.name,
+      surname: userdata.surname,
+      address: userdata.address,
+      houseNumber: userdata.houseNumber,
+      postalCode: userdata.postalCode,
+    },
+    onSubmit: (values) => {
+      OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
+        items.map((product)=>(
+          OrderServices.addOrderProduct(response.data,product.id, product.quantity)
+        ))
+      }).catch((error) => {
+        setErrors(error.response.data)
+      })
+    },
+  });
+
   return (
     <div className='createOrderComponent__wrappper'>
     <div className="payment__data col-md-5 border-right">
@@ -29,45 +40,62 @@ function CreateOrder({user}) {
         <div className="d-flex justify-content-between align-items-center mb-3">
             <h4 className="text-right">Dane do zamówienia: </h4>
         </div>
-        <Form >
-        <Form.Group className="row mt-2">
-            <div className="col-md-6"><Form.Label>Imie</Form.Label>
-            <Form.Control
-              id= 'name' 
-            />
-            </div>
-            <div className="col-md-6"><Form.Label>Nazwisko</Form.Label>
-            <Form.Control 
-            id='surname'
-            />
-            </div>
-            <div className="col-md-12"><Form.Label className="mt-3">Adres</Form.Label>
-            <Form.Control id = 'address' />
-            </div>
-            <div className="col-md-6"><Form.Label className="mt-3">Numer domu</Form.Label>
-            <Form.Control id = 'houseNumber' />
-            </ div>
+        <Form onSubmit={formik.handleSubmit}>
+                <Form.Group className="row mt-2">
 
-            <div className="col-md-6"><Form.Label className="mt-3">Kod pocztowy</Form.Label>
-            <Form.Control id = 'postalCode' />
-            </div>
-            <div className="mt-3">
-              <Button className="float-end" type="submit" variant="success" onClick = {()=> handleAddOrder()}>Zrealizuj zamówienie</ Button>
-            </div>
-        </Form.Group>
-        </Form>
+                    <div className="col-md-6"><Form.Label>Imie</Form.Label>
+                    <Form.Control
+                      id= 'name' 
+                      value={formik.values.name}
+                      onChange={formik.handleChange}
+                    />
+                    {errors.name && <p style = {{marginBottom:'0',color:'red'}}>{errors.name}</p>}
+                    </div>
+                    <div className="col-md-6"><Form.Label>Nazwisko</Form.Label>
+                    <Form.Control 
+                    value={formik.values.surname}
+                    onChange={formik.handleChange}
+                    id='surname'
+                    />
+                    {errors.surname && <p style = {{marginBottom:'0',color:'red'}}>{errors.surname}</p>}
+                    </div>
+
+                    <div className="col-md-12"><Form.Label className="mt-3">Adres</Form.Label>
+                    <Form.Control id = 'address' onChange={formik.handleChange} value={formik.values.address}/>
+                    {errors.address && <p style = {{marginBottom:'0',color:'red'}}>{errors.address}</p>}
+                    </div>
+
+                    <div className="col-md-6"><Form.Label className="mt-3">Numer domu</Form.Label>
+                    <Form.Control id = 'houseNumber' onChange={formik.handleChange} value={formik.values.houseNumber}/>
+                    {errors.houseNumber && <p style = {{marginBottom:'0',color:'red'}}>{errors.houseNumber}</p>}
+                    </ div>
+
+                    <div className="col-md-6"><Form.Label className="mt-3">Kod pocztowy</Form.Label>
+                    <Form.Control id = 'postalCode' onChange={formik.handleChange} value={formik.values.postalCode}/>
+                    {errors.postalCode && <p style = {{marginBottom:'0',color:'red'}}>{errors.postalCode}</p>}
+                    </div>
+
+                    <div className="mt-3">
+                      <Button className="float-end" type="submit" variant="success">Zapisz dane</ Button>
+                    </div>
+
+                </Form.Group>
+                </Form>
+      </div>
     </div>
-</div>
     <div className='cart__info__wrapper p-3 py-5'>
     <h4 className="text-right">Koszyk(5) </h4>
         <div className='cart__info__items__wrapper'>
         {items.map((product)=>(        
             <div className='cart__info__single__item'>
               <div className='cart__info__product__name'>
-                {product.name}
+                <span style= {{fontWeight:'600',fontSize:'18px'}}>{product.name}</span>
               </div>
               <div className='cart__info__product__price'>
-                {product.price} PLN
+                <div className='cart__info__price__quantity'>
+                  <span style = {{fontWeight:'300',fontSize:'18px'}}>{product.price} PLN</span>
+                  <p style = {{display:'flex',justifyContent:'center',marginBottom:'0',fontSize:'16px'}}>x{product.quantity}</p>
+                </div>
               </div>
               <div style = {{width:'100%'}}>
               <StyledDivider/>
@@ -75,8 +103,8 @@ function CreateOrder({user}) {
             </div>
             ))}
           <div className='total__info__cart'>
-            <p>Całkowita Cena: </p>
-            <p>{cartTotal} PLN</p>
+            <p style= {{fontWeight:'500',fontSize:'18px'}}>Całkowita Cena: </p>
+            <p style = {{fontWeight:'300',fontSize:'18px'}}>{cartTotal} PLN</p>
           </div>
         </div>
     </div>
