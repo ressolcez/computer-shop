@@ -1,5 +1,4 @@
 import React,{useEffect,useState} from 'react';
-import axios from 'axios';
 import {DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -8,6 +7,7 @@ import { Button } from '@mui/material';
 import AddUserModal from '../SharedComponent/AddUserModal';
 import EditUserModal from '../SharedComponent/EditUserModal';
 import "./Users.css"
+import UsersServices from '../Services/UsersServices';
 
 function Users({users}) {
 
@@ -18,6 +18,10 @@ function Users({users}) {
 
   const handleCloseModalAddUser = () => setOpenModalAddUser(false);
   const handleCloseModalEditUser = () => setOpenModalEditUser(false);
+
+  const deleteUser = (userId) => {
+    UsersServices.deleteUser(userId);
+  }
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -83,7 +87,7 @@ const columns = [
                   }}>
                   <EditIcon />
                 </IconButton>
-                <IconButton>
+                <IconButton onClick = {()=> deleteUser(params.id)}>
                   <DeleteIcon />
                 </IconButton>
                 </div>

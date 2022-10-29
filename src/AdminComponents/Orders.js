@@ -27,6 +27,10 @@ function Orders({orders}) {
     });
   }
 
+  const deleteOrder = (orderId) =>{
+    OrderServices.deleteOrder(orderId);
+  }
+
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
@@ -75,7 +79,7 @@ function Orders({orders}) {
                     >
                     <EditIcon/>
                   </IconButton>
-                  <IconButton >
+                  <IconButton onClick = {()=> deleteOrder(params.id)}>
                     <DeleteIcon />
                   </IconButton>
                   <IconButton onClick={() => {

@@ -5,6 +5,10 @@ const baseURLOrderProduct = "http://localhost:8080/api/orderProduct/"
 
 class OrderServices{
     
+    deleteOrder(orderId){
+        return axios.delete("http://localhost:8080/api/orders" + orderId);
+    }
+
     addOrder(userId,totalPrice){
         return axios.post(baseURLOrders+userId,{},
         { params: 
