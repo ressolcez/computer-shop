@@ -32,7 +32,7 @@ useEffect(() => {
     <div className='createOrder__wrapper'>
         <Topbar user = {user} setUser = {setUser}/>
         <div style= {{flex:1}}>
-            <CreateOrderComponent/>
+            <CreateOrderComponent user = {user}/>
         </div>
         <StyledDivider/>
         <Footer/>

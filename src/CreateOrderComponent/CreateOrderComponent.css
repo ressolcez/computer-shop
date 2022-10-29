@@ -39,8 +39,11 @@
         width: 50%;
     }
 
-    .total__info__span{
+    .total__info__cart{
+        display: flex;
+        justify-content: space-between;
         padding-left: 10px;
+        padding-right: 10px;
     }
 
 
