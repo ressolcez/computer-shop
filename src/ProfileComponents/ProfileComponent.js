@@ -20,6 +20,8 @@ function ProfileComponent({userdata}) {
       postalCode: userdata.postalCode,
     },
     onSubmit: (values) => {
+
+      console.log(values)
     setTimeout(() => {
       
       UsersServices.changeUserDataByUser(userdata.id,values).then((response) => {
@@ -33,6 +35,7 @@ function ProfileComponent({userdata}) {
     },
   });
 
+
   const formikPassword = useFormik({
     initialValues: {
       password : '',
@@ -40,7 +43,7 @@ function ProfileComponent({userdata}) {
     },
     onSubmit: (values) => {
 
-
+      console.log(values)
     },
   });
 
@@ -100,26 +103,38 @@ function ProfileComponent({userdata}) {
                     </div>
 
                 </Form.Group>
-                </Form>
+                </Form >
+                <Form onSubmit={formikPassword.handleSubmit}>
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4 className="text-right">Dane logowania: </h4>
                 </div>
-                <Form>
                 <div className="row mt-3">
-
                     <div className="col-md-12">
                       <Form.Label className="mt-3">Nowe Hasło</Form.Label>
-                      <Form.Control type = "password"/></ div>
-
+                      <Form.Control 
+                      id = 'password'
+                      onChange={formikPassword.handleChange} 
+                      value={formikPassword.values.password}
+                      type = "password"/>
+                    {errors.password && <p style = {{marginBottom:'0',color:'red'}}>{errors.password}</p>}
+                    </div>
+                    
                     <div className="col-md-12">
                       <Form.Label className="mt-3">Powtórz hasło</Form.Label>
-                      <Form.Control type = "password"/></ div>
+                      <Form.Control 
+                      id = 'confirmPassword'
+                      onChange={formikPassword.handleChange} 
+                      value={formikPassword.values.confirmPassword}
+                      type = "password"/>
+                      {errors.confirmPassword && <p style = {{marginBottom:'0',color:'red'}}>{errors.confirmPassword}</p>}
+                    </div>
+                </div>
+
+                <div className="mt-3 text-center">
+                <Button className="float-end" type="submit" variant="success">Zapisz dane</ Button>
                 </div>
                 </Form>
-                <div className="mt-3 text-center">
-                  <Button className="float-end" type="Button" variant="success">Zapisz dane</ Button>
-                </div>
-            </ div>
+            </div>
         </div>
     </div>
     <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Zmieniono dane kontaktowe"/>

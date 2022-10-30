@@ -59,8 +59,10 @@ export default function ProductDetails() {
         <div style= {{flex:1}}>
           <ItemDetail product = {product}/>
           <StyledDivider/>
-          <h2 className='title__product__details'>Specyfikacja:</h2>
-          <Specyfication details = {details}/>
+          {/*
+            <h2 className='title__product__details'>Specyfikacja:</h2>
+            <Specyfication details = {details}/>
+          */}
           <h2 className='title__product__details'>Opinie:</h2>
           <Opinions opinions = {opinions} setPage = {setPage} totalNumberOfPages = {totalNumberOfPages} opinionRate = {opinionRate}/>
           <h2 className='title__product__details'>Dodaj opinie:</h2>

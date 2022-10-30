@@ -6,11 +6,14 @@ import AuthServices from "../Services/AuthServices";
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
 import validationSchema from '../SharedComponent/validations/newUserValidations';
+import {useNavigate} from "react-router-dom";
 
 function RegisterComponent() {
 
   const[errors,setErrors] = useState('');
   const[success,setSuccess] = useState('');
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -36,6 +39,11 @@ function RegisterComponent() {
           formik.resetForm({values: ''})  
           setErrors('')
           setSuccess('Poprawnie Stworzono użytkownika, możesz przejsć do logowania')      
+
+          setTimeout(() => {
+            navigate("/login")
+          }, 2000);
+
         }).catch((error) => { 
       
           setErrors(error.response.data)
