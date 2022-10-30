@@ -13,28 +13,27 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 
-function SalesByCategory({salesByCategory}) {
-
-
-
+function MostOrderdByProducents({mostOrderdByProducents}) {
   return (
-    <div style = {{marginTop:'50px',width:'50%'}}>
-    <Paper>
-    <Chart
-    data={salesByCategory}
-    >
-          <ArgumentAxis />
-          <ValueAxis max={7} />
-          <BarSeries
+    <div style={{width:'50%'}}>
+      <Paper>
+        <Chart
+          data={mostOrderdByProducents}
+        >
+          <PieSeries
             valueField="liczba"
-            argumentField="category_name"
+            argumentField="producent"
           />
-          <Title text="Liczba sprzedanych przedmiotów z każdej kategorii" />
+          <Title
+            text="Area of Countries"
+          />
+          <Legend />
           <Animation />
         </Chart>
       </Paper>
+
     </div>
   )
 }
 
-export default SalesByCategory
+export default MostOrderdByProducents

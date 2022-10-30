@@ -2,7 +2,9 @@ import React,{useEffect,useState} from 'react';
 import Topbar from '../../AdminComponents/TopBar';
 import FeaturedInfo from '../../AdminComponents/DashboardComponents/FeaturedInfo';
 import AdminDashboardServices from '../../Services/AdminDashboardServices';
+import ProductServices from '../../Services/ProductServices';
 import SalesByCategory from '../../AdminComponents/DashboardComponents/SalesByCategory';
+import MostOrderdByProducents from '../../AdminComponents/DashboardComponents/MostOrderdByProducents';
 
 function AdminHome() {
 
@@ -12,6 +14,8 @@ function AdminHome() {
   const [waitingOrders, setWaitingOrders] = useState(0);
   const [profit, setProfit] = useState(0);
   const [salesByCategory, setSalesByCategory] = useState([])
+  const [mostOrderdByProducents, setmostOrderdByProducents] = useState([])
+
   
   useEffect(() => {  
     AdminDashboardServices.getNumberOfUsers().then((response) => {
@@ -37,6 +41,10 @@ function AdminHome() {
       setSalesByCategory(response.data);
      });
 
+     ProductServices.findMostOrderdByProducents().then((response) => {
+      setmostOrderdByProducents(response.data);
+     });
+
   }, []);
 
   return (
@@ -44,6 +52,7 @@ function AdminHome() {
       <Topbar/>
       <FeaturedInfo numberOfUsers = {numberOfUsers} activeUsers = {activeUsers} numberOfOrders = {numberOfOrders} waitingOrders = {waitingOrders} profit = {profit} />
       <SalesByCategory salesByCategory = {salesByCategory}/>
+      <MostOrderdByProducents mostOrderdByProducents = {mostOrderdByProducents}/>
       </div>
   )
 }
