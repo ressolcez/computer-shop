@@ -9,6 +9,7 @@ import "./Cart.css"
 
 function Cart() {
   const {user, setUser} = useContext(UserContext);
+  
 
   useEffect(() => {
 
@@ -29,9 +30,6 @@ function Cart() {
   return (
         <div className='Cart__wrapper'>
           <Topbar user = {user} setUser = {setUser}/>
-        <div className='CartHeading'>
-          <h2>Twój Koszyk</h2>
-        </div>
         <div style= {{flex:1}}>
           <CartOrderComponent user = {user}/>
         </div>

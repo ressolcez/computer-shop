@@ -12,22 +12,14 @@ function MostOrderProduct({product}) {
     const [opinionsRate ,setOpinionsRate] = useState([]);
     const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
 
+    const handleAddToCart = () =>{setOpenSnackbarSuccess(true);}
+    const handleCloseSnackbarSuccess = () => {setOpenSnackbarSuccess(false)};
+
     useEffect(() => {
         OpinionsService.getOpinionToProductRate(product.id).then((response) => {
           setOpinionsRate(response.data);
-          });
+        });
     }, [product.id]);
-
-    const handleAddToCart = () =>{
-        setOpenSnackbarSuccess(true);
-      }
-  
-      const handleCloseSnackbarSuccess = (reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-        setOpenSnackbarSuccess(false);
-      };
 
   return (
     <>

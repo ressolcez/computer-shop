@@ -3,10 +3,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useFormik } from 'formik';
 import UsersServices from '../Services/UsersServices';
+import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 
 function ProfileComponent({userdata}) {
 
   const [errors,setErrors] = useState([])
+  const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
+  const handleCloseSnackbarSuccess = () => {setOpenSnackbarSuccess(false)};
 
   const formik = useFormik({
     initialValues: {
@@ -17,17 +20,27 @@ function ProfileComponent({userdata}) {
       postalCode: userdata.postalCode,
     },
     onSubmit: (values) => {
-
-      console.log(values)
-
+    setTimeout(() => {
+      
       UsersServices.changeUserDataByUser(userdata.id,values).then((response) => {
+        setOpenSnackbarSuccess(true);
+        setErrors([])
+        }).catch((error) => {
+          console.log(error.response.data)
+          setErrors(error.response.data)
+      })
+      }, 1000);
+    },
+  });
 
-        console.log(response.data)
+  const formikPassword = useFormik({
+    initialValues: {
+      password : '',
+      confirmPassword: ''
+    },
+    onSubmit: (values) => {
 
-    }).catch((error) => {
-      console.log(error.response.data)
-      setErrors(error.response.data)
-  })
+
     },
   });
 
@@ -109,6 +122,7 @@ function ProfileComponent({userdata}) {
             </ div>
         </div>
     </div>
+    <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Zmieniono dane kontaktowe"/>
   </div>
 )
 }

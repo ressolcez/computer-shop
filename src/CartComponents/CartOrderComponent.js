@@ -40,37 +40,49 @@ function CartOrderComponent({user}) {
 
 
   return (
-    <div className='cart__items__order__wrapper'>
-        <div className='cart__items__wrapper'>
-        {items.map((product)=>(
-          <SingleCartItem product = {product}/>
-        ))}
-        </div>
-        <div className='cart__order__wrapper'>
+    <>
+    {items.length !== 0 ? (
+      <div className='cart__items__order__wrapper'>
+          <div className='cart__items__wrapper'>
+          <div className='cart__heading'>
+            <h2>Twój koszyk</h2>
+           </div>  
+          {items.map((product)=>(
+            <SingleCartItem product = {product}/>
+          ))}
+          </div>
+          <div className='cart__order__wrapper'>
 
-        <SummaryTitle>Podsumowanie</SummaryTitle>
-        <StyledDivider/>
-            <SummaryItem>
-              <SummaryItemText>Ilość przedmiotów</SummaryItemText>
-              <SummaryItemPrice>{totalItems}</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Dostawa</SummaryItemText>
-              <SummaryItemPrice>Gratis</SummaryItemPrice>
-            </SummaryItem>
-            <StyledDivider/>
-            <SummaryItem type="total">
-              <SummaryItemText>Cena</SummaryItemText>
-              <SummaryItemPrice>{cartTotal} PLN</SummaryItemPrice>
-            </SummaryItem>
-            {!user ? (
-            <Button style = {{margin:'15px'}} variant = "contained" onClick={()=> setOpenModal(true)}> Zamów</Button>
-            ) : (
-              <Button style = {{margin:'15px'}} variant = "contained"  onClick={()=>  navigate("/Order")}> Przejdź do płatności</Button>
-            )}
-        </div>
-        <CartModalFail openModal = {openModal} handleCloseModal = {handleCloseModal}/>
-    </div>
+          <SummaryTitle>Podsumowanie</SummaryTitle>
+          <StyledDivider/>
+              <SummaryItem>
+                <SummaryItemText>Ilość przedmiotów</SummaryItemText>
+                <SummaryItemPrice>{totalItems}</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>Dostawa</SummaryItemText>
+                <SummaryItemPrice>Gratis</SummaryItemPrice>
+              </SummaryItem>
+              <StyledDivider/>
+              <SummaryItem type="total">
+                <SummaryItemText>Cena</SummaryItemText>
+                <SummaryItemPrice>{cartTotal} PLN</SummaryItemPrice>
+              </SummaryItem>
+              {!user ? (
+              <Button style = {{margin:'15px'}} variant = "contained" onClick={()=> setOpenModal(true)}> Zamów</Button>
+              ) : (
+                <Button style = {{margin:'15px'}} variant = "contained"  onClick={()=>  navigate("/Order")}> Przejdź do płatności</Button>
+              )}
+          </div>
+          <CartModalFail openModal = {openModal} handleCloseModal = {handleCloseModal}/>
+      </div>
+    ):(
+      <div className='cart__no__content'> 
+        <p> Brak przedmiotów w koszyku</p>
+      </div>
+    )
+    }
+  </>
   )
 }
 

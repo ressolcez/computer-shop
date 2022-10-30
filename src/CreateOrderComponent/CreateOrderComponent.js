@@ -10,7 +10,7 @@ import { useFormik } from 'formik';
 
 function CreateOrder({user,userdata}) {
 
-  const { items,cartTotal,totalItems  } = useCart();
+  const { items,cartTotal,totalItems,emptyCart  } = useCart();
   const [errors,setErrors] = useState([])
 
   
@@ -24,8 +24,14 @@ function CreateOrder({user,userdata}) {
     },
     onSubmit: (values) => {
       OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
+
         items.map((product)=>(
-          OrderServices.addOrderProduct(response.data,product.id, product.quantity)
+          OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
+              console.log(response.data)
+              setErrors([]);
+              emptyCart();
+              formik.resetForm();
+          })
         ))
       }).catch((error) => {
         setErrors(error.response.data)
