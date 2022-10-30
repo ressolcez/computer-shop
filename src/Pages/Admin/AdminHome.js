@@ -1,15 +1,49 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Topbar from '../../AdminComponents/TopBar';
-import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import MoneyIcon from '@mui/icons-material/Money';
 import FeaturedInfo from '../../AdminComponents/DashboardComponents/FeaturedInfo';
+import AdminDashboardServices from '../../Services/AdminDashboardServices';
+import SalesByCategory from '../../AdminComponents/DashboardComponents/SalesByCategory';
 
 function AdminHome() {
+
+  const [numberOfUsers, setNumberOfUsers] = useState(0);
+  const [activeUsers, setActiveUsers] = useState(0);
+  const [numberOfOrders, setNumberOfOrders] = useState(0);
+  const [waitingOrders, setWaitingOrders] = useState(0);
+  const [profit, setProfit] = useState(0);
+  const [salesByCategory, setSalesByCategory] = useState([])
+  
+  useEffect(() => {  
+    AdminDashboardServices.getNumberOfUsers().then((response) => {
+      setNumberOfUsers(response.data);
+     });
+     AdminDashboardServices.getActiveUsers().then((response) => {
+      setActiveUsers(response.data);
+     });
+
+     AdminDashboardServices.getNumberOfOrders().then((response) => {
+      setNumberOfOrders(response.data);
+     });
+
+     AdminDashboardServices.getNumberWaitingOrders().then((response) => {
+      setWaitingOrders(response.data);
+     });
+
+     AdminDashboardServices.getProfit().then((response) => {
+      setProfit(response.data);
+     });
+
+     AdminDashboardServices.getSalesByCategory().then((response) => {
+      setSalesByCategory(response.data);
+     });
+
+  }, []);
+
   return (
     <div>
       <Topbar/>
-      <FeaturedInfo/>
+      <FeaturedInfo numberOfUsers = {numberOfUsers} activeUsers = {activeUsers} numberOfOrders = {numberOfOrders} waitingOrders = {waitingOrders} profit = {profit} />
+      <SalesByCategory salesByCategory = {salesByCategory}/>
       </div>
   )
 }

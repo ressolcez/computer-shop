@@ -9,7 +9,7 @@ import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
 import PaidIcon from '@mui/icons-material/Paid';
 import AddchartIcon from '@mui/icons-material/Addchart';
 
-function FeaturedInfo() {
+function FeaturedInfo({numberOfUsers,activeUsers,numberOfOrders,waitingOrders,profit}) {
   return (
     <div className='featuredInfo__wrapper'>
         <Box sx = {{boxShadow: 4}} className='card__info'>
@@ -18,7 +18,7 @@ function FeaturedInfo() {
                     Użytkownicy
                 </div>
                 <div className='card__count'>
-                    <h2>2500</h2>
+                    <h2>{numberOfUsers}</h2>
                 </div>
             </div>
             <div className='card__avatar'>
@@ -39,7 +39,7 @@ function FeaturedInfo() {
                     Zalogowani
                 </div>
                 <div className='card__count'>
-                    <h2>2500</h2>
+                    <h2>{activeUsers}</h2>
                 </div>
             </div>
             <div className='card__avatar'>
@@ -60,7 +60,7 @@ function FeaturedInfo() {
                     Zamówienia
                 </div>
                 <div className='card__count'>
-                    <h2>2500</h2>
+                    <h2>{numberOfOrders}</h2>
                 </div>
             </div>
             <div className='card__avatar'>
@@ -81,7 +81,7 @@ function FeaturedInfo() {
                     Oczekujące
                 </div>
                 <div className='card__count'>
-                    <h2>2500</h2>
+                    <h2>{waitingOrders}</h2>
                 </div>
             </div>
             <div className='card__avatar'>
@@ -102,7 +102,7 @@ function FeaturedInfo() {
                     Przychód
                 </div>
                 <div className='card__count'>
-                    <h5>PLN 250000</h5>
+                    <h5>PLN {profit}</h5>
                 </div>
             </div>
             <div className='card__avatar'>
