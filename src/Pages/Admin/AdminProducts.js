@@ -9,9 +9,11 @@ function AdminProducts() {
 
   const {user,setUser } = useContext(UserContext);
   const [products,setProducts] = useState([]);
+  const [productId, setProductId] = useState();
 
 
   useEffect(() => {  
+
        if(localStorage.getItem('token')){
            AuthServices.isAuthorized().then((response) => {
              if(response.data.status === 'pass' && response.data.role === 'admin'){
@@ -30,12 +32,17 @@ function AdminProducts() {
           setProducts(response.data);
          });
 
-    }, []);
+         if(productId){
+          ProductServices.deleteProduct(productId);
+          window.location.reload('false')
+         }
+
+    }, [productId]);
 
   return (
     <>
       <Topbar/>
-      <Products products = {products}/>
+      <Products products = {products} setProductId = {setProductId}/>
     </>
   )
 }

@@ -9,7 +9,7 @@ import AddProductModal from '../SharedComponent/AddProductModal';
 import EditProductModal from '../SharedComponent/EditProductModal';
 import "./Products.css";
 
-function Products({products}) {
+function Products({products,setProductId}) {
 
   const [product,setProduct] = useState();
 
@@ -18,11 +18,6 @@ function Products({products}) {
 
   const handleCloseModalAddProduct = () => setOpenModalAddProduct(false);
   const handleCloseModalEditProduct = () => setOpenModalEditProduct(false);
-
-  const deleteProduct = (productId) =>{
-    ProductServices.deleteProduct(productId);
-    window.location.reload(false)
-  }
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -84,7 +79,7 @@ function Products({products}) {
                   }}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => deleteProduct(params.id)}>
+                  <IconButton onClick={() => setProductId(params.id)}>
                     <DeleteIcon />
                   </IconButton>
                   </div>

@@ -26,6 +26,7 @@ function AddProductModal({openModal,handleCloseModal}) {
           setSuccess('Poprawnie dodano przedmiot')
           formik.resetForm()
           setErrors([])
+          window.location.reload('false')
       }).catch((error) => {
         setErrors(error.response.data)
         setSuccess()

@@ -7,13 +7,11 @@ import OrderServices from '../Services/OrderServices';
 import "./CreateOrderComponent.css"
 import { useFormik } from 'formik';
 
-
 function CreateOrder({user,userdata}) {
 
   const { items,cartTotal,totalItems,emptyCart  } = useCart();
   const [errors,setErrors] = useState([])
 
-  
   const formik = useFormik({
     initialValues: {
       name: userdata.name,
@@ -40,6 +38,12 @@ function CreateOrder({user,userdata}) {
   });
 
   return (
+    <>
+      <div className="d-flex flex-column align-items-center text-center">
+        <img className="rounded-circle mt-5" width="100px" src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"/>
+        <span className="font-weight-bold">{userdata.login}</span>
+        <span className="text-black-50">{userdata.email}</span>
+  </div>
     <div className='createOrderComponent__wrappper'>
     <div className="payment__data col-md-5 border-right">
     <div className="p-3 py-5">
@@ -82,39 +86,43 @@ function CreateOrder({user,userdata}) {
                     </div>
 
                     <div className="mt-3">
-                      <Button className="float-end" type="submit" variant="success">Zapisz dane</ Button>
+                      <Button className="float-end" type="submit" variant="success">Zrealizuj zamówienie</ Button>
                     </div>
 
                 </Form.Group>
                 </Form>
       </div>
     </div>
-    <div className='cart__info__wrapper p-3 py-5'>
-    <h4 className="text-right">Koszyk(5) </h4>
-        <div className='cart__info__items__wrapper'>
-        {items.map((product)=>(        
-            <div className='cart__info__single__item'>
-              <div className='cart__info__product__name'>
-                <span style= {{fontWeight:'600',fontSize:'18px'}}>{product.name}</span>
-              </div>
-              <div className='cart__info__product__price'>
-                <div className='cart__info__price__quantity'>
-                  <span style = {{fontWeight:'300',fontSize:'18px'}}>{product.price} PLN</span>
-                  <p style = {{display:'flex',justifyContent:'center',marginBottom:'0',fontSize:'16px'}}>x{product.quantity}</p>
+      <div className='cart__info__wrapper p-3 py-5'>
+      <h4 className="text-right">Koszyk({totalItems}) </h4>
+          <div className='cart__info__items__wrapper'>
+          {items.map((product)=>(        
+              <div className='cart__info__single__item'>
+                <div className='cart__info__product__name'>
+                  <div>
+                    <span style= {{fontWeight:'600',fontSize:'18px'}}>{product.name}</span>
+                    <p style = {{display:'flex',justifyContent:'center',marginBottom:'0',fontSize:'12px'}}>{product.categoryModel.categoryName}</p>
+                  </div>
+                </div>
+                <div className='cart__info__product__price'>
+                  <div>
+                    <span style = {{fontWeight:'300',fontSize:'18px'}}>{product.price} PLN</span>
+                    <p style = {{display:'flex',justifyContent:'center',marginBottom:'0',fontSize:'16px'}}>x{product.quantity}</p>
+                  </div>
+                </div>
+                <div style = {{width:'100%'}}>
+                <StyledDivider/>
                 </div>
               </div>
-              <div style = {{width:'100%'}}>
-              <StyledDivider/>
-              </div>
+              ))}
+            <div className='total__info__cart'>
+              <p style= {{fontWeight:'500',fontSize:'18px'}}>Całkowita Cena: </p>
+              <p style = {{fontWeight:'300',fontSize:'18px'}}>{cartTotal} PLN</p>
             </div>
-            ))}
-          <div className='total__info__cart'>
-            <p style= {{fontWeight:'500',fontSize:'18px'}}>Całkowita Cena: </p>
-            <p style = {{fontWeight:'300',fontSize:'18px'}}>{cartTotal} PLN</p>
           </div>
-        </div>
-    </div>
-    </div>
+      </div>
+      </div>
+    </>
   )
 }
 
