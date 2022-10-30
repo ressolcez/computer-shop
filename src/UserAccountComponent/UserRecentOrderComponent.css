@@ -28,6 +28,13 @@
     margin-bottom: 5px;
 }
 
+.nocontent__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
     .products__inorder__wrapper{
         width: 100%;
         display: flex;

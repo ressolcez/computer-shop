@@ -45,12 +45,24 @@ function UserRecentOrders() {
   return (
     <main className='userRecentOrders__wrapper'>
         <Topbar user = {user} setUser = {setUser}/>
-        <div className='UserRecentOrders__wrapper'>
-          <h3 className='userOrder__title'>Twoje zamówienia: </h3>
-        </div>
-        <div style= {{flex:1}}>
-            <UserRecentOrdersComponent user = {user} orders = {orders}/>
-        </div>
+        {orders.length !== 0 ?
+        (
+        <>
+          <div className='UserRecentOrders__wrapper'>
+            <h3 className='userOrder__title'>Twoje zamówienia: </h3>
+          </div>
+          <div style= {{flex:1}}>
+              <UserRecentOrdersComponent user = {user} orders = {orders}/>
+          </div>
+        </>
+        ) :(
+          <div style= {{flex:1}}>
+            <div className='nocontent__wrapper'>
+                  <p>Nie znaleziono zamówień</p>
+            </div>
+          </div>
+        )
+        }
         <StyledDivider/>
         <Footer/>
     </main>

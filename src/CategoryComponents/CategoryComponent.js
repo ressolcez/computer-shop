@@ -9,6 +9,7 @@ import computer from "../Images/komputer2.jpg";
 import StyledLink from '../SharedComponent/StyledLink';
 import CategoryServices from '../Services/CategoryServices';
 import SnackbarSuccess from "../SharedComponent/SnackbarSuccess";
+import WaitPage from "../SharedComponent/WaitPage";
 import "./CategoryComponent.css"
 
 function CategoryComponent() {
@@ -21,13 +22,14 @@ function CategoryComponent() {
   const [page, setPage] = useState(1);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
+  const [loading,setLoading] = useState(true);
   const {addItem} = useCart();
-
 
   useEffect(() => {
     CategoryServices.getFilters(categoriesFilter,manufacturerFilter,minPrice,maxPrice,page-1).then((response) => {
       setTotalNumberOfPages(response.data.totalPages);
       setProducts(response.data.products);
+      setLoading(false);
     });
 
   }, [categoriesFilter,manufacturerFilter,minPrice,maxPrice,page]);
@@ -109,37 +111,43 @@ function CategoryComponent() {
           </div>
         </div>
 
-    </div>   
-    {products.length !== 0  &&
-    <>
+    </div>
     <div className='category__product__wrappper'>
+
+    {loading ? (<div style = {{width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>Ładowanie strony</div>) : 
+      (
+      <>
         {products.map((product)=>(
-            <div className='single__product__wrapper__category'>
-                    <div className='img__container__category'>
-                      <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
-                        <img src ={computer} alt = "productImage"/>
-                      </StyledLink>
-                    </div>
-                <div className='title__container__category'>{product.name}</div>
-                <div className='product__category__container'><b>Kategoria: </b>{product.categoryModel.categoryName} </div>
-                <div className='manufacturer__container'><b>Producent: </b>{product.producent} </div>
-                <div className='price__btn__container__category'>
-                  <div className='price__container__category'>{product.price} PLN</div>
-                  <div className='btn__container__category'>
-                  <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success" onClick={()=> handleAddToCart(product)}>
-                    <AddShoppingCart style ={{width:'20px'}} />
-                  </Button>
+          <div className='single__product__wrapper__category'>
+                  <div className='img__container__category'>
+                    <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
+                      <img src ={computer} alt = "productImage"/>
+                    </StyledLink>
                   </div>
+              <div className='title__container__category'>{product.name}</div>
+              <div className='product__category__container'><b>Kategoria: </b>{product.categoryModel.categoryName} </div>
+              <div className='manufacturer__container'><b>Producent: </b>{product.producent} </div>
+              <div className='price__btn__container__category'>
+                <div className='price__container__category'>{product.price} PLN</div>
+                <div className='btn__container__category'>
+                <Button variant="contained" style = {{paddingTop: '2px', paddingBottom:'2px'}} color="success" onClick={()=> handleAddToCart(product)}>
+                  <AddShoppingCart style ={{width:'20px'}} />
+                </Button>
                 </div>
               </div>
-        ))}
+            </div>
+      ))}
+      </>
+      ) 
+    } 
     </div>
-    </>
+    {!loading &&
+    <div className='pagination__container'>
+      <Pagination count={totalNumberOfPages} page={page} onChange={handlePageChange} size="large"  variant="outlined" />         
+    </div>
     }
+
     <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Dodano do koszyka"/>
-      <div className='pagination__container'>
-        <Pagination count={totalNumberOfPages} page={page} onChange={handlePageChange} size="large"  variant="outlined" />         
-      </div>
     </div>
 
   )

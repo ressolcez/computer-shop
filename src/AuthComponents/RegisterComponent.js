@@ -24,7 +24,6 @@ function RegisterComponent() {
       housenumber: '',
       postalCode: ''
     },
-    validateOnChange: false,
     validationSchema: validationSchema,
     validateOnBlur: false,
     onSubmit: (values) => {
