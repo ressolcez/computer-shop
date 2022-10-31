@@ -18,7 +18,8 @@ function LoginComponent() {
 
 const loginUser = () => {
       const credential = {login,password}
-    AuthServices.loginUser(credential).then((response) => {
+      
+      AuthServices.loginUser(credential).then((response) => {
         if(response.data.token !== '-1'){
           localStorage.setItem('token',response.data.token);
           navigate('/', {replace: true});
