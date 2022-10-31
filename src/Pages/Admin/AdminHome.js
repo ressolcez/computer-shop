@@ -1,10 +1,14 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useContext} from 'react';
+import { UserContext } from '../../Context/UserContext';
 import Topbar from '../../AdminComponents/TopBar';
 import FeaturedInfo from '../../AdminComponents/DashboardComponents/FeaturedInfo';
 import AdminDashboardServices from '../../Services/AdminDashboardServices';
 import ProductServices from '../../Services/ProductServices';
-import SalesByCategory from '../../AdminComponents/DashboardComponents/SalesByCategory';
+import ChartStatistic from '../../AdminComponents/DashboardComponents/ChartStatistic';
 import MostOrderdByProducents from '../../AdminComponents/DashboardComponents/MostOrderdByProducents';
+import "./AdminHome.css"
+import {useNavigate} from "react-router-dom";
+import AuthServices from '../../Services/AuthServices';
 
 function AdminHome() {
 
@@ -15,6 +19,8 @@ function AdminHome() {
   const [profit, setProfit] = useState(0);
   const [salesByCategory, setSalesByCategory] = useState([])
   const [mostOrderdByProducents, setmostOrderdByProducents] = useState([])
+  const navigate = useNavigate();
+  const {user,setUser } = useContext(UserContext);
 
   
   useEffect(() => {  
@@ -45,15 +51,30 @@ function AdminHome() {
       setmostOrderdByProducents(response.data);
      });
 
+     if(localStorage.getItem('token')){
+      AuthServices.isAuthorized().then((response) => {
+        if(response.data.status === 'pass' && response.data.role === 'Admin'){
+          const user = {
+            userId: response.data.user_Id,
+            role: response.data.role
+          }
+          setUser(user)
+        }else{
+          navigate("/NotFound")
+        }
+      });
+    }else{
+      navigate("/NotFound")
+    }  
+
   }, []);
 
   return (
     <div>
       <Topbar/>
       <FeaturedInfo numberOfUsers = {numberOfUsers} activeUsers = {activeUsers} numberOfOrders = {numberOfOrders} waitingOrders = {waitingOrders} profit = {profit} />
-      <SalesByCategory salesByCategory = {salesByCategory}/>
-      <MostOrderdByProducents mostOrderdByProducents = {mostOrderdByProducents}/>
-      </div>
+      <ChartStatistic salesByCategory = {salesByCategory} mostOrderdByProducents = {mostOrderdByProducents}/>
+    </div>
   )
 }
 

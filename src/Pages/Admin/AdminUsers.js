@@ -4,11 +4,13 @@ import Topbar from '../../AdminComponents/TopBar';
 import AuthServices from '../../Services/AuthServices';
 import Users from '../../AdminComponents/Users';
 import UsersServices from '../../Services/UsersServices';
+import {useNavigate} from "react-router-dom";
 
 function AdminUsers() {
 
     const {user,setUser } = useContext(UserContext);
     const [users,setUsers] = useState([])
+    const navigate = useNavigate();
 
     useEffect(() => {  
          if(localStorage.getItem('token')){
@@ -20,10 +22,12 @@ function AdminUsers() {
                  }
                  setUser(user)
                }else{
-                console.log('zle')
-               }
+                navigate("/NotFound")
+              }
              });
-           }  
+           }else{
+            navigate("/NotFound")
+          }   
 
            UsersServices.getAllUsers().then((response) => {
             setUsers(response.data);

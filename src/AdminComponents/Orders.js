@@ -109,13 +109,6 @@ function Orders({orders}) {
           rowsPerPageOptions={[11]}
           disableSelectionOnClick
           experimentalFeatures={{ newEditingApi: true }}
-          components={{ Toolbar: GridToolbar }}
-          componentsProps={{
-            toolbar: {
-              showQuickFilter: true,
-              quickFilterProps: { debounceMs: 500 },
-            },
-          }}
       />
       </div>
     </div>

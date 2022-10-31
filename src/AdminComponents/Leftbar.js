@@ -40,9 +40,11 @@ function Leftbar({isDrawerOpen,setIsDrawerOpen}) {
                         <div className='drawer__category__item'>
                         <ListItem style = {{display: 'flex', justifyContent:'center', width: '100%'}}>
                             <ListItemButton>
+                            <StyledLink to ="/Admin">   
                             <ListItemIcon>
                                 <AnalyticsIcon/>
                             </ListItemIcon>
+                            </StyledLink>
                             <ListItemText primary= 'Panel'/>
                             </ListItemButton>
                         </ListItem>
@@ -79,12 +81,14 @@ function Leftbar({isDrawerOpen,setIsDrawerOpen}) {
                         </div>
                         <div className='drawer__category__item'>
                         <ListItem style = {{display: 'flex', justifyContent:'center', width: '100%'}}>
+                        <StyledLink to ="/Admin/Users">
                             <ListItemButton>
                             <ListItemIcon>
                                 <PeopleIcon/>
                             </ListItemIcon>
                             <ListItemText primary= 'Użytkownicy'/>
                             </ListItemButton>
+                        </StyledLink>
                         </ListItem>
                         </div>
                    </div>

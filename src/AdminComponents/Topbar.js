@@ -27,7 +27,6 @@ function Topbar() {
             <MenuIcon />
           </IconButton>
         </Toolbar>
-        <h2>asdas</h2>
         </div>
       </AppBar>
     </Box>
