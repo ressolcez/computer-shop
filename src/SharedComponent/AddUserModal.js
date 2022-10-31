@@ -29,6 +29,7 @@ function AddUserModal({openModal,handleCloseModal}) {
         console.log(values.email)
                  
         UserServices.addUser(values,values.role).then((response) => {
+          
           setSuccess('Poprawnie dodano użytkownika')
           formik.resetForm()
           setErrors([])
@@ -47,7 +48,7 @@ function AddUserModal({openModal,handleCloseModal}) {
         <Modal show={openModal} onHide={handleCloseModal}>
         <Form onSubmit={formik.handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Dodawanie Produktu</Modal.Title>
+            <Modal.Title>Dodawanie Użytkownika</Modal.Title>
           </Modal.Header>
           <Modal.Body>
               <Form.Group className="mb-3" >
@@ -130,7 +131,7 @@ function AddUserModal({openModal,handleCloseModal}) {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="success" type="submit">
-              Dodaj Produkt
+              Dodaj Użytkownika
             </Button>
           </Modal.Footer>
           </Form>

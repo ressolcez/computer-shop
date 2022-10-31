@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 function EditProductModal({openModal,handleCloseModal,product}) {
 
     const [errors,setErrors] = useState([]);
-    const [success,setSuccess] = useState();  
+    const [success,setSuccess] = useState('');  
     const formik = useFormik({
       initialValues: {
         id: product.id,

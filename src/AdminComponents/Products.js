@@ -13,7 +13,9 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
 
   const [product,setProduct] = useState();
   const handleCloseModalAddProduct = () => setOpenModalAddProduct(false);
-  const handleCloseModalEditProduct = () => setOpenModalEditProduct(false);
+  const handleCloseModalEditProduct = () => {
+    setOpenModalEditProduct(false)
+  };
 
 
   const deleteProduct = (productId) =>{

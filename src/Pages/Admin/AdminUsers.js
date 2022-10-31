@@ -10,6 +10,10 @@ function AdminUsers() {
 
     const {user,setUser } = useContext(UserContext);
     const [users,setUsers] = useState([])
+    const [openModalAddUser, setOpenModalAddUser] = useState(false);
+    const [openModalEditUser, setOpenModalEditUser] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {  
@@ -29,18 +33,25 @@ function AdminUsers() {
         navigate("/NotFound")
       }   
           
-
           UsersServices.getAllUsers().then((response) => {
             setUsers(response.data);
            });
   
-      }, []);
+      }, [openModalEditUser,openModalAddUser,isDeleted]);
 
 
   return (
     <>
       <Topbar/>
-      <Users users = {users}/>
+      <Users 
+      users = {users} 
+      openModalEditUser = {openModalEditUser}
+      openModalAddUser = {openModalAddUser}
+      setOpenModalAddUser = {setOpenModalAddUser}
+      setOpenModalEditUser = {setOpenModalEditUser}
+      isDeleted = {isDeleted}
+      setIsDeleted = {setIsDeleted}
+      />
     </>
   )
 }

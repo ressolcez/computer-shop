@@ -5,13 +5,13 @@ import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import OrdersServices from "../Services/OrderServices";
 
-function EditOrderModal({openModal,handleCloseModal,order}) {
+function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess}) {
 
     const [orderStatus, setOrderStatus] = useState('');
 
     const changeStatus = () => {
         OrdersServices.changeOrderStatus(order.id,orderStatus).then((response) => {
-            console.log(response.data)
+          setSuccess('Poprawnie zmieniono status');
         })
     }
 
@@ -23,6 +23,7 @@ function EditOrderModal({openModal,handleCloseModal,order}) {
                 <Modal.Title>Edytowanie Zamówienia numer {order.id}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+            {success && <p style = {{display:'flex', justifyContent:'center', color:'green', fontSize:'18px'}}>{success}</p>}
             <Form.Label className='pt-3' style = {{display:'flex', justifyContent:'center',fontSize:'20px'}}>Aktualny status zamówienia</Form.Label>
                  <Container>
                     <p style = {{display:'flex', justifyContent:'center'}}>{order.status}</p>

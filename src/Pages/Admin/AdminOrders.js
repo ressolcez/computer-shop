@@ -12,6 +12,8 @@ function AdminOrders() {
   const {user,setUser } = useContext(UserContext);
   const [orders,setOrders] = useState([]);
   const navigate = useNavigate();
+    
+  const [openModalEditOrder, setOpenModalEditOrder] = useState(false);
 
   useEffect(() => {  
         OrdersServices.getAllOrders().then((response) => {
@@ -33,12 +35,16 @@ function AdminOrders() {
         }else{
           navigate("/NotFound")
         }   
-   }, []);
+   }, [openModalEditOrder]);
 
   return (
     <>
       <Topbar/>
-      <Orders orders = {orders}/>
+      <Orders 
+      orders = {orders}
+        openModalEditOrder = {openModalEditOrder}
+        setOpenModalEditOrder = {setOpenModalEditOrder}
+      />
     </>
     )
 }
