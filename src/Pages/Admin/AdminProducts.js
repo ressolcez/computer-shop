@@ -12,7 +12,7 @@ function AdminProducts() {
   const [products,setProducts] = useState([]);
   const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
   const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(true);
 
 
   const navigate = useNavigate();

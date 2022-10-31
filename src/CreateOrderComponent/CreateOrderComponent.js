@@ -7,10 +7,13 @@ import OrderServices from '../Services/OrderServices';
 import "./CreateOrderComponent.css"
 import { useFormik } from 'formik';
 import {useNavigate} from "react-router-dom"
-
+import CreateOrderSuccessModal from '../SharedComponent/CreateOrderSuccessModal';
 function CreateOrder({user,userdata}) {
 
   const { items,cartTotal,totalItems,emptyCart  } = useCart();
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleCloseModal = () => setOpenModal(false);
   const [errors,setErrors] = useState([])
   const navigate = useNavigate();
 
@@ -36,10 +39,10 @@ function CreateOrder({user,userdata}) {
 
         items.map((product)=>(
           OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
-              console.log(response.data)
               setErrors([]);
               emptyCart();
               formik.resetForm();
+              setOpenModal(true)
           })
         ))
       }).catch((error) => {
@@ -133,6 +136,7 @@ function CreateOrder({user,userdata}) {
           </div>
       </div>
       </div>
+      <CreateOrderSuccessModal openModal = {openModal} handleCloseModal = {handleCloseModal}/>
     </>
   )
 }

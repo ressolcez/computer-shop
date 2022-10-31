@@ -17,7 +17,6 @@ function CategoryComponent() {
 
   const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [manufacturerFilter, setManufacturerFilter] = useState([]);
-  
   const [products, setProducts] = useState([]);
   const [minPrice, setMinprice] = useState(0);
   const [maxPrice, setMaxprice] = useState(10000);
@@ -115,8 +114,10 @@ function CategoryComponent() {
               <p className='title'>Producent:</p>
               {allProducents && allProducents.map((product)=>(
                 <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, product, 2)}/>} label = {product} />
+
               ))
               }
+
           </div>
         </div>
 
