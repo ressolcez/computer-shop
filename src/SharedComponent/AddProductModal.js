@@ -5,10 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 import ProductServices from '../Services/ProductServices';
 import { useFormik } from 'formik';
 
-function AddProductModal({openModal,handleCloseModal}) {
+function AddProductModal({openModal,handleCloseModal,success,setSuccess}) {
 
   const [errors,setErrors] = useState([]);
-  const [success,setSuccess] = useState();
 
   const formik = useFormik({
     initialValues: {
@@ -28,7 +27,6 @@ function AddProductModal({openModal,handleCloseModal}) {
           setErrors([])
       }).catch((error) => {
         setErrors(error.response.data)
-        setSuccess()
     })
 
     },

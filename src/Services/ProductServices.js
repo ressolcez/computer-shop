@@ -23,6 +23,10 @@ class ProductServices{
         return axios.get('http://localhost:8080/api/products/mostOrderdByProducents')
     }
 
+    getAllProducents(){
+        return axios.get("http://localhost:8080/api/products/getAllProducents")
+    }
+
 }
 
 export default new ProductServices()

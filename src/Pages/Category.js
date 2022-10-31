@@ -11,7 +11,6 @@ function Category() {
 
   const {user, setUser} = useContext(UserContext);
 
-
   useEffect(() => {
 
     if(localStorage.getItem('token')){

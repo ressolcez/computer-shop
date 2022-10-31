@@ -11,6 +11,7 @@ import CategoryServices from '../Services/CategoryServices';
 import SnackbarSuccess from "../SharedComponent/SnackbarSuccess";
 import WaitPage from "../SharedComponent/WaitPage";
 import "./CategoryComponent.css"
+import ProductServices from '../Services/ProductServices';
 
 function CategoryComponent() {
 
@@ -24,6 +25,7 @@ function CategoryComponent() {
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
   const [loading,setLoading] = useState(true);
+  const [allProducents,setAllProducents] = useState()
   const {addItem} = useCart();
 
   useEffect(() => {
@@ -32,6 +34,11 @@ function CategoryComponent() {
       setProducts(response.data.products);
       setLoading(false);
     });
+
+    ProductServices.getAllProducents().then((response) => {
+      setAllProducents(response.data)
+    });
+
 
   }, [categoriesFilter,manufacturerFilter,minPrice,maxPrice,page]);
 
@@ -106,10 +113,10 @@ function CategoryComponent() {
           <div className='product__detail__filters'>
           <div className='center__box'>
               <p className='title'>Producent:</p>
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'xiaomi', 2)}/>} label="Xiaomi" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'samsung', 2)}/>} label="Samsung" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'asus', 2)}/>} label="Asus" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'acer', 2)}/>} label="Acer" />
+              {allProducents && allProducents.map((product)=>(
+                <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, product, 2)}/>} label = {product} />
+              ))
+              }
           </div>
         </div>
 

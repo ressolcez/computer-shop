@@ -14,6 +14,9 @@ function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,set
   const [id,setId] = useState(1);
   const [user,setUser] = useState();
 
+  const [successEdit, setSuccessEdit] = useState()
+  const [successAdd, setSuccessAdd] = useState()
+
   const handleCloseModalAddUser = () => setOpenModalAddUser(false);
   const handleCloseModalEditUser = () => setOpenModalEditUser(false);
 
@@ -81,7 +84,7 @@ const columns = [
                     setId(params.id);
                     setOpenModalEditUser(true);
                     setUser({id: params.id, name: params.row.id, surname: params.row.surname, login: params.row.login, email: params.row.email, address: params.row.address, houseNumber: params.row.houseNumber, posalCode: params.row.postalCode})
-
+                    setSuccessEdit()
                   }}>
                   <EditIcon />
                 </IconButton>
@@ -106,12 +109,14 @@ const columns = [
 
 return (
   <div className='admin__users__wrapper'>
-    <AddUserModal openModal = {openModalAddUser} handleCloseModal = {handleCloseModalAddUser}/>
-    {user && <EditUserModal openModal = {openModalEditUser} handleCloseModal = {handleCloseModalEditUser} user = {user} id = {id}/>}
+    <AddUserModal openModal = {openModalAddUser} handleCloseModal = {handleCloseModalAddUser} success = {successAdd} setSuccess={setSuccessAdd}/>
+    {user && <EditUserModal openModal = {openModalEditUser} handleCloseModal = {handleCloseModalEditUser} user = {user} id = {id} success = {successEdit} setSuccess = {setSuccessEdit}/>}
     
     <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Użytkownicy</h1>
     <div className='admin__add__user'>
-      <Button color = "success" variant = 'contained' onClick={() => setOpenModalAddUser(true)}>Dodaj użytkownika</Button>
+      <Button color = "success" variant = 'contained' onClick={() => {
+        setSuccessAdd()
+        setOpenModalAddUser(true)}}>Dodaj użytkownika</Button>
     </div>
     <div className='table__wrapper__user'>
       <DataGrid

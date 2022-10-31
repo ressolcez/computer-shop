@@ -5,10 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 import { useFormik } from 'formik';
 import UserServices from '../Services/UsersServices';
 
-function EditUserModal({openModal,handleCloseModal,user}) {
+function EditUserModal({openModal,handleCloseModal,user, success, setSuccess}) {
 
     const [errors,setErrors] = useState([]);
-    const [success,setSuccess] = useState();
 
     const formik = useFormik({
         initialValues: {
@@ -32,7 +31,6 @@ function EditUserModal({openModal,handleCloseModal,user}) {
                 setErrors([])
             }).catch((error) => {
               setErrors(error.response.data)
-              setSuccess()          
             })
 
         },

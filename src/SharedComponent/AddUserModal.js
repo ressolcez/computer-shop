@@ -7,10 +7,9 @@ import UserServices from '../Services/UsersServices';
 import AuthServices from '../Services/AuthServices';
 
 
-function AddUserModal({openModal,handleCloseModal}) {
+function AddUserModal({openModal,handleCloseModal, success, setSuccess}) {
 
   const [errors,setErrors] = useState([]);
-  const [success,setSuccess] = useState();
 
     const formik = useFormik({
       initialValues: {
@@ -25,8 +24,6 @@ function AddUserModal({openModal,handleCloseModal}) {
         role: 1
       },
       onSubmit: (values) => {
-
-        console.log(values.email)
                  
         UserServices.addUser(values,values.role).then((response) => {
           

@@ -12,10 +12,12 @@ import "./Products.css";
 function Products({products,openModalAddProduct,setOpenModalAddProduct,openModalEditProduct,setOpenModalEditProduct,setIsDeleted,isDeleted}) {
 
   const [product,setProduct] = useState();
+
+  const [successAdd, setSuccessAdd] = useState();
+  const [successEdit,setSuccessEdit] = useState();
+
   const handleCloseModalAddProduct = () => setOpenModalAddProduct(false);
-  const handleCloseModalEditProduct = () => {
-    setOpenModalEditProduct(false)
-  };
+  const handleCloseModalEditProduct = () => setOpenModalEditProduct(false);
 
 
   const deleteProduct = (productId) =>{
@@ -79,7 +81,8 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
                   <IconButton onClick={() => {
                     setOpenModalEditProduct(true);
                     setProduct({id : params.id,name: params.row.name, description: params.row.description,slider: params.row.slider, producent: params.row.producent, image: params.row.image, price: params.row.price})                    
-                  }}>
+                    setSuccessEdit('')
+                }}>
                     <EditIcon />
                   </IconButton>
                   <IconButton onClick={() => {
@@ -104,11 +107,14 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
 
   return (
     <div className='admin__product__wrapper'>
-      <AddProductModal openModal = {openModalAddProduct} handleCloseModal = {handleCloseModalAddProduct}/>
-      {product && <EditProductModal openModal = {openModalEditProduct} handleCloseModal = {handleCloseModalEditProduct} product = {product}/>}
+      <AddProductModal openModal = {openModalAddProduct} handleCloseModal = {handleCloseModalAddProduct} success = {successAdd} setSuccess = {setSuccessAdd}/>
+      {product && <EditProductModal openModal = {openModalEditProduct} handleCloseModal = {handleCloseModalEditProduct} product = {product} success = {successEdit} setSuccess = {setSuccessEdit}/>}
         <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Produkty</h1>
         <div className='admin__add__product'>
-          <Button color = "success" variant = 'contained' onClick={()=> setOpenModalAddProduct(true)}>Dodaj produkt</Button>
+          <Button color = "success" variant = 'contained' onClick={()=> {
+            setSuccessAdd()
+            setOpenModalAddProduct(true)}
+            }>Dodaj produkt</Button>
         </div>
         <div className='table__wrapper'>
           <DataGrid

@@ -5,10 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 import ProductServices from '../Services/ProductServices';
 import { useFormik } from 'formik';
 
-function EditProductModal({openModal,handleCloseModal,product}) {
+function EditProductModal({openModal,handleCloseModal,product,success,setSuccess}) {
 
     const [errors,setErrors] = useState([]);
-    const [success,setSuccess] = useState('');  
     const formik = useFormik({
       initialValues: {
         id: product.id,
@@ -41,7 +40,7 @@ function EditProductModal({openModal,handleCloseModal,product}) {
           <Modal.Body>
           {success && <p style = {{display:'flex', justifyContent:'center', color:'green', fontSize:'18px'}}>{success}</p>}
           <Form.Group className="mb-3" >
-                <Form.Label>id</Form.Label>
+                <Form.Label>Identyfikator</Form.Label>
                 <Form.Control
                   id = "id"
                   value={formik.values.id}
