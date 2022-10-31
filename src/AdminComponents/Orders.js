@@ -10,13 +10,12 @@ import EditOrderModal from '../SharedComponent/EditOrderModal';
 import "./Orders.css";
 
 
-function Orders({orders}) {
-  
-  const [openModalProductDetails, setOpenModalProductDetails] = useState(false);
-  const handleCloseModalProductDetails = () => setOpenModalProductDetails(false);
+function Orders({orders,openModalEditOrder,setOpenModalEditOrder}) {
 
-  const [openModalEditOrder, setOpenModalEditOrder] = useState(false);
   const handleCloseModalEditOrder = () => setOpenModalEditOrder(false);
+  const handleCloseModalProductDetails = () => setOpenModalProductDetails(false);
+  const [openModalProductDetails, setOpenModalProductDetails] = useState(false);
+  const [success,setSuccess] = useState();  
 
   const [order, setOrder] = useState();
   const [editOrder, setEditOrder] = useState();
@@ -73,9 +72,10 @@ function Orders({orders}) {
                   <IconButton onClick = {()=>{
                     setEditOrder({id: params.id, status: params.row.status})
                     setOpenModalEditOrder(true)
+                    setSuccess( )
                   }
                   }
-                  
+    
                     >
                     <EditIcon/>
                   </IconButton>
@@ -98,7 +98,7 @@ function Orders({orders}) {
     <div className='admin__product__wrapper'>
     <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Zamówienia</h1>
       <div className='table__wrapper'>
-      {editOrder && <EditOrderModal openModal = {openModalEditOrder} handleCloseModal = {handleCloseModalEditOrder} order = {editOrder}/>}
+      {editOrder && <EditOrderModal openModal = {openModalEditOrder} handleCloseModal = {handleCloseModalEditOrder} order = {editOrder} success = {success} setSuccess = {setSuccess}/>}
       {order && <OrderDetailsModal openModal = {openModalProductDetails} handleCloseModal = {handleCloseModalProductDetails} order = {order}/>}
       <DataGrid
           rows={orders}
