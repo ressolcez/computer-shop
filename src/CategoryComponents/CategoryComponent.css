@@ -59,7 +59,7 @@
                 width: 80%;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                gap:1.3%;
             }
 
         .single__product__wrapper__category{

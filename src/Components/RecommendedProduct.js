@@ -40,7 +40,7 @@ function RecommendedProduct({product}) {
       <div className='carousel__item'>
       <div className='carousel__item__img__cont'>
       <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
-          <img src={computer} alt = "komputer"/>
+          <img  src = {require(`../Images/${product.image}`)} alt = "komputer"/>
       </StyledLink>
       </div>
       <div className='carousel__desc'>

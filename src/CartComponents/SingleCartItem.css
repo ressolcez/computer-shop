@@ -2,6 +2,7 @@
     display:flex;
     width: 100%;
     flex-wrap: wrap;
+    margin-bottom: 50px;
 }
 
 .item__image__description{
@@ -24,7 +25,9 @@
 
 
     .image__cart__product{
-        width: 200px;
+        width: 150px;
+        height:128px;
+        object-fit: scale-down;
     }
 
 .item__control__price{

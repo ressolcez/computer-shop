@@ -16,7 +16,7 @@ function SearchBar({products,setSearchWord }) {
                 <StyledLink to={"/"+product.categoryModel.name+"/"+product.id} >
                 <div className='styled__single__iteam__search' key = {product.productId}>
                 <div className='item__image__search'>
-                    <img style ={{width:'110px', height:'95px'}}src='https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/9/pr_2022_9_9_9_47_35_177_02.jpg'/>
+                    <img style ={{width:'110px', height:'95px'}} src = {require(`../Images/${product.image}`)}/>
                  </div>
                  <div className='item__description__search'>
                     <div className='name__serach'>

@@ -131,7 +131,7 @@ function CategoryComponent() {
           <div className='single__product__wrapper__category'>
                   <div className='img__container__category'>
                     <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
-                      <img src ={computer} alt = "productImage"/>
+                      <img  src = {require(`../Images/${product.image}`)} alt = "productImage"/>
                     </StyledLink>
                   </div>
               <div className='title__container__category'>{product.name}</div>

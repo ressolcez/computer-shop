@@ -3,6 +3,7 @@ import {useCart} from "react-use-cart";
 import ImageGallery from 'react-image-gallery';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 import "react-image-gallery/styles/css/image-gallery.css";
+import Image from  "../Images/laptop1.jpg"
 import "./ItemDetail.css";
 
 
@@ -10,7 +11,18 @@ function ItemDetail({product}) {
 
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
   const {addItem} = useCart();
+  const [imageSrc, setImageSrc] = useState('');
 
+  /*
+  if(product.length !== 0){
+
+    import("../Images/" + product.image).then((module) => {
+      setImageSrc(module.default);
+    });
+
+  }
+
+  */
   const handleAddToCart = () =>{
     addItem(product);
     setOpenSnackbarSuccess(true);
@@ -25,12 +37,12 @@ function ItemDetail({product}) {
 
   const images = [
     {
-      original: 'https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/9/pr_2022_9_9_9_47_35_177_02.jpg',
-      thumbnail: 'https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/9/pr_2022_9_9_9_47_35_177_02.jpg',
+      original: imageSrc,
+      thumbnail: imageSrc,
     },
     {
-      original: 'https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/9/pr_2022_9_22_10_22_54_927_06.jpg',
-      thumbnail: 'https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/9/pr_2022_9_22_10_22_54_927_06.jpg',
+      original: imageSrc,
+      thumbnail: imageSrc,
     },
   ];
 

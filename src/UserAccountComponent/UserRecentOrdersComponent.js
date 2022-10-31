@@ -22,7 +22,8 @@ function UserRecentOrderComponent({user,orders}) {
           {order.orderProductModels.map((product)=>(
               <div className='single__productInOrder__wrappper'>
                   <div className='single__product__image'>
-                    <img src = {computer} alt = "komputer img"/>
+                   
+                    <img src = {require(`../Images/${product.productModel.image}`)} alt = "komputer img"/>
                   </div>
                   <div className='single__product__name'>
                     <b>Nazwa:</b>

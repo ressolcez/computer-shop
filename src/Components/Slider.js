@@ -53,7 +53,7 @@ export default function Slider({products}) {
           <div key={product.id} className='carousel__wrappper'>
               <div className='carousel__wrappper__image'>
               <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
-                  <img className='inside__img' src = {Komputer} alt = "computer"/>
+                  <img className='inside__img'  src = {require(`../Images/${product.image}`)} alt = "computer"/>
               </StyledLink>
               </div>
             <div className='carousel__wrapper__description'>

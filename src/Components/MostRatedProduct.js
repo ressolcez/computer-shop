@@ -38,7 +38,7 @@ function MostRatedProduct({product}) {
         <div className='MostRatedProduct__wrapper' >
         <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
           <div className='img__container__rated'>
-            <img src ={computer} alt ="computer"/>
+            <img  src = {require(`../Images/${product.image}`)} alt ="computer"/>
           </div>
         </StyledLink>
         <div className='title__container__rated'>{product.name}</div>
