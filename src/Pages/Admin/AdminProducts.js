@@ -10,7 +10,11 @@ function AdminProducts() {
 
   const {user,setUser } = useContext(UserContext);
   const [products,setProducts] = useState([]);
-  const [productId, setProductId] = useState();
+  const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
+  const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
+
+
   const navigate = useNavigate();
 
 
@@ -36,17 +40,20 @@ function AdminProducts() {
           setProducts(response.data);
          });
 
-         if(productId){
-          ProductServices.deleteProduct(productId);
-          window.location.reload('false')
-         }
-
-    }, [productId]);
+    }, [isDeleted,openModalEditProduct,openModalAddProduct]);
 
   return (
     <>
       <Topbar/>
-      <Products products = {products} setProductId = {setProductId}/>
+      <Products 
+       openModalAddProduct = {openModalAddProduct} 
+       setOpenModalAddProduct = {setOpenModalAddProduct}
+       openModalEditProduct = {openModalEditProduct} 
+       setOpenModalEditProduct = {setOpenModalEditProduct} 
+       isDeleted = {isDeleted}
+       setIsDeleted = {setIsDeleted}
+       products = {products}
+       />
     </>
   )
 }

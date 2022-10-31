@@ -85,9 +85,14 @@ function Topbar({user,setUser}) {
                                     </StyledLink>
                                     <StyledDivider/>
                                     {
-                                    user.role === 'Admin' && <Typography style = {{cursor:'pointer'}} sx = {{p: 1}}><AdminPanelSettingsIcon/> Panel administratora</Typography>
+                                    user.role === 'Admin' && 
+                                    <>
+                                        <StyledLink to = "/Admin">
+                                            <Typography style = {{cursor:'pointer'}} sx = {{p: 1}}><AdminPanelSettingsIcon/> Panel administratora</Typography>
+                                        </StyledLink>
+                                        <StyledDivider/>
+                                    </>
                                     }
-                                    <StyledDivider/>
                                     <Typography style = {{cursor:'pointer'}} sx = {{p: 1}} onClick = {() => logoutUser()}><LogoutIcon/> Wyloguj</Typography>
                                 </Popover> 
                                 </>

@@ -13,23 +13,24 @@ function AdminUsers() {
     const navigate = useNavigate();
 
     useEffect(() => {  
-         if(localStorage.getItem('token')){
-             AuthServices.isAuthorized().then((response) => {
-               if(response.data.status === 'pass' && response.data.role === 'admin'){
-                 const user = {
-                   userId: response.data.user_Id,
-                   role: response.data.role
-                 }
-                 setUser(user)
-               }else{
-                navigate("/NotFound")
+        if(localStorage.getItem('token')){
+          AuthServices.isAuthorized().then((response) => {
+            if(response.data.status === 'pass' && response.data.role === 'Admin'){
+              const user = {
+                userId: response.data.user_Id,
+                role: response.data.role
               }
-             });
-           }else{
+              setUser(user)
+            }else{
             navigate("/NotFound")
-          }   
+            }
+          });
+        }else{
+        navigate("/NotFound")
+      }   
+          
 
-           UsersServices.getAllUsers().then((response) => {
+          UsersServices.getAllUsers().then((response) => {
             setUsers(response.data);
            });
   

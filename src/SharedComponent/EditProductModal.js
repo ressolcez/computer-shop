@@ -25,7 +25,6 @@ function EditProductModal({openModal,handleCloseModal,product}) {
         ProductServices.editProduct(values.category,values.id,values).then((response) => {
             setErrors([])
             setSuccess('Poprawnie Edytowano przedmiot')
-            window.location.reload(false)
             formik.resetForm({values: ''})
         }).catch((error) => {
           setErrors(error.response.data)

@@ -78,7 +78,8 @@ function CartOrderComponent({user}) {
       </div>
     ):(
       <div className='cart__no__content'> 
-        <p> Brak przedmiotów w koszyku</p>
+        <h3> Brak przedmiotów w koszyku</h3>
+        <Button variant = 'contained' color = 'success' style = {{marginTop:'15px'}} onClick = {()=> navigate('/')}> Przejdź do strony głównej</Button>
       </div>
     )
     }

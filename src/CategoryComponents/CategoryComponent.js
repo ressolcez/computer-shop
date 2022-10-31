@@ -87,10 +87,11 @@ function CategoryComponent() {
         <div className='single__category__filters'>
             <div className='center__box'>
               <p className='title'>Kategorie:</p>
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'komputery', 1)} />} label="Komputery" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'myszki', 1)}/>} label="Myszki" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'klawiatury',1)}/>} label="Klawiatury" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'laptopy',1)}/>} label="Laptopty" />
+              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Komputer', 1)} />} label="Komputery" />
+              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Myszka', 1)}/>} label="Myszki" />
+              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Klawiatura',1)}/>} label="Klawiatury" />
+              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Laptop',1)}/>} label="Laptopty" />
+              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Monitor',1)}/>} label="Monitory" />
             </div>
         </div>
         <div className='price__flters'>

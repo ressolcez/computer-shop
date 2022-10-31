@@ -9,15 +9,16 @@ import AddProductModal from '../SharedComponent/AddProductModal';
 import EditProductModal from '../SharedComponent/EditProductModal';
 import "./Products.css";
 
-function Products({products,setProductId}) {
+function Products({products,openModalAddProduct,setOpenModalAddProduct,openModalEditProduct,setOpenModalEditProduct,setIsDeleted,isDeleted}) {
 
   const [product,setProduct] = useState();
-
-  const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
-  const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
-
   const handleCloseModalAddProduct = () => setOpenModalAddProduct(false);
   const handleCloseModalEditProduct = () => setOpenModalEditProduct(false);
+
+
+  const deleteProduct = (productId) =>{
+      ProductServices.deleteProduct(productId);
+  }
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -79,7 +80,18 @@ function Products({products,setProductId}) {
                   }}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => setProductId(params.id)}>
+                  <IconButton onClick={() => {
+                    console.log(isDeleted)
+                    
+                    if(!isDeleted){
+                      setIsDeleted(true)
+                    }else{
+                      setIsDeleted(false)
+                    } 
+                    
+                    deleteProduct(params.id)
+                    
+                    }}>
                     <DeleteIcon />
                   </IconButton>
                   </div>
@@ -90,22 +102,22 @@ function Products({products,setProductId}) {
 
   return (
     <div className='admin__product__wrapper'>
-    <AddProductModal openModal = {openModalAddProduct} handleCloseModal = {handleCloseModalAddProduct}/>
-    {product && <EditProductModal openModal = {openModalEditProduct} handleCloseModal = {handleCloseModalEditProduct} product = {product}/>}
-      <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Produkty</h1>
-      <div className='admin__add__product'>
-        <Button color = "success" variant = 'contained' onClick={()=> setOpenModalAddProduct(true)}>Dodaj produkt</Button>
-      </div>
-      <div className='table__wrapper'>
-        <DataGrid
-          rows={products}
-          columns={columns}
-          pageSize={11}
-          rowsPerPageOptions={[11]}
-          disableSelectionOnClick
-          experimentalFeatures={{ newEditingApi: true }}
-        />
+      <AddProductModal openModal = {openModalAddProduct} handleCloseModal = {handleCloseModalAddProduct}/>
+      {product && <EditProductModal openModal = {openModalEditProduct} handleCloseModal = {handleCloseModalEditProduct} product = {product}/>}
+        <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Produkty</h1>
+        <div className='admin__add__product'>
+          <Button color = "success" variant = 'contained' onClick={()=> setOpenModalAddProduct(true)}>Dodaj produkt</Button>
         </div>
+        <div className='table__wrapper'>
+          <DataGrid
+            rows={products}
+            columns={columns}
+            pageSize={11}
+            rowsPerPageOptions={[11]}
+            disableSelectionOnClick
+            experimentalFeatures={{ newEditingApi: true }}
+          />
+          </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {useCart} from "react-use-cart";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -6,11 +6,22 @@ import StyledDivider from '../SharedComponent/StyledDivider';
 import OrderServices from '../Services/OrderServices';
 import "./CreateOrderComponent.css"
 import { useFormik } from 'formik';
+import {useNavigate} from "react-router-dom"
 
 function CreateOrder({user,userdata}) {
 
   const { items,cartTotal,totalItems,emptyCart  } = useCart();
   const [errors,setErrors] = useState([])
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+
+   if(items.length === 0){
+      navigate("/cart")
+   }
+
+ }, []);
 
   const formik = useFormik({
     initialValues: {

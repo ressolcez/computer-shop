@@ -26,7 +26,6 @@ function AddProductModal({openModal,handleCloseModal}) {
           setSuccess('Poprawnie dodano przedmiot')
           formik.resetForm()
           setErrors([])
-          window.location.reload('false')
       }).catch((error) => {
         setErrors(error.response.data)
         setSuccess()
@@ -101,9 +100,11 @@ function AddProductModal({openModal,handleCloseModal}) {
                   value={formik.values.category}
                   onChange={formik.handleChange}
                  >
-                    <option value="1">komputery</option>
-                    <option value="2">laptopy</option>
-                    <option value="3">Three</option>
+                    <option value="1">Komputer</option>
+                    <option value="2">Myszka</option>
+                    <option value="3">Klawiatura</option>
+                    <option value="4">Laptop</option>
+                    <option value="5">Monitor</option>
                 </Form.Select>
               </Form.Group>
           </Modal.Body>
