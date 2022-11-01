@@ -18,7 +18,7 @@ function SingleCartItem({product}) {
                 </div>
                 <div className='item__description__cart'>
                     <p className='name__style'><b>Nazwa: </b> {product.name} </p>
-                    <p className='name__style'><b>Kategoria: </b> {product.categoryModel.name} </p>
+                    <p className='name__style'><b>Kategoria: </b> {product.categoryModel.categoryName} </p>
                     <p className='name__style'><b>Producent: </b> {product.producent} </p>
                 </div>
             </div>

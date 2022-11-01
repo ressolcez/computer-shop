@@ -31,7 +31,9 @@ function AdminOrders() {
             }else{
              navigate("/NotFound")
             }
-          });
+          }).catch((error) => {
+            navigate("/Login")
+        })
         }else{
           navigate("/NotFound")
         }   
