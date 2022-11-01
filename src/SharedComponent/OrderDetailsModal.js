@@ -19,7 +19,7 @@ function OrderDetailsModal({openModal,handleCloseModal,order }) {
       {order.orderProductModels.map((order)=>(
         <div className='single__productInOrder__wrappper__admin'>
             <div className='single__product__image__admin'>
-              <img src = {computer} alt = "komputer img"/>
+              <img src = {require(`../Images/${order.productModel.image}`)} alt = "komputer img"/>
         </div>
               <div className='single__product__name__admin'>
                 <b>Nazwa:</b>

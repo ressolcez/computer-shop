@@ -130,7 +130,7 @@ function CategoryComponent() {
         {products.map((product)=>(
           <div className='single__product__wrapper__category'>
                   <div className='img__container__category'>
-                    <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
+                    <StyledLink to={"/"+product.categoryModel.categoryName+"/"+product.id}>
                       <img  src = {require(`../Images/${product.image}`)} alt = "productImage"/>
                     </StyledLink>
                   </div>

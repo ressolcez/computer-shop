@@ -8,8 +8,8 @@ class HomePageServices{
         return axios.get(baseURL+"/slider")
     }    
 
-     getDiscountContent(){
-        return axios.get(baseURL+"/slider")
+     getMostRatedProducts(){
+        return axios.get(baseURL+"/mostRatedProducts")
     }    
 
      getMostOrderProducts(){

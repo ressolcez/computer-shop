@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import {Drawer} from '@mui/material';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import ListItem from '@mui/material/ListItem';
@@ -11,9 +11,21 @@ import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import LogoutIcon from '@mui/icons-material/Logout';
 import StyledDivider from "../SharedComponent/StyledDivider"
 import StyledLink from "../SharedComponent/StyledLink";
+import AuthServices from '../Services/AuthServices';
+import { useNavigate } from 'react-router-dom';
 import "./Leftbar.css";
 
-function Leftbar({isDrawerOpen,setIsDrawerOpen}) {
+function Leftbar({isDrawerOpen,setIsDrawerOpen,user,setUser}) {
+
+    const navigate = useNavigate();
+
+    const logoutUser = () =>
+    {
+         AuthServices.logoutUser();
+         localStorage.removeItem('token')
+         navigate("/")
+         window.location.reload('false')
+    }
 
   return (
     <>
@@ -96,7 +108,7 @@ function Leftbar({isDrawerOpen,setIsDrawerOpen}) {
                 </div>
                 <div className='drawer__logout'>
                 <ListItem style = {{display: 'flex', justifyContent:'center', width: '100%'}}>
-                    <ListItemButton>
+                    <ListItemButton onClick = {()=> logoutUser()}>
                         <ListItemIcon>
                             <LogoutIcon/>
                         </ListItemIcon>

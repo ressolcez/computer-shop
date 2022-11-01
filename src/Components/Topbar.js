@@ -16,7 +16,6 @@ import AuthServices from '../Services/AuthServices';
 import StyledDivider from '../SharedComponent/StyledDivider';
 import './Topbar.css';
 
-
 function Topbar({user,setUser}) {
 
     const [allProducts, setAllProducts] = useState([]);

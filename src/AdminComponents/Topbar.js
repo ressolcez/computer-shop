@@ -6,15 +6,16 @@ import IconButton from '@mui/material/IconButton';
 import { Tooltip,Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Leftbar from "./Leftbar";
+import Prof from "../Images/prof.jpg"
 
-function Topbar() {
+function Topbar({user,setUser}) {
   const [isDrawerOpen,setIsDrawerOpen ] = useState(false);
 
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <div style = {{display:'flex',justifyContent:'space-between'}}>
+        <div style = {{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -27,10 +28,14 @@ function Topbar() {
             <MenuIcon />
           </IconButton>
         </Toolbar>
+        <div style={{display:'flex', alignItems:'center',paddingRight:'30px'}}>
+          <Avatar><img src = {Prof} alt='profileImage'/></Avatar>
+          <span style={{paddingLeft:'10px'}}><b>Konrad Chrabąszcz</b></span>
+        </div>
         </div>
       </AppBar>
     </Box>
-    <Leftbar isDrawerOpen = {isDrawerOpen} setIsDrawerOpen = {setIsDrawerOpen}/>
+    <Leftbar isDrawerOpen = {isDrawerOpen} setIsDrawerOpen = {setIsDrawerOpen} user = {user} setUser = {setUser}/>
   </>
   )
 }

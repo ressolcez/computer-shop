@@ -30,7 +30,7 @@ const Home = () => {
            setLoading(false);
          });
          
-         HomePageServices.getSliderContent().then((response) => {
+         HomePageServices.getRecommendedProducts().then((response) => {
             setRecommendedProducts(response.data);
             setLoading(false);
           });
@@ -40,7 +40,7 @@ const Home = () => {
             setLoading(false);
           });
 
-          HomePageServices.getRecommendedProducts().then((response) => {
+          HomePageServices.getMostRatedProducts().then((response) => {
             setMostRatedProducts(response.data);
             setLoading(false);
           });

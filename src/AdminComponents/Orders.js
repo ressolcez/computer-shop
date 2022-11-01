@@ -104,7 +104,6 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder}) {
           rows={orders}
           columns={columns}
           disableColumnFilter 
-          sortingMode="server"
           pageSize={11}
           rowsPerPageOptions={[11]}
           disableSelectionOnClick

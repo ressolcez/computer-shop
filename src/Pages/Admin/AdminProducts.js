@@ -13,10 +13,8 @@ function AdminProducts() {
   const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
   const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
   const [isDeleted, setIsDeleted] = useState(true);
-
-
+  
   const navigate = useNavigate();
-
 
   useEffect(() => {  
 
@@ -44,7 +42,7 @@ function AdminProducts() {
 
   return (
     <>
-      <Topbar/>
+      <Topbar user = {user} setUser = {setUser}/>
       <Products 
        openModalAddProduct = {openModalAddProduct} 
        setOpenModalAddProduct = {setOpenModalAddProduct}

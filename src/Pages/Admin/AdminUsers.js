@@ -42,7 +42,7 @@ function AdminUsers() {
 
   return (
     <>
-      <Topbar/>
+      <Topbar user = {user} setUser = {setUser}/>
       <Users 
       users = {users} 
       openModalEditUser = {openModalEditUser}

@@ -71,7 +71,7 @@ function AdminHome() {
 
   return (
     <div>
-      <Topbar/>
+      <Topbar user = {user} setUser = {setUser}/>
       <FeaturedInfo numberOfUsers = {numberOfUsers} activeUsers = {activeUsers} numberOfOrders = {numberOfOrders} waitingOrders = {waitingOrders} profit = {profit} />
       <ChartStatistic salesByCategory = {salesByCategory} mostOrderdByProducents = {mostOrderdByProducents}/>
     </div>

@@ -29,7 +29,7 @@ function MostOrderProduct({product}) {
   return (
     <>
         <div className='MostOrderProduct__wrapper' key={product.id}>
-            <StyledLink to={"/"+product.categoryModel.name+"/"+product.id}>
+            <StyledLink to={"/"+product.categoryModel.categoryName+"/"+product.id}>
                 <div className='img__container'>
                     <img src = {require(`../Images/${product.image}`)} alt = "productImage"></img>
                 </div>

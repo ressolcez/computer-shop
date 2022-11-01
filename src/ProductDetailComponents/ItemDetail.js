@@ -5,6 +5,7 @@ import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 import "react-image-gallery/styles/css/image-gallery.css";
 import Image from  "../Images/laptop1.jpg"
 import "./ItemDetail.css";
+import { lazy } from 'react';
 
 
 function ItemDetail({product}) {
@@ -13,16 +14,10 @@ function ItemDetail({product}) {
   const {addItem} = useCart();
   const [imageSrc, setImageSrc] = useState('');
 
-  /*
-  if(product.length !== 0){
+  
+  const MyComponent = lazy(() => import('../Images/laptop1.jpg'));
 
-    import("../Images/" + product.image).then((module) => {
-      setImageSrc(module.default);
-    });
-
-  }
-
-  */
+  
   const handleAddToCart = () =>{
     addItem(product);
     setOpenSnackbarSuccess(true);
@@ -35,21 +30,10 @@ function ItemDetail({product}) {
     setOpenSnackbarSuccess(false);
   };
 
-  const images = [
-    {
-      original: imageSrc,
-      thumbnail: imageSrc,
-    },
-    {
-      original: imageSrc,
-      thumbnail: imageSrc,
-    },
-  ];
-
   return (
     <div className='ItemDetail__wrapper'>
         <div className='ItemDetail__images__wrapper'>
-        <ImageGallery items={images} showPlayButton = {false}/>
+        {product.image !== undefined && <ImageGallery items={[{original: require(`../Images/${product.image}`),thumbnail: require(`../Images/${product.image}`)}]} showPlayButton = {false}/>}
         </div>
         <div className='ItemDetail__description_wrapper'> 
         <div className="product-description">

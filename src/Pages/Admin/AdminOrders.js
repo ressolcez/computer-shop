@@ -39,7 +39,7 @@ function AdminOrders() {
 
   return (
     <>
-      <Topbar/>
+      <Topbar user = {user} setUser = {setUser}/>
       <Orders 
       orders = {orders}
         openModalEditOrder = {openModalEditOrder}
