@@ -21,7 +21,11 @@ function SingleCartItem({product,error}) {
                     <p className='name__style'><b>Kategoria: </b> {product.categoryModel.categoryName} </p>
                     <p className='name__style'><b>Producent: </b> {product.producent} </p>
                     <p className='name__style'><b>Ilość w magazynie: </b> {product.quantityAvailable} </p>
-                    {error.product_id === product.id && <p>Zła wartość mordo</p>}
+                    {error.length !== 0 && 
+                        error.map((cos)=>(
+                            cos === product.id && <p style = {{color:'red'}}><b>Niepoprawna ilość przedmiotu!</b></p>
+                        ))
+                    }
                     
                 </div>
             </div>

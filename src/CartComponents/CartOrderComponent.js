@@ -38,15 +38,17 @@ function CartOrderComponent({user}) {
 
   const [openModal, setOpenModal] = useState(false);
   const handleCloseModal = () => setOpenModal(false);
-  const [error,setError] = useState();
+  const [error,setError] = useState([]);
 
 
   const checkoutCart = () => {
-   
     OrderServices.checkoutCart(items).then((response) => {
-      setError(response.data)
+    setError([])
     })
-
+    .catch((error) => {
+      console.log(error.response.data)
+      setError(error.response.data)
+    })
   }
 
   return (
