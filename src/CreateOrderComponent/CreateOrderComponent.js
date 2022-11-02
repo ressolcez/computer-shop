@@ -8,6 +8,10 @@ import "./CreateOrderComponent.css"
 import { useFormik } from 'formik';
 import {useNavigate} from "react-router-dom"
 import CreateOrderSuccessModal from '../SharedComponent/CreateOrderSuccessModal';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
 function CreateOrder({user,userdata}) {
 
   const { items,cartTotal,totalItems,emptyCart  } = useCart();
@@ -17,13 +21,12 @@ function CreateOrder({user,userdata}) {
   const [errors,setErrors] = useState([])
   const navigate = useNavigate();
 
+  const [openBackdrop, setOpenBackdrop] = useState(false);
 
   useEffect(() => {
-
    if(items.length === 0){
       navigate("/cart")
    }
-
  }, []);
 
   const formik = useFormik({
@@ -35,10 +38,11 @@ function CreateOrder({user,userdata}) {
       postalCode: userdata.postalCode,
     },
     onSubmit: (values) => {
+      setOpenBackdrop(true)
       OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
-
         items.map((product)=>(
           OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
+              setOpenBackdrop(false);
               setErrors([]);
               emptyCart();
               formik.resetForm();
@@ -136,6 +140,12 @@ function CreateOrder({user,userdata}) {
           </div>
       </div>
       </div>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={openBackdrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <CreateOrderSuccessModal openModal = {openModal} handleCloseModal = {handleCloseModal}/>
     </>
   )

@@ -112,3 +112,13 @@
         font-size: 13px;
     }
 }
+
+@media only screen and (max-width: 320px) {
+    .carousel__wrapper__title{
+        font-size: 16px;
+    }
+
+    .carousel__wrapper__desc{
+        font-size: 14px;
+    }
+}

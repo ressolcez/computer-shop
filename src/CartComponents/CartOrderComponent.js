@@ -8,6 +8,7 @@ import StyledDivider from "../SharedComponent/StyledDivider";
 import { useNavigate } from "react-router-dom";
 
 import "./CartOrderComponent.css";
+import OrderServices from '../Services/OrderServices';
 
 
 const SummaryTitle = styled.h1`
@@ -37,7 +38,16 @@ function CartOrderComponent({user}) {
 
   const [openModal, setOpenModal] = useState(false);
   const handleCloseModal = () => setOpenModal(false);
+  const [error,setError] = useState();
 
+
+  const checkoutCart = () => {
+   
+    OrderServices.checkoutCart(items).then((response) => {
+      setError(response.data)
+    })
+
+  }
 
   return (
     <>
@@ -48,7 +58,7 @@ function CartOrderComponent({user}) {
             <h2>Twój koszyk</h2>
            </div>  
           {items.map((product)=>(
-            <SingleCartItem product = {product}/>
+            <SingleCartItem product = {product} error = {error}/>
           ))}
           </div>
           <div className='cart__order__wrapper'>
@@ -71,7 +81,7 @@ function CartOrderComponent({user}) {
               {!user ? (
               <Button style = {{margin:'15px'}} variant = "contained" onClick={()=> setOpenModal(true)}> Zamów</Button>
               ) : (
-                <Button style = {{margin:'15px'}} variant = "contained"  onClick={()=>  navigate("/Order")}> Przejdź do płatności</Button>
+                <Button style = {{margin:'15px'}} variant = "contained"  onClick={()=> checkoutCart()}> Przejdź do płatności</Button>
               )}
           </div>
           <CartModalFail openModal = {openModal} handleCloseModal = {handleCloseModal}/>

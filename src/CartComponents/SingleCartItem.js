@@ -3,7 +3,7 @@ import './SingleCartItem.css';
 import Button from '@mui/material/Button';
 import {useCart } from "react-use-cart";
 
-function SingleCartItem({product}) {
+function SingleCartItem({product,error}) {
 
     const {
         updateItemQuantity,
@@ -20,6 +20,9 @@ function SingleCartItem({product}) {
                     <p className='name__style'><b>Nazwa: </b> {product.name} </p>
                     <p className='name__style'><b>Kategoria: </b> {product.categoryModel.categoryName} </p>
                     <p className='name__style'><b>Producent: </b> {product.producent} </p>
+                    <p className='name__style'><b>Ilość w magazynie: </b> {product.quantityAvailable} </p>
+                    {error.product_id === product.id && <p>Zła wartość mordo</p>}
+                    
                 </div>
             </div>
             <div className='item__control__price'>
