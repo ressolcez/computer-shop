@@ -37,6 +37,11 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
       width: 100,
     },
     {
+      field: 'quantityAvailable',
+      headerName: 'Ilość sztuk',
+      width: 200,
+    },
+    {
       field: 'producent',
       headerName: 'Producent',
       width: 150,
@@ -44,7 +49,7 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
     {
       field: 'description',
       headerName: 'Opis',
-      width: 650,
+      width: 450,
     },
     {
       field: 'image',

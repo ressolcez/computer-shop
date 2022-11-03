@@ -2,6 +2,10 @@ import axios from 'axios'
 
 class ProductServices{
     
+    getProductsFromCart(items){
+        return axios.post("http://localhost:8080/api/products/getProductsInCart",items)
+    }
+
     deleteProduct(productId){
         return axios.delete("http://localhost:8080/api/products/"+productId);
     }

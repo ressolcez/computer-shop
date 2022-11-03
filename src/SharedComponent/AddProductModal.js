@@ -13,6 +13,7 @@ function AddProductModal({openModal,handleCloseModal,success,setSuccess}) {
     initialValues: {
       name: '',
       slider: true,
+      quantityAvailable: 0,
       producent: '',
       description: '',
       image: '',
@@ -21,6 +22,8 @@ function AddProductModal({openModal,handleCloseModal,success,setSuccess}) {
     },
     onSubmit: (values) => {
 
+      console.log(values.quantityAvailable);
+
       ProductServices.addProduct(values.category,values).then((response) => {
           setSuccess('Poprawnie dodano przedmiot')
           formik.resetForm()
@@ -28,8 +31,8 @@ function AddProductModal({openModal,handleCloseModal,success,setSuccess}) {
       }).catch((error) => {
         setErrors(error.response.data)
     })
-
     },
+
   });
 
     return (
@@ -68,6 +71,14 @@ function AddProductModal({openModal,handleCloseModal,success,setSuccess}) {
                   onChange={formik.handleChange}
                 />
                 {errors.producent && <p style = {{color:'red',marginBottom:'0'}}>{errors.producent}</p>}
+                <Form.Label className='pt-3'>Ilość sztuk</Form.Label>
+                <Form.Control
+                  id = "quantityAvailable"
+                  value={formik.values.quantityAvailable}
+                  autoFocus
+                  onChange={formik.handleChange}
+                />
+                {errors.quantityAvailable && <p style = {{color:'red',marginBottom:'0'}}>{errors.quantityAvailable}</p>}
                  <Form.Label className='pt-3'>Opis</Form.Label>
                 <Form.Control
                   id="description"

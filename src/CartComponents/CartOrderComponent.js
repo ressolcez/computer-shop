@@ -6,10 +6,8 @@ import SingleCartItem from './SingleCartItem';
 import CartModalFail from '../SharedComponent/CartModalFail';
 import StyledDivider from "../SharedComponent/StyledDivider";
 import { useNavigate } from "react-router-dom";
-
-import "./CartOrderComponent.css";
 import OrderServices from '../Services/OrderServices';
-
+import "./CartOrderComponent.css";
 
 const SummaryTitle = styled.h1`
   font-weight: 200;
@@ -40,13 +38,21 @@ function CartOrderComponent({user}) {
   const handleCloseModal = () => setOpenModal(false);
   const [error,setError] = useState([]);
 
-
   const checkoutCart = () => {
+
+    if(localStorage.getItem('react-use-cart')){
+      let newItems = items;
+      let zmienna = 'asd';
+
+  
+      console.log(newItems)
+    }
+
     OrderServices.checkoutCart(items).then((response) => {
-    setError([])
+      setError([])
+      navigate("/order")
     })
     .catch((error) => {
-      console.log(error.response.data)
       setError(error.response.data)
     })
   }

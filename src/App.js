@@ -18,7 +18,8 @@ import AdminOrders from "./Pages/Admin/AdminOrders";
 import Profile from "./Pages/Profile";
 import CreateOrder from "./Pages/CreateOrder";
 import PageNotFound from "./SharedComponent/PageNotFound";
-
+import {Provider} from 'react-redux';
+import store from "./Redux/store";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
   return (
     <CartProvider>
     <UserContext.Provider value={value}>
+      <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
@@ -48,6 +50,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
+      </Provider>
     </UserContext.Provider>
     </CartProvider>
   );

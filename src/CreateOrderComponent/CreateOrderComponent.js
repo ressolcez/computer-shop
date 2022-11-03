@@ -57,11 +57,6 @@ function CreateOrder({user,userdata}) {
 
   return (
     <>
-      <div className="d-flex flex-column align-items-center text-center">
-        <img className="rounded-circle mt-5" width="100px" src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"/>
-        <span className="font-weight-bold">{userdata.login}</span>
-        <span className="text-black-50">{userdata.email}</span>
-  </div>
     <div className='createOrderComponent__wrappper'>
     <div className="payment__data col-md-5 border-right">
     <div className="p-3 py-5">

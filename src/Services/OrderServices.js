@@ -6,10 +6,11 @@ const baseURLOrderProduct = "http://localhost:8080/api/orderProduct/"
 class OrderServices{
     
     checkoutCart(items){
-
-
         return axios.post("http://localhost:8080/api/orderProduct/checkoutCart",items);
+    }
 
+    getCartInfo(items){
+        return axios.post("http://localhost:8080/api/orderProduct/checkoutCart",items);
     }
 
     deleteOrder(orderId){
