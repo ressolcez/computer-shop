@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {useCart} from "react-use-cart";
 import styled from "styled-components";
 import Button from '@mui/material/Button';
@@ -13,7 +13,6 @@ const SummaryTitle = styled.h1`
   font-weight: 200;
   display: flex;
   justify-content: center;
-
 `;
 
 const SummaryItem = styled.div`
@@ -32,30 +31,35 @@ function CartOrderComponent({user}) {
 
   const navigate = useNavigate();
 
-  const { items,cartTotal,totalItems  } = useCart();
+  const { items,cartTotal,totalItems,updateItemQuantity} = useCart();
 
   const [openModal, setOpenModal] = useState(false);
   const handleCloseModal = () => setOpenModal(false);
   const [error,setError] = useState([]);
+  const [msg, setMsg] = useState('');
 
-  const checkoutCart = () => {
 
-    if(localStorage.getItem('react-use-cart')){
-      let newItems = items;
-      let zmienna = 'asd';
-
-  
-      console.log(newItems)
-    }
-
+  useEffect(() => {
+    
     OrderServices.checkoutCart(items).then((response) => {
       setError([])
-      navigate("/order")
     })
     .catch((error) => {
       setError(error.response.data)
     })
+
+ }, [updateItemQuantity]);
+
+
+  const checkoutCart = () => {
+      if(error.length === 0){
+          navigate("/order")
+      }else{
+        setMsg('Nie posiadamy wystarczającej ilości przedmiotów w magazynie')
+        setOpenModal(true);
+      }
   }
+
 
   return (
     <>
@@ -66,7 +70,7 @@ function CartOrderComponent({user}) {
             <h2>Twój koszyk</h2>
            </div>  
           {items.map((product)=>(
-            <SingleCartItem product = {product} error = {error}/>
+            <SingleCartItem updateItemQuantity = {updateItemQuantity} product = {product} error = {error}/>
           ))}
           </div>
           <div className='cart__order__wrapper'>
@@ -87,12 +91,14 @@ function CartOrderComponent({user}) {
                 <SummaryItemPrice>{cartTotal} PLN</SummaryItemPrice>
               </SummaryItem>
               {!user ? (
-              <Button style = {{margin:'15px'}} variant = "contained" onClick={()=> setOpenModal(true)}> Zamów</Button>
+              <Button style = {{margin:'15px'}} variant = "contained" onClick={()=> {
+                setMsg('Zaloguj się aby zrealizować zamówienie')
+                setOpenModal(true)}}> Zamów</Button>
               ) : (
                 <Button style = {{margin:'15px'}} variant = "contained"  onClick={()=> checkoutCart()}> Przejdź do płatności</Button>
               )}
           </div>
-          <CartModalFail openModal = {openModal} handleCloseModal = {handleCloseModal}/>
+          <CartModalFail msg={msg} openModal = {openModal} handleCloseModal = {handleCloseModal}/>
       </div>
     ):(
       <div className='cart__no__content'> 

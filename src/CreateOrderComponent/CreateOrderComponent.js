@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom"
 import CreateOrderSuccessModal from '../SharedComponent/CreateOrderSuccessModal';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import CartModalFail from '../SharedComponent/CartModalFail';
 
 
 function CreateOrder({user,userdata}) {
@@ -20,13 +21,19 @@ function CreateOrder({user,userdata}) {
   const handleCloseModal = () => setOpenModal(false);
   const [errors,setErrors] = useState([])
   const navigate = useNavigate();
+  const [msg, setMsg] = useState('');
+  const [openModalFail, setOpenModalFail] = useState(false);
+  const handleCloseModalFail = () => setOpenModalFail(false);
+
 
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
   useEffect(() => {
+
    if(items.length === 0){
       navigate("/cart")
    }
+
  }, []);
 
   const formik = useFormik({
@@ -38,22 +45,28 @@ function CreateOrder({user,userdata}) {
       postalCode: userdata.postalCode,
     },
     onSubmit: (values) => {
-      setOpenBackdrop(true)
-      OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
-        items.map((product)=>(
-          OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
-              setOpenBackdrop(false);
-              setErrors([]);
-              emptyCart();
-              formik.resetForm();
-              setOpenModal(true)
-          })
-        ))
-      }).catch((error) => {
-        setErrors(error.response.data)
-      })
-    },
-  });
+      OrderServices.checkoutCart(items).then((response) => {
+        setOpenBackdrop(true)
+        OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
+          items.map((product)=>(
+            OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
+                setOpenBackdrop(false);
+                setErrors([]);
+                emptyCart();
+                formik.resetForm();
+                setOpenModal(true)
+            })
+          ))
+        }).catch((error) => {
+          setErrors(error.response.data)
+        })
+
+    }).catch((error) => {
+      setMsg('Nie posiadamy wystarczającej ilości przedmiotów w magazynie')
+      setOpenModalFail(true);
+    })
+  },
+});
 
   return (
     <>
@@ -142,6 +155,7 @@ function CreateOrder({user,userdata}) {
         <CircularProgress color="inherit" />
       </Backdrop>
       <CreateOrderSuccessModal openModal = {openModal} handleCloseModal = {handleCloseModal}/>
+      <CartModalFail msg={msg} openModal = {openModalFail} handleCloseModal = {handleCloseModalFail}/>
     </>
   )
 }

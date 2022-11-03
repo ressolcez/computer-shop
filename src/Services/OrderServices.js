@@ -10,6 +10,7 @@ class OrderServices{
     }
 
     getCartInfo(items){
+        console.log(items)
         return axios.post("http://localhost:8080/api/orderProduct/checkoutCart",items);
     }
 
