@@ -7,6 +7,7 @@ import Localization from "../Images/loca.png"
 import Mail from "../Images/mail.png"
 import Call from "../Images/call.png"
 import './Footer.css'
+import StyledLink from '../SharedComponent/StyledLink'
 
 function Footer() {
     return (
@@ -31,7 +32,9 @@ function Footer() {
             </div>
             <div className = "footer__middleBox">
                 <span className = "footer__title"> Przydatne linki </span>
-                    <span> Strona domowa</span>
+                    <StyledLink to = {"/statute"}>
+                        <span>Regulamin</span>
+                    </StyledLink>
                     <span>Koszyk</span>
                     <span>Zamówienia</span>
             </div>

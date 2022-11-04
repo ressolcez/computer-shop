@@ -11,7 +11,9 @@ import CreateOrderSuccessModal from '../SharedComponent/CreateOrderSuccessModal'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import CartModalFail from '../SharedComponent/CartModalFail';
-
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import StyledLink from '../SharedComponent/StyledLink';
 
 function CreateOrder({user,userdata}) {
 
@@ -24,6 +26,7 @@ function CreateOrder({user,userdata}) {
   const [msg, setMsg] = useState('');
   const [openModalFail, setOpenModalFail] = useState(false);
   const handleCloseModalFail = () => setOpenModalFail(false);
+  const [accpetStatute, setAcceptStatute] = useState(false);
 
 
   const [openBackdrop, setOpenBackdrop] = useState(false);
@@ -45,26 +48,36 @@ function CreateOrder({user,userdata}) {
       postalCode: userdata.postalCode,
     },
     onSubmit: (values) => {
-      OrderServices.checkoutCart(items).then((response) => {
-        setOpenBackdrop(true)
-        OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
-          items.map((product)=>(
-            OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
-                setOpenBackdrop(false);
-                setErrors([]);
-                emptyCart();
-                formik.resetForm();
-                setOpenModal(true)
-            })
-          ))
-        }).catch((error) => {
-          setErrors(error.response.data)
-        })
 
-    }).catch((error) => {
-      setMsg('Nie posiadamy wystarczającej ilości przedmiotów w magazynie')
-      setOpenModalFail(true);
-    })
+      if(!accpetStatute){
+
+        setMsg("Musisz zaakceptować regulamin sklepu!")
+        setOpenModalFail(true);
+
+      }else{
+      
+        OrderServices.checkoutCart(items).then((response) => {
+          setOpenBackdrop(true)
+          OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
+            items.map((product)=>(
+              OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
+                  setOpenBackdrop(false);
+                  setErrors([]);
+                  emptyCart();
+                  formik.resetForm();
+                  setOpenModal(true)
+              })
+            ))
+          }).catch((error) => {
+            setErrors(error.response.data)
+          })
+
+      }).catch((error) => {
+        setMsg('Nie posiadamy wystarczającej ilości przedmiotów w magazynie')
+        setOpenModalFail(true);
+      })
+      
+  }
   },
 });
 
@@ -109,6 +122,14 @@ function CreateOrder({user,userdata}) {
                     <div className="col-md-6"><Form.Label className="mt-3">Kod pocztowy</Form.Label>
                     <Form.Control id = 'postalCode' onChange={formik.handleChange} value={formik.values.postalCode}/>
                     {errors.postalCode && <p style = {{marginBottom:'0',color:'red'}}>{errors.postalCode}</p>}
+                    </div>
+
+                    <div className="mt-3">
+                        <FormControlLabel style = {{display:'flex', justifyContent:'flex-end', margin:'0', padding:'0', paddingRight:'5px'}} 
+                        control={<Checkbox 
+                        alue = {accpetStatute} 
+                        onChange = {()=>setAcceptStatute(!accpetStatute)}/>} 
+                        label="Akceptuje regulamin sklepu" />
                     </div>
 
                     <div className="mt-3">

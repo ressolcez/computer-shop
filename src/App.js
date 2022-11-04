@@ -18,6 +18,7 @@ import AdminOrders from "./Pages/Admin/AdminOrders";
 import Profile from "./Pages/Profile";
 import CreateOrder from "./Pages/CreateOrder";
 import PageNotFound from "./SharedComponent/PageNotFound";
+import Statute from "./Pages/Statute";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
           <Route  path="/Admin/Orders" element={<AdminOrders/>}/>
           <Route  path="/User/Profile" element={<Profile/>}/>
           <Route  path="/Order" element={<CreateOrder/>}/>
+          <Route  path="/Statute" element={<Statute/>}/>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
