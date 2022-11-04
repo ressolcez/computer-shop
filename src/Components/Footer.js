@@ -35,8 +35,12 @@ function Footer() {
                     <StyledLink to = {"/statute"}>
                         <span>Regulamin</span>
                     </StyledLink>
-                    <span>Koszyk</span>
-                    <span>Zamówienia</span>
+                    <StyledLink to = {"/user/profile"}>
+                        <span>Profil</span>
+                    </StyledLink>
+                    <StyledLink to = {"/"}>
+                        <span>Strona Główna</span>
+                    </StyledLink>
             </div>
             <div className = "footer__rightBox">
                <span className = "footer__title">Kontakt</span>
