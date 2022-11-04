@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import OrderDetailsModal from '../SharedComponent/OrderDetailsModal';
 import OrderServices from '../Services/OrderServices';
 import EditOrderModal from '../SharedComponent/EditOrderModal';
+import Moment from 'react-moment';
 import "./Orders.css";
 
 
@@ -43,6 +44,24 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder}) {
       width: 100,
     },
     {
+      field: 'difference',
+      headerName: 'Różnica',
+      width: 200,
+      renderCell: (params) => {
+        
+        return (
+        <>
+          {params.row.isDelayed ? (
+            <p style = {{color:'red', paddingTop:'15px'}}>{params.row.difference}</p>
+          ) : (
+            <p style = {{color:'green', paddingTop:'15px'}}>{params.row.difference}</p>
+          )
+          }
+        </>
+        );
+    }
+    },
+    {
       field: 'status',
       headerName: 'Status',
       width: 200,
@@ -50,7 +69,7 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder}) {
     {
       field: 'address',
       headerName: 'Adres',
-      width: 670,
+      width: 470,
     },
     {
       field: 'houseNumber',
@@ -72,7 +91,7 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder}) {
                   <IconButton onClick = {()=>{
                     setEditOrder({id: params.id, status: params.row.status})
                     setOpenModalEditOrder(true)
-                    setSuccess( )
+                    setSuccess()
                   }
                   }
     

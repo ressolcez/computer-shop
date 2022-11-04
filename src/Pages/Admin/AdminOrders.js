@@ -2,6 +2,7 @@ import React, { useState,useEffect,useContext } from 'react';
 import { UserContext } from '../../Context/UserContext';
 import Topbar from '../../AdminComponents/TopBar';
 import OrdersServices from '../../Services/OrdersServices';
+import OrderServices from '../../Services/OrderServices';
 import Orders from '../../AdminComponents/Orders';
 import {useNavigate} from "react-router-dom";
 import AuthServices from '../../Services/AuthServices';
@@ -16,7 +17,7 @@ function AdminOrders() {
   const [openModalEditOrder, setOpenModalEditOrder] = useState(false);
 
   useEffect(() => {  
-        OrdersServices.getAllOrders().then((response) => {
+        OrderServices.getAllOrdersWithDifference().then((response) => {
          setOrders(response.data);
         });
 

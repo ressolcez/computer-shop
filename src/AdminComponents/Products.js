@@ -85,7 +85,7 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
                 <div style = {{display:'flex', justifyContent: 'center'}}>
                   <IconButton onClick={() => {
                     setOpenModalEditProduct(true);
-                    setProduct({id : params.id,name: params.row.name, description: params.row.description,slider: params.row.slider, producent: params.row.producent, image: params.row.image, price: params.row.price})                    
+                    setProduct({id : params.id,name: params.row.name, description: params.row.description,slider: params.row.slider, producent: params.row.producent, image: params.row.image, price: params.row.price, quantityAvailable: params.row.quantityAvailable})                    
                     setSuccessEdit('')
                 }}>
                     <EditIcon />

@@ -13,6 +13,7 @@ function EditProductModal({openModal,handleCloseModal,product,success,setSuccess
         id: product.id,
         name: product.name,
         slider: product.slider,
+        quantityAvailable: product.quantityAvailable,
         producent: product.producent,
         description: product.description,
         image: product.image,
@@ -65,6 +66,14 @@ function EditProductModal({openModal,handleCloseModal,product,success,setSuccess
                     <option value="false">false</option>
                 </Form.Select>
                 {errors.slider && <p style = {{color:'red',marginBottom:'0'}}>{errors.slider}</p>}
+                <Form.Label className='pt-3'>Ilość sztuk</Form.Label>
+                <Form.Control
+                  id = "quantityAvailable"
+                  value={formik.values.quantityAvailable}
+                  autoFocus
+                  onChange={formik.handleChange}
+                />
+                {errors.quantityAvailable && <p style = {{color:'red',marginBottom:'0'}}>{errors.quantityAvailable}</p>}
                 <Form.Label className='pt-3'>Producent</Form.Label>
                 <Form.Control
                   id = "producent"

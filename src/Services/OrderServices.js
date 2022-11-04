@@ -5,6 +5,10 @@ const baseURLOrderProduct = "http://localhost:8080/api/orderProduct/"
 
 class OrderServices{
     
+    getAllOrdersWithDifference(){
+        return axios.get("http://localhost:8080/api/orders/ordersWithDifference")
+    }
+
     checkoutCart(items){
         return axios.post("http://localhost:8080/api/orderProduct/checkoutCart",items);
     }
@@ -20,7 +24,6 @@ class OrderServices{
 
     addOrder(userId,order,totalPrice){
         const newOrder = {totalPrice: totalPrice, address: order.address, houseNumber: order.houseNumber, postalCode: order.postalCode}
-        console.log(newOrder)
         return axios.post(baseURLOrders+userId,newOrder)
     } 
 
