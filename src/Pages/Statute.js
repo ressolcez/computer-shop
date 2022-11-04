@@ -42,19 +42,24 @@ function Statute() {
                 <p>1. Klient składa zamówienie poprzez wypełnienie formularza znajdującego sie pod adresem <a href = "order">zamówienia</a>, określa w nim towary, które zamierza kupić oraz adres na który mają zostać dostarczone towary. </p>
                 <p>2. Po poprawnej weryfikacji zamówienia, Klient dostaje informacje o złożonym zamówieniu od Sprzedawcy na adres mailowy podany podczas wypłeniania formularza zamówienia. </p>
                 <p>3. W wiadomości mailowej Klient otrzymuje, krótkie podsumowanie swojego zamówienia.</p>
-                <p style = {{marginLeft:'2%'}}>a) Numer identyfikujący zamówienie.</p>
-                <p style = {{marginLeft:'2%'}}>b) Całkowitą sumę zamówienia.</p>
-                <p style = {{marginLeft:'2%'}}>c) Numer Konta sprzedawcy, na które powinny zostać przelane pieniądze w wysokości całkowitej sumy zamówienia.</p>
+                <p className='statute__subparagraph'>a) Numer identyfikujący zamówienie.</p>
+                <p className='statute__subparagraph'>b) Całkowitą sumę zamówienia.</p>
+                <p className='statute__subparagraph'>c) Numer Konta sprzedawcy, na które powinny zostać przelane pieniądze w wysokości całkowitej sumy zamówienia.</p>
                 <p>4. Wiadomość mailowa, wspomniana w punkcie 2. jest jedynie informacją o tym, że Sprzedawca otrzymał chęć kupna przedmiotów wybranych podczas wypłeniania formularza zamówienia, a nie potwierdzeniem realizacji zamówienia. </p>
                 <p>5. Klient ma czas 5 dni od złożenia zamówienia na przelanie środków na konto Sprzedawcy, wysłane przez Sprzedawce w wiadomości mailowej do Klienta.</p>
-                <p style = {{marginLeft:'2%'}}>a) Przelew, który klient realizuje dla Sprzedawcy na numer konta podany w wiadomości mailowej, musi mieć tytuł z numerem zamówienia, który Klient otrzymuje od Sprzedawcy w wiadomości Mailowej.</p>
+                <p className='statute__subparagraph'>a) Przelew, który klient realizuje dla Sprzedawcy na numer konta podany w wiadomości mailowej, musi mieć tytuł z numerem zamówienia, który Klient otrzymuje od Sprzedawcy w wiadomości Mailowej.</p>
                 <p>6. Następnie Sprzedawca weryfikuje zamówienie. </p>
                 <p>7. Jeżeli weryfikacja zamówienia przebiegła poprawnie oraz wysłane pieniądze od Klienta na numer konta podany przez Sprzedawce pokrywają całą sumę zamówienia oraz tytuł przelewu jest poprawnym numerem zamówienia, Sprzedawca realizuje zamówienie.  </p>
-                <p style = {{marginLeft:'2%'}}>a) Jeżeli zmienia się status zamówienia Klienta, każdorazowo Klient otrzymuje informację o swoim zamówieniu w wiadomości mailowej.</p>
+                <p className='statute__subparagraph'>a) Jeżeli zmienia się status zamówienia Klienta, każdorazowo Klient otrzymuje informację o swoim zamówieniu w wiadomości mailowej.</p>
                 <p>8. Jeżeli weryfikacja zamówienia przebiegła niepoprawnie.  </p>
-                <p style = {{marginLeft:'2%'}}>a) Jeżeli użytkownik wysłał przelew z błędną kwotą, która niezgadza się z całkowitą sumą zamówienia to pieniądze te mu zostaną zwrócone na konto, z którego zostały wysłane.</p>
-                <p style = {{marginLeft:'2%'}}>b) Jeżeli użytkownik wysłał przelew z błędnym numerem zamówienia to pieniądze, które Klient wysłał zostana zwrócone na konto, z którego zostały wysłane.</p>
-
+                <p className='statute__subparagraph'>a) Jeżeli użytkownik wysłał przelew z błędną kwotą, która niezgadza się z całkowitą sumą zamówienia to pieniądze te mu zostaną zwrócone na konto, z którego zostały wysłane.</p>
+                <p className='statute__subparagraph'>b) Jeżeli użytkownik wysłał przelew z błędnym numerem zamówienia to pieniądze, które Klient wysłał zostana zwrócone na konto, z którego zostały wysłane.</p>
+            </div>
+            <div className='statute__title'>
+                I. Konto
+            </div>
+            <div className='statute__desc'>
+             <p>asdasd</p>
             </div>
         </div>
         <StyledDivider/>

@@ -124,7 +124,7 @@ function CategoryComponent() {
     </div>
     <div className='category__product__wrappper'>
 
-    {loading ? (<div style = {{width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>Ładowanie strony</div>) : 
+    {loading ? (<div style = {{width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>Ładowanie przedmiotów</div>) : 
       (
       <>
         {products.map((product)=>(

@@ -10,6 +10,8 @@
 .single__paragraph__wrapper{
     flex:1;
     width: 100%;
+    margin-top: 10px;
+    margin-bottom: 80px;
 }
 
 .statute__title{
@@ -25,3 +27,16 @@
     padding-top: 2%;
     width: 100%;
 }
+
+.statute__subparagraph{
+    font-size: 16px;
+}
+
+
+@media only screen and (max-width: 950px) {
+    .statute__wrapper{
+      margin-left: 1%;
+      margin-top: 1%;
+      margin-right: 1%;
+    }
+  }

@@ -21,18 +21,14 @@ function ProfileComponent({userdata}) {
     },
     onSubmit: (values) => {
 
-      console.log(values)
-    setTimeout(() => {
-      
       UsersServices.changeUserDataByUser(userdata.id,values).then((response) => {
         setOpenSnackbarSuccess(true);
         setErrors([])
         }).catch((error) => {
-          console.log(error.response.data)
           setErrors(error.response.data)
       })
-      }, 1000);
     },
+
   });
 
 
