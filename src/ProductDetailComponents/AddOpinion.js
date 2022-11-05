@@ -5,25 +5,32 @@ import Rating from "@mui/material/Rating";
 import OpinionsService from '../Services/OpinionsService';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 import './AddOpinion.css';
+import SnackbarFail from '../SharedComponent/SnackbarFail';
 
 
 function AddOpinion({productId,user}) {
 
    const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
+   const [openSnackbarFail, setOpenSnackbarFail] = useState(false);
    const [comment,setComment] = useState('');
+   const [messageFail, setMessageFail] = useState('')
    const [rate,setRate] = useState(0)
 
 
    const handleAddOpinion = () =>{
 
       const opinion = {comment,rate};
-      OpinionsService.addOpinionToProduct(opinion,productId,user.userId).then((response) => {
-         setTimeout(() => {
-            window.location.reload("false");
-          }, 1000);
-      });
 
-      setOpenSnackbarSuccess(true);
+      OpinionsService.addOpinionToProduct(opinion,productId,user.userId).then((response) => {
+          setOpenSnackbarSuccess(true);
+          setTimeout(() => {
+            window.location.reload("false");
+          }, 2000);
+      }).catch((error) => {
+         setMessageFail(error.response.data)
+         setOpenSnackbarFail(true);
+      })
+
    }
 
    const handleCloseSnackbarSuccess = (reason) => {
@@ -32,6 +39,14 @@ function AddOpinion({productId,user}) {
       }
       setOpenSnackbarSuccess(false);
     };
+
+    const handleCloseSnackbarFail = (reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpenSnackbarFail(false);
+    };
+
 
   return (
    <>
@@ -56,6 +71,7 @@ function AddOpinion({productId,user}) {
       )
       }
       <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Dodano Opinie"/>
+      <SnackbarFail openSnackbarFail = {openSnackbarFail} handleCloseSnackbarFail = {handleCloseSnackbarFail} message = {messageFail}/>
    </>
   )
 }

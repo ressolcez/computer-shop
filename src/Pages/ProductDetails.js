@@ -14,7 +14,7 @@ import StyledDivider from '../SharedComponent/StyledDivider';
 import "./ProductDetails.css";
 
 export default function ProductDetails() {
-
+  
   let { id } = useParams();
   const [product, setProduct] = useState([]);
   const [details, setDetails] = useState([]);
