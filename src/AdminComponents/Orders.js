@@ -7,11 +7,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import OrderDetailsModal from '../SharedComponent/OrderDetailsModal';
 import OrderServices from '../Services/OrderServices';
 import EditOrderModal from '../SharedComponent/EditOrderModal';
-import Moment from 'react-moment';
 import "./Orders.css";
 
 
-function Orders({orders,openModalEditOrder,setOpenModalEditOrder}) {
+function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,rowCount}) {
 
   const handleCloseModalEditOrder = () => setOpenModalEditOrder(false);
   const handleCloseModalProductDetails = () => setOpenModalProductDetails(false);
@@ -127,6 +126,11 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder}) {
           rowsPerPageOptions={[11]}
           disableSelectionOnClick
           experimentalFeatures={{ newEditingApi: true }}
+          pagination
+          page={page}
+          paginationMode="server"
+          onPageChange={(newPage) => setPage(newPage)}
+          rowCount={rowCount}
       />
       </div>
     </div>

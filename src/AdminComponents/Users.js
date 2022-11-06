@@ -9,7 +9,7 @@ import EditUserModal from '../SharedComponent/EditUserModal';
 import "./Users.css"
 import UsersServices from '../Services/UsersServices';
 
-function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,setOpenModalEditUser,isDeleted,setIsDeleted}) {
+function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,setOpenModalEditUser,isDeleted,setIsDeleted,page,setPage,rowCount}) {
 
   const [id,setId] = useState(1);
   const [user,setUser] = useState();
@@ -126,6 +126,11 @@ return (
         rowsPerPageOptions={[11]}
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
+        pagination
+        page={page}
+        paginationMode="server"
+        onPageChange={(newPage) => setPage(newPage)}
+        rowCount={rowCount}
       />
       </div>
   </div>

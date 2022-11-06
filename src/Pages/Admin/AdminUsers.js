@@ -13,6 +13,8 @@ function AdminUsers() {
     const [openModalAddUser, setOpenModalAddUser] = useState(false);
     const [openModalEditUser, setOpenModalEditUser] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
+    const [page, setPage] = useState(0);
+    const [rowCount,setrowCount] = useState(0);
 
     const navigate = useNavigate();
 
@@ -35,11 +37,12 @@ function AdminUsers() {
         navigate("/NotFound")
       }   
           
-          UsersServices.getAllUsers().then((response) => {
-            setUsers(response.data);
+          UsersServices.getAllUsers(page).then((response) => {
+            setUsers(response.data.users);
+            setrowCount(response.data.rowCount);
            });
   
-      }, [openModalEditUser,openModalAddUser,isDeleted]);
+      }, [openModalEditUser,openModalAddUser,isDeleted,page]);
 
 
   return (
@@ -53,6 +56,9 @@ function AdminUsers() {
       setOpenModalEditUser = {setOpenModalEditUser}
       isDeleted = {isDeleted}
       setIsDeleted = {setIsDeleted}
+      page = {page}
+      setPage = {setPage}
+      rowCount = {rowCount}
       />
     </>
   )

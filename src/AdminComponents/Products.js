@@ -110,9 +110,7 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
                     }else{
                       setIsDeleted(false)
                     } 
-                    
                     deleteProduct(params.id)
-                    
                     }}>
                     <DeleteIcon />
                   </IconButton>

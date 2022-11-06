@@ -5,8 +5,12 @@ const baseURLOrderProduct = "http://localhost:8080/api/orderProduct/"
 
 class OrderServices{
     
-    getAllOrdersWithDifference(){
-        return axios.get("http://localhost:8080/api/orders/ordersWithDifference")
+    getAllOrdersWithDifference(page){
+        return axios.get("http://localhost:8080/api/orders/ordersWithDifference",
+        { 
+            params: {pageNumber: page} 
+        }
+        )
     }
 
     checkoutCart(items){

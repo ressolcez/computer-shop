@@ -1,7 +1,6 @@
 import React, { useState,useEffect,useContext } from 'react';
 import { UserContext } from '../../Context/UserContext';
 import Topbar from '../../AdminComponents/TopBar';
-import OrdersServices from '../../Services/OrdersServices';
 import OrderServices from '../../Services/OrderServices';
 import Orders from '../../AdminComponents/Orders';
 import {useNavigate} from "react-router-dom";
@@ -15,10 +14,14 @@ function AdminOrders() {
   const navigate = useNavigate();
     
   const [openModalEditOrder, setOpenModalEditOrder] = useState(false);
+  const [page, setPage] = useState(0);
+  const [rowCount,setrowCount] = useState(0);
 
   useEffect(() => {  
-        OrderServices.getAllOrdersWithDifference().then((response) => {
-         setOrders(response.data);
+
+        OrderServices.getAllOrdersWithDifference(page).then((response) => {
+         setOrders(response.data.orders);
+         setrowCount(response.data.rowCount);
         });
 
         if(localStorage.getItem('token')){
@@ -37,16 +40,21 @@ function AdminOrders() {
         })
         }else{
           navigate("/NotFound")
-        }   
-   }, [openModalEditOrder]);
+        }
+
+
+   }, [openModalEditOrder,page]);
 
   return (
     <>
       <Topbar user = {user} setUser = {setUser}/>
       <Orders 
-      orders = {orders}
+        orders = {orders}
         openModalEditOrder = {openModalEditOrder}
         setOpenModalEditOrder = {setOpenModalEditOrder}
+        page = {page}
+        setPage = {setPage}
+        rowCount = {rowCount}
       />
     </>
     )
