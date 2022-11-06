@@ -11,6 +11,7 @@ import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 import LogoutIcon from '@mui/icons-material/Logout';
 import StyledDivider from "../SharedComponent/StyledDivider"
 import StyledLink from "../SharedComponent/StyledLink";
+import StarRateIcon from '@mui/icons-material/StarRate';
 import AuthServices from '../Services/AuthServices';
 import { useNavigate } from 'react-router-dom';
 import "./Leftbar.css";
@@ -99,6 +100,18 @@ function Leftbar({isDrawerOpen,setIsDrawerOpen,user,setUser}) {
                                 <PeopleIcon/>
                             </ListItemIcon>
                             <ListItemText primary= 'Użytkownicy'/>
+                            </ListItemButton>
+                        </StyledLink>
+                        </ListItem>
+                        </div>
+                        <div className='drawer__category__item'>
+                        <ListItem style = {{display: 'flex', justifyContent:'center', width: '100%'}}>
+                        <StyledLink to ="/Admin/Opinions">
+                            <ListItemButton>
+                            <ListItemIcon>
+                                <StarRateIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary= 'Opinie' style={{marginRight:'50px'}}/>
                             </ListItemButton>
                         </StyledLink>
                         </ListItem>

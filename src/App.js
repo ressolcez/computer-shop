@@ -15,6 +15,7 @@ import AdminHome from "./Pages/Admin/AdminHome";
 import AdminProducts from "./Pages/Admin/AdminProducts";
 import AdminUsers from "./Pages/Admin/AdminUsers";
 import AdminOrders from "./Pages/Admin/AdminOrders";
+import AdminOpinions from "./Pages/Admin/AdminOpinions";
 import Profile from "./Pages/Profile";
 import CreateOrder from "./Pages/CreateOrder";
 import PageNotFound from "./SharedComponent/PageNotFound";
@@ -43,10 +44,11 @@ function App() {
           <Route  path="/EditProfile" element={<UserEditAccount/>}/>
           <Route  path="/RecentOrders" element={<UserRecentOrders/>}/>
           <Route  path="/Admin/Orders" element={<AdminOrders/>}/>
+          <Route  path="/Admin/Opinions" element={<AdminOpinions/>}/>
           <Route  path="/User/Profile" element={<Profile/>}/>
           <Route  path="/Order" element={<CreateOrder/>}/>
           <Route  path="/Statute" element={<Statute/>}/>
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound/>} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

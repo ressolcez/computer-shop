@@ -18,12 +18,6 @@ function AdminOrders() {
   const [rowCount,setrowCount] = useState(0);
 
   useEffect(() => {  
-
-        OrderServices.getAllOrdersWithDifference(page).then((response) => {
-         setOrders(response.data.orders);
-         setrowCount(response.data.rowCount);
-        });
-
         if(localStorage.getItem('token')){
           AuthServices.isAuthorized().then((response) => {
             if(response.data.status === 'pass' && response.data.role === 'Admin'){
@@ -41,6 +35,12 @@ function AdminOrders() {
         }else{
           navigate("/NotFound")
         }
+
+        
+        OrderServices.getAllOrdersWithDifference(page).then((response) => {
+          setOrders(response.data.orders);
+          setrowCount(response.data.rowCount);
+         });
 
 
    }, [openModalEditOrder,page]);
