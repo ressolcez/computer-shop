@@ -30,6 +30,7 @@
 .carousel__wrapper__description{
     height: 100%;
     width: 50%;
+    padding-left: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -54,71 +55,66 @@
     object-fit: contain;
 }
 
-@media only screen and (max-width: 900px) {
-    .carousel__wrappper{
-        height:350px;
-    }
-    .carousel__wrapper__title{
-        font-size: 60px;
-    }
-    
-}
 
 @media only screen and (max-width: 800px) {
     .carousel__wrappper{
-        height:300px;
-    }
-    .carousel__wrapper__title{
-        font-size: 50px;
+        height:250px;
     }
 
-    .carousel__wrapper__othertext{
-        font-size: 17px;
+    .inside__img{
+        height: 240px;
+        object-fit: contain;
+    }
+
+    .carousel__wrapper__title{
+        font-size: 25px;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .carousel__wrapper__desc{
+        font-size: 15px;
     }
 }
 
 @media only screen and (max-width: 600px) {
     .carousel__wrappper{
-        height:250px;
-    }
-    .carousel__wrapper__title{
-        font-size: 40px;
-    }
-    .carousel__wrapper__othertext{
-        font-size: 16px;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .carousel__wrappper{
         height:200px;
     }
-    .carousel__wrapper__title{
-        font-size: 30px;
-    }
-    .carousel__wrapper__othertext{
-        font-size: 15px;
-    }
-}
 
-@media only screen and (max-width: 400px) {
-    .carousel__wrappper{
-        height:160px;
+    .inside__img{
+        height: 150px;
+        object-fit: contain;
     }
-    .carousel__wrapper__title{
-        font-size: 25px;
-    }
-    .carousel__wrapper__othertext{
-        font-size: 13px;
-    }
-}
 
-@media only screen and (max-width: 320px) {
     .carousel__wrapper__title{
-        font-size: 16px;
+        font-size: 20px;
+        align-items: flex-start;
+        height: auto;
     }
 
     .carousel__wrapper__desc{
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .carousel__wrappper{
+        height:150px;
+    }
+
+    .inside__img{
+        height: 100px;
+        object-fit: contain;
+    }
+
+    .carousel__wrapper__title{
         font-size: 14px;
+        align-items: flex-start;
+        height: auto;
+    }
+
+    .carousel__wrapper__desc{
+        font-size: 9px;
     }
 }

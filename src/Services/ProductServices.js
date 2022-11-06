@@ -19,8 +19,11 @@ class ProductServices{
         return axios.put("http://localhost:8080/api/products/"+productId + "/" + categoryId, product)
     }
 
-    getAllProducts(){
-        return axios.get('http://localhost:8080/api/products/')
+    getAllProducts(page){
+        return axios.get('http://localhost:8080/api/products/',       
+        { 
+        params: {pageNumber: page} 
+        })
     }
 
     findMostOrderdByProducents(){

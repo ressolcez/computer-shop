@@ -1,19 +1,19 @@
 import React,{useState,useEffect} from 'react';
 import {useCart} from "react-use-cart";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import StyledDivider from '../SharedComponent/StyledDivider';
-import OrderServices from '../Services/OrderServices';
-import "./CreateOrderComponent.css"
 import { useFormik } from 'formik';
 import {useNavigate} from "react-router-dom"
-import CreateOrderSuccessModal from '../SharedComponent/CreateOrderSuccessModal';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import CartModalFail from '../SharedComponent/CartModalFail';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import StyledLink from '../SharedComponent/StyledLink';
+import StyledDivider from '../SharedComponent/StyledDivider';
+import OrderServices from '../Services/OrderServices';
+import CreateOrderSuccessModal from '../SharedComponent/CreateOrderSuccessModal';
+import CartModalFail from '../SharedComponent/CartModalFail';
+import "./CreateOrderComponent.css"
+
 
 function CreateOrder({user,userdata}) {
 
@@ -27,16 +27,12 @@ function CreateOrder({user,userdata}) {
   const [openModalFail, setOpenModalFail] = useState(false);
   const handleCloseModalFail = () => setOpenModalFail(false);
   const [accpetStatute, setAcceptStatute] = useState(false);
-
-
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
-  useEffect(() => {
-
+  useEffect(() => {                                     
    if(items.length === 0){
       navigate("/cart")
    }
-
  }, []);
 
   const formik = useFormik({
@@ -148,7 +144,7 @@ function CreateOrder({user,userdata}) {
                 <div className='cart__info__product__name'>
                   <div>
                     <span style= {{fontWeight:'600',fontSize:'18px'}}>{product.name}</span>
-                    <p style = {{display:'flex',justifyContent:'center',marginBottom:'0',fontSize:'12px'}}>{product.categoryModel.categoryName}</p>
+                    <p style = {{display:'flex',marginBottom:'0',fontSize:'12px'}}>{product.categoryModel.categoryName}</p>
                   </div>
                 </div>
                 <div className='cart__info__product__price'>

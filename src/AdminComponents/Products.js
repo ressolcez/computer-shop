@@ -1,15 +1,15 @@
-import React,{useEffect,useState} from 'react';
+import React,{useState} from 'react';
 import {DataGrid } from '@mui/x-data-grid';
+import { Button } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import ProductServices from '../Services/ProductServices';
-import { Button } from '@mui/material';
 import AddProductModal from '../SharedComponent/AddProductModal';
 import EditProductModal from '../SharedComponent/EditProductModal';
 import "./Products.css";
 
-function Products({products,openModalAddProduct,setOpenModalAddProduct,openModalEditProduct,setOpenModalEditProduct,setIsDeleted,isDeleted}) {
+function Products({products,openModalAddProduct,setOpenModalAddProduct,openModalEditProduct,setOpenModalEditProduct,setIsDeleted,isDeleted,page,setPage,rowCount}) {
 
   const [product,setProduct] = useState();
 
@@ -25,44 +25,55 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
   }
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { 
+      field: 'id',
+       headerName: 'ID', 
+       width: 90 },
     {
       field: 'name',
+      sortable: false,
       headerName: 'Nazwa',
       width: 150,
     },
     {
       field: 'slider',
+      sortable: false,
       headerName: 'Slider',
       width: 100,
     },
     {
       field: 'quantityAvailable',
+      sortable: false,
       headerName: 'Ilość sztuk',
       width: 200,
     },
     {
       field: 'producent',
+      sortable: false,
       headerName: 'Producent',
       width: 150,
     },
     {
       field: 'description',
+      sortable: false,
       headerName: 'Opis',
       width: 450,
     },
     {
       field: 'image',
+      sortable: false,
       headerName: 'Zdjęcie',
       width: 200,
     },
     {
       field: 'price',
+      sortable: false,
       headerName: 'Cena',
       width: 150,
     },
     {
       field: 'categoryName',
+      sortable: false,
       headerName: 'Kategoria',
       width: 150,
       valueSetter: (params) => {
@@ -78,6 +89,7 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
     },
     {
         field: 'fullNamed',
+        sortable: false,
         headerName: 'Akcja',
         width: 80,
         renderCell: (params) => {
@@ -109,7 +121,7 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
           }
       },
   ];
-
+  
   return (
     <div className='admin__product__wrapper'>
       <AddProductModal openModal = {openModalAddProduct} handleCloseModal = {handleCloseModalAddProduct} success = {successAdd} setSuccess = {setSuccessAdd}/>
@@ -123,12 +135,18 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
         </div>
         <div className='table__wrapper'>
           <DataGrid
+            disableColumnFilter
             rows={products}
             columns={columns}
             pageSize={11}
             rowsPerPageOptions={[11]}
+            pagination
+            page={page}
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}
+            paginationMode="server"
+            onPageChange={(newPage) => setPage(newPage)}
+            rowCount={rowCount}
           />
           </div>
     </div>

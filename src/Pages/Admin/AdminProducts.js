@@ -13,7 +13,9 @@ function AdminProducts() {
   const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
   const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
   const [isDeleted, setIsDeleted] = useState(true);
-  
+  const [page, setPage] = useState(0);
+  const [rowCount,setrowCount] = useState(0);
+
   const navigate = useNavigate();
 
   useEffect(() => {  
@@ -36,23 +38,28 @@ function AdminProducts() {
           navigate("/NotFound")
         }   
 
-         ProductServices.getAllProducts().then((response) => {
-          setProducts(response.data);
+         ProductServices.getAllProducts(page).then((response) => {
+          setProducts(response.data.products);
+          setrowCount(response.data.rowCount);
          });
 
-    }, [isDeleted,openModalEditProduct,openModalAddProduct]);
+
+    }, [isDeleted,openModalEditProduct,openModalAddProduct,page]);
 
   return (
     <>
       <Topbar user = {user} setUser = {setUser}/>
       <Products 
-       openModalAddProduct = {openModalAddProduct} 
-       setOpenModalAddProduct = {setOpenModalAddProduct}
-       openModalEditProduct = {openModalEditProduct} 
-       setOpenModalEditProduct = {setOpenModalEditProduct} 
-       isDeleted = {isDeleted}
-       setIsDeleted = {setIsDeleted}
-       products = {products}
+        openModalAddProduct = {openModalAddProduct} 
+        setOpenModalAddProduct = {setOpenModalAddProduct}
+        openModalEditProduct = {openModalEditProduct} 
+        setOpenModalEditProduct = {setOpenModalEditProduct} 
+        isDeleted = {isDeleted}
+        setIsDeleted = {setIsDeleted}
+        products = {products}
+        page = {page}
+        setPage = {setPage}
+        rowCount = {rowCount}
        />
     </>
   )

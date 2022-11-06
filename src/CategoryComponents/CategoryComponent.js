@@ -15,6 +15,8 @@ import "./CategoryComponent.css"
 
 function CategoryComponent() {
 
+  const {addItem} = useCart();
+
   const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [manufacturerFilter, setManufacturerFilter] = useState([]);
   const [products, setProducts] = useState([]);
@@ -25,7 +27,8 @@ function CategoryComponent() {
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
   const [loading,setLoading] = useState(true);
   const [allProducents,setAllProducents] = useState();
-  const {addItem} = useCart();
+  const handleCloseSnackbarSuccess = () => setOpenSnackbarSuccess(false);
+
 
   useEffect(() => {
     CategoryServices.getFilters(categoriesFilter,manufacturerFilter,minPrice,maxPrice,page-1).then((response) => {
@@ -44,6 +47,12 @@ function CategoryComponent() {
   const handlePageChange = (event, value) => {
     setPage(value);
   };
+
+  
+  const handleAddToCart = (product) =>{
+    addItem(product);
+    setOpenSnackbarSuccess(true);
+  }
 
   const handleCheckedCategory = (e, index,type) => {
     let prev;
@@ -74,14 +83,6 @@ function CategoryComponent() {
       setManufacturerFilter([...prev]);
   }
   };
-
-    const handleAddToCart = (product) =>{
-      addItem(product);
-      setOpenSnackbarSuccess(true);
-    }
-
-    const handleCloseSnackbarSuccess = () => setOpenSnackbarSuccess(false);
-
 
   return (
     <>

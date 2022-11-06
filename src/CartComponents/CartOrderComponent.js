@@ -70,7 +70,7 @@ function CartOrderComponent({user}) {
             <h2>Twój koszyk</h2>
            </div>  
           {items.map((product)=>(
-            <SingleCartItem updateItemQuantity = {updateItemQuantity} product = {product} error = {error}/>
+            <SingleCartItem key = {product.id} updateItemQuantity = {updateItemQuantity} product = {product} error = {error}/>
           ))}
           </div>
           <div className='cart__order__wrapper'>

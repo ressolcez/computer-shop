@@ -46,13 +46,9 @@ function ProfileComponent({userdata}) {
     onSubmit: (values) => {
 
       UsersServices.changeUserPassword(userdata.id,values).then((response) => {
-        setOpenSnackbarSuccess(true);
-        formikPassword.resetForm({values: ''})  
-
-        }).catch((error) => {
-
+          setOpenSnackbarSuccess(true);
+          formikPassword.resetForm({values: ''})  
         })
-
     },
   });
 
