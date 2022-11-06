@@ -25,45 +25,53 @@ function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,set
   }
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
+  { field: 'id', headerName: 'ID', width: 90,sortable: false,},
   {
     field: 'name',
     headerName: 'Nazwa',
+    sortable: false,
     width: 200,
   },
   {
     field: 'login',
     headerName: 'Login',
+    sortable: false,
     width: 200,
   },
   {
     field: 'password',
     headerName: 'Hasło',
+    sortable: false,
     width: 200,
   },
   {
     field: 'email',
     headerName: 'Email',
+    sortable: false,
     width: 200,
   },
   {
     field: 'address',
     headerName: 'Adres',
+    sortable: false,
     width: 200,
   },
   {
     field: 'houseNumber',
     headerName: 'Numer Domu',
+    sortable: false,
     width: 200,
   },
   {
     field: 'postalCode',
     headerName: 'Kod Pocztowy',
+    sortable: false,
     width: 200,
   },
   {
     field: 'roleName',
     headerName: 'Rola',
+    sortable: false,
     width: 150, 
     renderCell: (params) => {
       return (
@@ -123,6 +131,7 @@ return (
         rows={users}
         columns={columns}
         pageSize={11}
+        disableColumnFilter
         rowsPerPageOptions={[11]}
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}

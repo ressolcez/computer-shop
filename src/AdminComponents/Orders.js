@@ -1,5 +1,5 @@
-import React,{useEffect,useState} from 'react';
-import {DataGrid,GridToolbar } from '@mui/x-data-grid';
+import React,{useState} from 'react';
+import {DataGrid} from '@mui/x-data-grid';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
@@ -31,21 +31,27 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
   }
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', 
+    headerName: 'ID', 
+    width: 90,
+    sortable: false,  },
     {
       field: 'totalPrice',
       headerName: 'Cena zamówienia',
       width: 150,
+      sortable: false,
     },
     {
       field: 'date',
       headerName: 'Data',
       width: 100,
+      sortable: false,
     },
     {
       field: 'difference',
       headerName: 'Różnica',
       width: 200,
+      sortable: false,
       renderCell: (params) => {
         
         return (
@@ -64,25 +70,30 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
       field: 'status',
       headerName: 'Status',
       width: 200,
+      sortable: false,
     },
     {
       field: 'address',
       headerName: 'Adres',
       width: 470,
+      sortable: false,
     },
     {
       field: 'houseNumber',
       headerName: 'Numer domu',
       width: 200,
+      sortable: false,
     },
     {
       field: 'postalCode',
       headerName: 'Kod Pocztowy',
       width: 150,
+      sortable: false,
     },
     {
         field: 'fullNamed',
         headerName: 'Akcja',
+        sortable: false,
         width: 150,
         renderCell: (params) => {
               return (
