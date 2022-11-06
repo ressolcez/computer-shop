@@ -12,7 +12,6 @@ function Category() {
   const {user, setUser} = useContext(UserContext);
 
   useEffect(() => {
-
     if(localStorage.getItem('token')){
         AuthServices.isAuthorized().then((response) => {
           if(response.data.status === 'pass'){
@@ -24,16 +23,13 @@ function Category() {
           }
         });
       }  
-
  }, []);
 
   return (
     <div className="category__wrappper">
-    <Topbar user = {user} setUser = {setUser}/>
-        <div style= {{flex:1}}>
-          <CategoryComponent/>
-        </div>
-        <StyledDivider/>
+      <Topbar user = {user} setUser = {setUser}/>
+      <CategoryComponent/>
+      <StyledDivider/>
       <Footer/>
     </div>
   )

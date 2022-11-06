@@ -1,15 +1,21 @@
 import React,{useState} from 'react';
+import { useFormik } from 'formik';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useFormik } from 'formik';
 import UsersServices from '../Services/UsersServices';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
+import validationSchema from '../SharedComponent/validations/UserProfileValidations';
+import ProfileChoiceModal from "./ProfileChoiceModal";
 
 function ProfileComponent({userdata}) {
 
   const [errors,setErrors] = useState([])
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
   const handleCloseSnackbarSuccess = () => {setOpenSnackbarSuccess(false)};
+  const [openModalChoice, setOpenModalChoice] = useState(false); 
+  const handleCloseModalChoice = () => {setOpenModalChoice(false)};
+
+  console.log(openModalChoice)
 
   const formik = useFormik({
     initialValues: {
@@ -31,15 +37,22 @@ function ProfileComponent({userdata}) {
 
   });
 
-
   const formikPassword = useFormik({
     initialValues: {
       password : '',
       confirmPassword: ''
     },
+    validationSchema: validationSchema,
     onSubmit: (values) => {
 
-      console.log(values)
+      UsersServices.changeUserPassword(userdata.id,values).then((response) => {
+        setOpenSnackbarSuccess(true);
+        formikPassword.resetForm({values: ''})  
+
+        }).catch((error) => {
+
+        })
+
     },
   });
 
@@ -51,7 +64,7 @@ function ProfileComponent({userdata}) {
               <img className="rounded-circle mt-5" width="150px" src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"/>
               <span className="font-weight-bold">{userdata.login}</span>
               <span className="text-black-50">{userdata.email}</span>
-              <Button className='mt-2' variant="danger">Usuń Konto</Button>
+              <Button onClick = {()=> setOpenModalChoice(true)}className='mt-2' variant="danger">Usuń Konto</Button>
             </div>
         </div>
         <div className="col-md-5 border-right">
@@ -112,7 +125,8 @@ function ProfileComponent({userdata}) {
                       onChange={formikPassword.handleChange} 
                       value={formikPassword.values.password}
                       type = "password"/>
-                    {errors.password && <p style = {{marginBottom:'0',color:'red'}}>{errors.password}</p>}
+                     {console.log(formikPassword.errors.password)} 
+                     {formikPassword.errors.password && <p style = {{marginBottom:'0',color:'red'}}>{formikPassword.errors.password }</p>}
                     </div>
                     
                     <div className="col-md-12">
@@ -122,7 +136,7 @@ function ProfileComponent({userdata}) {
                       onChange={formikPassword.handleChange} 
                       value={formikPassword.values.confirmPassword}
                       type = "password"/>
-                      {errors.confirmPassword && <p style = {{marginBottom:'0',color:'red'}}>{errors.confirmPassword}</p>}
+                      {formikPassword.errors.confirmPassword && <p style = {{marginBottom:'0',color:'red'}}>{formikPassword.errors.confirmPassword}</p>}
                     </div>
                 </div>
 
@@ -134,6 +148,7 @@ function ProfileComponent({userdata}) {
         </div>
     </div>
     <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Zmieniono dane kontaktowe"/>
+    <ProfileChoiceModal openModal = {openModalChoice} handleCloseModal = {handleCloseModalChoice} user = {userdata}/>
   </div>
 )
 }

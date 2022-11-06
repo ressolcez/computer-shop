@@ -32,6 +32,7 @@ function Topbar({user,setUser}) {
           <Avatar><img src = {Prof} alt='profileImage'/></Avatar>
           <span style={{paddingLeft:'10px'}}><b>Konrad Chrabąszcz</b></span>
         </div>
+
         </div>
       </AppBar>
     </Box>

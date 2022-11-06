@@ -5,13 +5,13 @@ import Button from '@mui/material/Button';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import computer from "../Images/komputer2.jpg";
 import StyledLink from '../SharedComponent/StyledLink';
 import CategoryServices from '../Services/CategoryServices';
 import SnackbarSuccess from "../SharedComponent/SnackbarSuccess";
-import WaitPage from "../SharedComponent/WaitPage";
-import "./CategoryComponent.css"
 import ProductServices from '../Services/ProductServices';
+import "./CategoryComponent.css"
+
+
 
 function CategoryComponent() {
 
@@ -24,7 +24,7 @@ function CategoryComponent() {
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
   const [loading,setLoading] = useState(true);
-  const [allProducents,setAllProducents] = useState()
+  const [allProducents,setAllProducents] = useState();
   const {addItem} = useCart();
 
   useEffect(() => {
@@ -80,14 +80,11 @@ function CategoryComponent() {
       setOpenSnackbarSuccess(true);
     }
 
-    const handleCloseSnackbarSuccess = (reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setOpenSnackbarSuccess(false);
-    };
+    const handleCloseSnackbarSuccess = () => setOpenSnackbarSuccess(false);
+
 
   return (
+    <>
     <div className='category__wrapper'>
     <div className='category__filters__wrappper'>
         <div className='single__category__filters'>
@@ -112,9 +109,8 @@ function CategoryComponent() {
           <div className='product__detail__filters'>
           <div className='center__box'>
               <p className='title'>Producent:</p>
-              {allProducents && allProducents.map((product)=>(
-                <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, product, 2)}/>} label = {product} />
-
+              {allProducents && allProducents.map((product,id)=>(
+                <FormControlLabel key = {id} control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, product, 2)}/>} label = {product} />
               ))
               }
 
@@ -128,7 +124,7 @@ function CategoryComponent() {
       (
       <>
         {products.map((product)=>(
-          <div className='single__product__wrapper__category'>
+          <div className='single__product__wrapper__category' key = {product.id}>
                   <div className='img__container__category'>
                     <StyledLink to={"/"+product.categoryModel.categoryName+"/"+product.id}>
                       <img  src = {require(`../Images/${product.image}`)} alt = "productImage"/>
@@ -156,10 +152,9 @@ function CategoryComponent() {
       <Pagination count={totalNumberOfPages} page={page} onChange={handlePageChange} size="large"  variant="outlined" />         
     </div>
     }
-
     <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Dodano do koszyka"/>
     </div>
-
+  </>
   )
 }
 
