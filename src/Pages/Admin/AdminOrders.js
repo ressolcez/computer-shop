@@ -1,9 +1,9 @@
 import React, { useState,useEffect,useContext } from 'react';
-import { UserContext } from '../../Context/UserContext';
+import {UserContext} from '../../Context/UserContext';
+import {useNavigate} from "react-router-dom";
 import Topbar from '../../AdminComponents/TopBar';
 import OrderServices from '../../Services/OrderServices';
 import Orders from '../../AdminComponents/Orders';
-import {useNavigate} from "react-router-dom";
 import AuthServices from '../../Services/AuthServices';
 
 
@@ -16,6 +16,12 @@ function AdminOrders() {
   const [openModalEditOrder, setOpenModalEditOrder] = useState(false);
   const [page, setPage] = useState(0);
   const [rowCount,setrowCount] = useState(0);
+
+  const deleteOrder = (orderId) =>{
+    console.log(orderId)
+    OrderServices.deleteOrder(orderId)
+    window.location.reload(false)
+  }
 
   useEffect(() => {  
         if(localStorage.getItem('token')){
@@ -55,6 +61,7 @@ function AdminOrders() {
         page = {page}
         setPage = {setPage}
         rowCount = {rowCount}
+        deleteOrder = {deleteOrder}
       />
     </>
     )

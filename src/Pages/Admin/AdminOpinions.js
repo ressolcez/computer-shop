@@ -1,7 +1,7 @@
 import React, { useState,useEffect,useContext } from 'react';
-import { UserContext } from '../../Context/UserContext';
-import Topbar from '../../AdminComponents/TopBar';
+import {UserContext} from '../../Context/UserContext';
 import {useNavigate} from "react-router-dom";
+import Topbar from '../../AdminComponents/TopBar';
 import AuthServices from '../../Services/AuthServices';
 import Opinions from '../../AdminComponents/Opinions';
 import OpinionsService from '../../Services/OpinionsService';
@@ -11,11 +11,13 @@ function AdminOpinions() {
     const {user,setUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [openModalEditopinions, setOpenModalEditOpinions] = useState(false);
-
-      
     const [page, setPage] = useState(0);
     const [opinions, setOpinions] = useState([]);
     const [rowCount,setrowCount] = useState(0);
+
+    const deleteOpinion = (opinionId) =>{
+      OpinionsService.deleteOpinion(opinionId)
+    }
 
     useEffect(() => {  
 
@@ -56,6 +58,7 @@ function AdminOpinions() {
           rowCount = {rowCount}
           openModalEditopinions = {openModalEditopinions}
           setOpenModalEditOpinions = {setOpenModalEditOpinions}
+          deleteOpinion = {deleteOpinion}
         />
     </>
   )

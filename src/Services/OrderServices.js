@@ -23,7 +23,7 @@ class OrderServices{
     }
 
     deleteOrder(orderId){
-        return axios.delete("http://localhost:8080/api/orders" + orderId);
+        return axios.delete("http://localhost:8080/api/orders/" + orderId);
     }
 
     addOrder(userId,order,totalPrice){

@@ -12,11 +12,16 @@ function AdminUsers() {
     const [users,setUsers] = useState([])
     const [openModalAddUser, setOpenModalAddUser] = useState(false);
     const [openModalEditUser, setOpenModalEditUser] = useState(false);
-    const [isDeleted, setIsDeleted] = useState(false);
     const [page, setPage] = useState(0);
     const [rowCount,setrowCount] = useState(0);
 
     const navigate = useNavigate();
+
+    const deleteUser = (userId) =>{
+      AuthServices.deleteUserToken(userId);
+      UsersServices.deleteUser(userId);
+      window.location.reload(false);
+    }
 
     useEffect(() => {  
         if(localStorage.getItem('token')){
@@ -42,7 +47,7 @@ function AdminUsers() {
             setrowCount(response.data.rowCount);
            });
   
-      }, [openModalEditUser,openModalAddUser,isDeleted,page]);
+      }, [openModalEditUser,openModalAddUser,page]);
 
 
   return (
@@ -54,11 +59,10 @@ function AdminUsers() {
       openModalAddUser = {openModalAddUser}
       setOpenModalAddUser = {setOpenModalAddUser}
       setOpenModalEditUser = {setOpenModalEditUser}
-      isDeleted = {isDeleted}
-      setIsDeleted = {setIsDeleted}
       page = {page}
       setPage = {setPage}
       rowCount = {rowCount}
+      deleteUser = {deleteUser}
       />
     </>
   )

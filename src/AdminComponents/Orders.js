@@ -10,7 +10,7 @@ import EditOrderModal from '../SharedComponent/EditOrderModal';
 import "./Orders.css";
 
 
-function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,rowCount}) {
+function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,rowCount,deleteOrder}) {
 
   const handleCloseModalEditOrder = () => setOpenModalEditOrder(false);
   const handleCloseModalProductDetails = () => setOpenModalProductDetails(false);
@@ -24,10 +24,6 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
     OrderServices.getOrderById(orderId).then((response) => {
       setOrder(response.data);
     });
-  }
-
-  const deleteOrder = (orderId) =>{
-    OrderServices.deleteOrder(orderId);
   }
 
   const columns = [
@@ -104,7 +100,6 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
                     setSuccess()
                   }
                   }
-    
                     >
                     <EditIcon/>
                   </IconButton>

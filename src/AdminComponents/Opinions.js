@@ -7,12 +7,11 @@ import EditOpinionsModal from '../SharedComponent/EditOpinionsModal';
 import Rating from "@mui/material/Rating";
 import "./Opinions.css"
 
-function Opinions({opinions,page,setPage,rowCount,openModalEditopinions,setOpenModalEditOpinions}) {
+function Opinions({opinions,page,setPage,rowCount,openModalEditopinions,setOpenModalEditOpinions,deleteOpinion}) {
   
   const [editOpinion, setEditOpinion] = useState();
   const handleCloseModalEditOpinion = () => setOpenModalEditOpinions(false);
   const [success,setSuccess] = useState();  
-
 
     const columns = [
         { 
@@ -82,7 +81,7 @@ function Opinions({opinions,page,setPage,rowCount,openModalEditopinions,setOpenM
                     }}>
                     <EditIcon/>
                       </IconButton>
-                      <IconButton>
+                      <IconButton onClick = {()=>deleteOpinion(params.id)}>
                         <DeleteIcon />
                       </IconButton>
                       </div>

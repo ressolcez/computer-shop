@@ -12,11 +12,14 @@ function AdminProducts() {
   const [products,setProducts] = useState([]);
   const [openModalAddProduct, setOpenModalAddProduct] = useState(false);
   const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(true);
   const [page, setPage] = useState(0);
   const [rowCount,setrowCount] = useState(0);
-
   const navigate = useNavigate();
+
+  const deleteProduct = (productId) =>{
+    ProductServices.deleteProduct(productId)
+    window.location.reload(false)
+  }
 
   useEffect(() => {  
 
@@ -44,7 +47,7 @@ function AdminProducts() {
          });
 
 
-    }, [isDeleted,openModalEditProduct,openModalAddProduct,page]);
+    }, [openModalEditProduct,openModalAddProduct,page]);
 
   return (
     <>
@@ -54,12 +57,11 @@ function AdminProducts() {
         setOpenModalAddProduct = {setOpenModalAddProduct}
         openModalEditProduct = {openModalEditProduct} 
         setOpenModalEditProduct = {setOpenModalEditProduct} 
-        isDeleted = {isDeleted}
-        setIsDeleted = {setIsDeleted}
         products = {products}
         page = {page}
         setPage = {setPage}
         rowCount = {rowCount}
+        deleteProduct = {deleteProduct}
        />
     </>
   )

@@ -9,7 +9,7 @@ import EditUserModal from '../SharedComponent/EditUserModal';
 import "./Users.css"
 import UsersServices from '../Services/UsersServices';
 
-function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,setOpenModalEditUser,isDeleted,setIsDeleted,page,setPage,rowCount}) {
+function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,setOpenModalEditUser,page,setPage,rowCount,deleteUser}) {
 
   const [id,setId] = useState(1);
   const [user,setUser] = useState();
@@ -19,10 +19,6 @@ function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,set
 
   const handleCloseModalAddUser = () => setOpenModalAddUser(false);
   const handleCloseModalEditUser = () => setOpenModalEditUser(false);
-
-  const deleteUser = (userId) => {
-    UsersServices.deleteUser(userId);
-  }
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90,sortable: false,},
@@ -96,14 +92,7 @@ const columns = [
                   }}>
                   <EditIcon />
                 </IconButton>
-                <IconButton onClick = {()=> {
-                  
-                  if(!isDeleted){
-                    setIsDeleted(true)
-                  }else{
-                    setIsDeleted(false)
-                  } 
-                                    
+                <IconButton onClick = {()=> {                                    
                   deleteUser(params.id)}                 
                 }>
                   <DeleteIcon />

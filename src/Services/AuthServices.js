@@ -12,6 +12,9 @@ class AuthServices{
       return axios.get("http://localhost:8080/api/user/validation/login/" + login);
     }
 
+    deleteUserToken(userId){
+      return axios.post("http://localhost:8080/api/authentication/deleteToken/"+userId)
+    }
 
     registerUser(user)
     {

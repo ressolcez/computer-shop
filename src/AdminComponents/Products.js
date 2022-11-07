@@ -9,7 +9,7 @@ import AddProductModal from '../SharedComponent/AddProductModal';
 import EditProductModal from '../SharedComponent/EditProductModal';
 import "./Products.css";
 
-function Products({products,openModalAddProduct,setOpenModalAddProduct,openModalEditProduct,setOpenModalEditProduct,setIsDeleted,isDeleted,page,setPage,rowCount}) {
+function Products({products,openModalAddProduct,setOpenModalAddProduct,openModalEditProduct,setOpenModalEditProduct,page,setPage,rowCount,deleteProduct}) {
 
   const [product,setProduct] = useState();
 
@@ -18,11 +18,6 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
 
   const handleCloseModalAddProduct = () => setOpenModalAddProduct(false);
   const handleCloseModalEditProduct = () => setOpenModalEditProduct(false);
-
-
-  const deleteProduct = (productId) =>{
-      ProductServices.deleteProduct(productId);
-  }
 
   const columns = [
     { 
@@ -103,13 +98,6 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
                     <EditIcon />
                   </IconButton>
                   <IconButton onClick={() => {
-                    console.log(isDeleted)
-                    
-                    if(!isDeleted){
-                      setIsDeleted(true)
-                    }else{
-                      setIsDeleted(false)
-                    } 
                     deleteProduct(params.id)
                     }}>
                     <DeleteIcon />

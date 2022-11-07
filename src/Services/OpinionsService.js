@@ -26,6 +26,10 @@ class OpinionsService{
             params: {pageNumber: page} 
         })
     }
+
+    deleteOpinion(opinionId){
+        return axios.delete("http://localhost:8080/api/opinion/"+opinionId)
+    }
 }
 
 export default new OpinionsService()
