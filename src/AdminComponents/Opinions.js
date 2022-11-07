@@ -21,10 +21,37 @@ function Opinions({opinions,page,setPage,rowCount,openModalEditopinions,setOpenM
         width: 90,
         sortable: false,  
         },
+        { 
+          field: 'userId', 
+          headerName: 'Identyfikator Użytkownika', 
+          width: 190,
+          sortable: false,  
+          renderCell: (params) => {
+            return (
+              <div style = {{display:'flex', justifyContent: 'flex-start',width:'100%'}}>
+                {params.row.userModel.id}
+              </div>
+            );
+        }
+          },
+          { 
+            field: 'productId', 
+            headerName: 'Identyfikator Produktu', 
+            width: 190,
+            sortable: false,  
+            renderCell: (params) => {
+              return (
+                <div style = {{display:'flex', justifyContent: 'flex-start',width:'100%'}}>
+                  {params.row.productModel.id}
+                </div>
+              );
+          }
+            },
+
         {
         field: 'comment',
         headerName: 'Komentarz',
-        width: 1320,
+        width: 950,
         sortable: false,
         },
         {
