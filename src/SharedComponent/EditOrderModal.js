@@ -9,9 +9,10 @@ import { useFormik } from 'formik';
 function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess}) {
 
     const [orderStatus, setOrderStatus] = useState('');
+    const [comment, setComment] = useState(null);
 
     const changeStatus = () => {
-        OrdersServices.changeOrderStatus(order.id,orderStatus).then((response) => {
+        OrdersServices.changeOrderStatus(order.id,orderStatus,comment).then((response) => {
           setSuccess('Poprawnie zmieniono status');
         })
     }
@@ -37,6 +38,18 @@ function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess}) {
                     <option value="Zrealizowano">Zrealizowano</option>
                     <option value="Anulowano">Anulowano</option>
                 </Form.Select>
+               {orderStatus === 'Anulowano' &&
+               <>
+                  <Form.Label className='pt-3'>Komentarz:</Form.Label>
+                  <Form.Control
+                    id = "name"
+                    as="textarea" 
+                    rows="4"
+                    autoFocus
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+               </>
+               }
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="success" type = "submit" onClick = {()=>changeStatus()}>

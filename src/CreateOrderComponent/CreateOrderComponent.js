@@ -55,15 +55,20 @@ function CreateOrder({user,userdata}) {
         OrderServices.checkoutCart(items).then((response) => {
           setOpenBackdrop(true)
           OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
+            
             items.map((product)=>(
               OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
-                  setOpenBackdrop(false);
-                  setErrors([]);
-                  emptyCart();
-                  formik.resetForm();
-                  setOpenModal(true)
               })
             ))
+
+            OrderServices.creteOrderMail(user.userId,response.data).then((response) => {
+              setOpenBackdrop(false);
+              setOpenModal(true);
+              setErrors([]);
+              emptyCart();
+              formik.resetForm();
+          })
+        
           }).catch((error) => {
             setErrors(error.response.data)
           })

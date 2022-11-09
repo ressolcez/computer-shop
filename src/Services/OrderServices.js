@@ -17,6 +17,10 @@ class OrderServices{
         return axios.post("http://localhost:8080/api/orderProduct/checkoutCart",items);
     }
 
+    creteOrderMail(userId,orderId){
+        return axios.get("http://localhost:8080/api/orders/createOrderMail/"+userId + "/" + orderId);
+    }
+
     getCartInfo(items){
         console.log(items)
         return axios.post("http://localhost:8080/api/orderProduct/checkoutCart",items);
@@ -43,11 +47,18 @@ class OrderServices{
         return axios.get("http://localhost:8080/api/orders/" + orderId);
     }
 
-    changeOrderStatus(orderId,orderStatus){
+    changeOrderStatus(orderId,orderStatus,comment){
+        console.log(comment)
+        console.log(orderId)
+        
         return axios.put('http://localhost:8080/api/orders/' + orderId,{},
-        { params: { orderStatus: orderStatus
-        } 
+        { params: 
+            { 
+                orderStatus: orderStatus,
+                comment: comment
+            } 
         })
+        
     }
 
     

@@ -16,6 +16,7 @@ class OpinionsService{
         return axios.post("http://localhost:8080/api/opinion/"+productId+"/"+userId,opinion);
     }
 
+
     editOpinions(opinion){
         return axios.put("http://localhost:8080/api/opinion",opinion);
     }
