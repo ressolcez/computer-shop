@@ -20,6 +20,7 @@ import Profile from "./Pages/Profile";
 import CreateOrder from "./Pages/CreateOrder";
 import PageNotFound from "./SharedComponent/PageNotFound";
 import Statute from "./Pages/Statute";
+import ContactForm from "./Pages/ContactForm";
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
           <Route  path="/User/Profile" element={<Profile/>}/>
           <Route  path="/Order" element={<CreateOrder/>}/>
           <Route  path="/Statute" element={<Statute/>}/>
+          <Route  path="/ContactForm" element={<ContactForm/>}/>
           <Route path="*" element={<PageNotFound/>} />
         </Routes>
       </BrowserRouter>
