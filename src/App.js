@@ -1,5 +1,5 @@
 import React, { useState, useMemo,useEffect} from "react";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom";
 import {UserContext} from "./Context/UserContext";
 import { CartProvider } from "react-use-cart";
 import Home from "./Pages/Home"
@@ -30,29 +30,29 @@ function App() {
   return (
     <CartProvider>
     <UserContext.Provider value={value}>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
-          <Route  path="/:name/:id" element={<ProductDetails/>}/>
-          <Route  path="/Category" element={<Category/>}/>
-          <Route  path="/Cart" element={<Cart/>}/>
-          <Route  path="/Login" element={<Login/>}/>
-          <Route  path="/Register" element={<Register/>}/>
-          <Route  path="/Wait" element={<WaitPage/>}/>
-          <Route  path="/Admin" element={<AdminHome/>}/>
-          <Route  path="/Admin/Products" element={<AdminProducts/>}/>
-          <Route  path="/Admin/Users" element={<AdminUsers/>}/>
-          <Route  path="/EditProfile" element={<UserEditAccount/>}/>
-          <Route  path="/RecentOrders" element={<UserRecentOrders/>}/>
-          <Route  path="/Admin/Orders" element={<AdminOrders/>}/>
-          <Route  path="/Admin/Opinions" element={<AdminOpinions/>}/>
-          <Route  path="/User/Profile" element={<Profile/>}/>
-          <Route  path="/Order" element={<CreateOrder/>}/>
-          <Route  path="/Statute" element={<Statute/>}/>
-          <Route  path="/ContactForm" element={<ContactForm/>}/>
+          <Route path="/:name/:id" element={<ProductDetails/>}/>
+          <Route path="/Category" element={<Category/>}/>
+          <Route path="/Cart" element={<Cart/>}/>
+          <Route path="/Login" element={<Login/>}/>
+          <Route path="/Register" element={<Register/>}/>
+          <Route path="/Wait" element={<WaitPage/>}/>
+          <Route path="/Admin" element={<AdminHome/>}/>
+          <Route path="/Admin/Products" element={<AdminProducts/>}/>
+          <Route path="/Admin/Users" element={<AdminUsers/>}/>
+          <Route path="/EditProfile" element={<UserEditAccount/>}/>
+          <Route path="/RecentOrders" element={<UserRecentOrders/>}/>
+          <Route path="/Admin/Orders" element={<AdminOrders/>}/>
+          <Route path="/Admin/Opinions" element={<AdminOpinions/>}/>
+          <Route path="/User/Profile" element={<Profile/>}/>
+          <Route path="/Order" element={<CreateOrder/>}/>
+          <Route path="/Statute" element={<Statute/>}/>
+          <Route path="/ContactForm" element={<ContactForm/>}/>
           <Route path="*" element={<PageNotFound/>} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </UserContext.Provider>
     </CartProvider>
   );
