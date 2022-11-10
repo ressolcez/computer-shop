@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/computer-shop/static/css/main.911fda7c.css",
-    "main.js": "/computer-shop/static/js/main.764b946b.js",
+    "main.js": "/computer-shop/static/js/main.3a988faa.js",
     "static/media/komputer8.jpg": "/computer-shop/static/media/komputer8.75569b40af5c16d043f5.jpg",
     "static/media/laptop1.jpg": "/computer-shop/static/media/laptop1.7b1bd5ec04dca8059ef8.jpg",
     "static/media/klawiatura1.jpg": "/computer-shop/static/media/klawiatura1.94a71f9f641469bf3929.jpg",
@@ -17,10 +17,10 @@
     "static/media/revicons.woff": "/computer-shop/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/computer-shop/index.html",
     "main.911fda7c.css.map": "/computer-shop/static/css/main.911fda7c.css.map",
-    "main.764b946b.js.map": "/computer-shop/static/js/main.764b946b.js.map"
+    "main.3a988faa.js.map": "/computer-shop/static/js/main.3a988faa.js.map"
   },
   "entrypoints": [
     "static/css/main.911fda7c.css",
-    "static/js/main.764b946b.js"
+    "static/js/main.3a988faa.js"
   ]
 }
