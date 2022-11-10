@@ -35,8 +35,8 @@ function Footer() {
                     <StyledLink to = {"/statute"}>
                         <span>Regulamin</span>
                     </StyledLink>
-                    <StyledLink to = {"/user/profile"}>
-                        <span>Profil</span>
+                    <StyledLink to = {"/contactForm"}>
+                        <span>Kontakt</span>
                     </StyledLink>
                     <StyledLink to = {"/"}>
                         <span>Strona Główna</span>

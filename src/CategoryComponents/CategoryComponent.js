@@ -29,6 +29,7 @@ function CategoryComponent() {
   const [loading,setLoading] = useState(true);
   const [allProducents,setAllProducents] = useState();
   const handleCloseSnackbarSuccess = () => setOpenSnackbarSuccess(false);
+  const [allCategoriesName, setAllCategoriesName] = useState([])
 
 
   useEffect(() => {
@@ -40,6 +41,10 @@ function CategoryComponent() {
 
     ProductServices.getAllProducents().then((response) => {
       setAllProducents(response.data)
+    });
+
+    CategoryServices.getAllCategoriesName().then((response) => {
+      setAllCategoriesName(response.data)
     });
 
 
@@ -92,11 +97,11 @@ function CategoryComponent() {
         <div className='single__category__filters'>
             <div className='center__box'>
               <p className='title'>Kategorie:</p>
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Komputer', 1)} />} label="Komputery" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Myszka', 1)}/>} label="Myszki" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Klawiatura',1)}/>} label="Klawiatury" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Laptop',1)}/>} label="Laptopty" />
-              <FormControlLabel control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, 'Monitor',1)}/>} label="Monitory" />
+              {
+                allCategoriesName && allCategoriesName.map((name,index)=>(
+                  <FormControlLabel key={index} control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, name, 1)} />} label= {name} />
+                ))
+                }
             </div>
         </div>
         <div className='price__flters'>
@@ -111,8 +116,9 @@ function CategoryComponent() {
           <div className='product__detail__filters'>
           <div className='center__box'>
               <p className='title'>Producent:</p>
-              {allProducents && allProducents.map((product,id)=>(
-                <FormControlLabel key = {id} control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, product, 2)}/>} label = {product} />
+              {
+              allProducents && allProducents.map((product,index)=>(
+                <FormControlLabel key = {index} control={<Checkbox size='small' onChange={(e) => handleCheckedCategory(e, product, 2)}/>} label = {product} />
               ))
               }
 
@@ -126,8 +132,8 @@ function CategoryComponent() {
       (
       <>
         {products.map((product)=>(
-        <AnimatePresence>
-            <motion.div layout animate = {{opacity: 1}} initial = {{opacity:0}} exit = {{opacity: 0}} className='single__product__wrapper__category' key = {product.id}>
+        <AnimatePresence key={product.id}>
+            <motion.div layout animate = {{opacity: 1}} initial = {{opacity:0}} exit = {{opacity: 0}} className='single__product__wrapper__category'>
                     <div className='img__container__category'>
                       <StyledLink to={"/"+product.categoryModel.categoryName+"/"+product.id}>
                         <img  src = {require(`../Images/${product.image}`)} alt = "productImage"/>
