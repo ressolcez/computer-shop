@@ -35,8 +35,10 @@ class OrderServices{
         return axios.post(baseURLOrders+userId,newOrder)
     } 
 
-    addOrderProduct(orderId,productId,quantity){
-        return axios.post(baseURLOrderProduct+orderId+"/"+productId+"/"+quantity)
+    addOrderProduct(orderId,userId,items){
+        console.log(orderId)
+        console.log(items)
+        return axios.post(baseURLOrderProduct+"addOrderProduct/"+orderId+"/"+userId,items)
     }
 
     getUserOrders(userId){

@@ -27,7 +27,6 @@ function CreateOrder({user,userdata}) {
   const [openModalFail, setOpenModalFail] = useState(false);
   const handleCloseModalFail = () => setOpenModalFail(false);
   const [accpetStatute, setAcceptStatute] = useState(false);
-  
   const [openBackdrop, setOpenBackdrop] = useState(false);
 
   useEffect(() => {                                     
@@ -57,23 +56,19 @@ function CreateOrder({user,userdata}) {
           setOpenBackdrop(true)
           OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
             
-            items.map((product)=>(
-              OrderServices.addOrderProduct(response.data,product.id, product.quantity).then((response) => {
+              OrderServices.addOrderProduct(response.data,user.userId,items).then((response) => {
+                setOpenBackdrop(false);
+                setOpenModal(true);
+                setOpenBackdrop(false);
+                setErrors([]);
+                emptyCart();
+                formik.resetForm();
               })
-            ))
-
-            OrderServices.creteOrderMail(user.userId,response.data).then((response) => {
-              setOpenBackdrop(false);
-              setOpenModal(true);
-              setErrors([]);
-              emptyCart();
-              formik.resetForm();
-          })
         
           }).catch((error) => {
             setErrors(error.response.data)
           })
-
+        
       }).catch((error) => {
         setMsg('Nie posiadamy wystarczającej ilości przedmiotów w magazynie')
         setOpenModalFail(true);

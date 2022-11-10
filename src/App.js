@@ -1,5 +1,5 @@
 import React, { useState, useMemo,useEffect} from "react";
-import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {UserContext} from "./Context/UserContext";
 import { CartProvider } from "react-use-cart";
 import Home from "./Pages/Home"
@@ -30,7 +30,7 @@ function App() {
   return (
     <CartProvider>
     <UserContext.Provider value={value}>
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route path="/:name/:id" element={<ProductDetails/>}/>
@@ -52,7 +52,7 @@ function App() {
           <Route path="/ContactForm" element={<ContactForm/>}/>
           <Route path="*" element={<PageNotFound/>} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </UserContext.Provider>
     </CartProvider>
   );
