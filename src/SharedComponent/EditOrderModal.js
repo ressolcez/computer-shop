@@ -8,9 +8,8 @@ import { useFormik } from 'formik';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess}) {
+function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess,orderStatus,setOrderStatus}) {
 
-    const [orderStatus, setOrderStatus] = useState('');
     const [comment, setComment] = useState(null);
     const [openBackdrop, setOpenBackdrop] = useState(false);
 
@@ -27,7 +26,7 @@ function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess}) {
   return (
     <div>
       <>
-        <Modal  show={openModal} onHide={handleCloseModal}>
+        <Modal show={openModal} onHide={handleCloseModal}>
             <Modal.Header >
                 <Modal.Title>Edytowanie Zamówienia numer {order.id}</Modal.Title>
             </Modal.Header>
