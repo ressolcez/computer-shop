@@ -23,9 +23,9 @@ const columns = [
   { field: 'id', headerName: 'ID', width: 90,sortable: false,},
   {
     field: 'name',
-    headerName: 'Nazwa',
+    headerName: 'Imie',
     sortable: false,
-    width: 200,
+    width: 180,
   },
   {
     field: 'login',
@@ -121,6 +121,7 @@ return (
         pageSize={11}
         disableColumnFilter
         rowsPerPageOptions={[11]}
+        density={"comfortable"}
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
         pagination

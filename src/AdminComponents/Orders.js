@@ -138,6 +138,7 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
           experimentalFeatures={{ newEditingApi: true }}
           pagination
           page={page}
+          density={"comfortable"}
           paginationMode="server"
           onPageChange={(newPage) => setPage(newPage)}
           rowCount={rowCount}

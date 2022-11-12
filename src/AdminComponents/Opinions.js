@@ -102,6 +102,7 @@ function Opinions({opinions,page,setPage,rowCount,openModalEditopinions,setOpenM
             columns={columns}
             disableColumnFilter 
             pageSize={11}
+            density={"comfortable"}
             rowsPerPageOptions={[11]}
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}

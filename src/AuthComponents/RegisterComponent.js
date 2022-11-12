@@ -27,7 +27,7 @@ function RegisterComponent() {
       housenumber: '',
       postalCode: ''
     },
-    validationSchema: validationSchema,
+    validationSchema:validationSchema,
     onSubmit: (values) => {
       
 
@@ -35,14 +35,22 @@ function RegisterComponent() {
       
         AuthServices.checkLoginExist(values.login).then((response) => { 
 
-          AuthServices.registerUser(values);
-          formik.resetForm({values: ''})  
-          setErrors('')
-          setSuccess('Poprawnie Stworzono użytkownika, możesz przejsć do logowania')      
+          AuthServices.registerUser(values).then((response) => { 
 
-          setTimeout(() => {
-            navigate("/login")
-          }, 2000);
+            formik.resetForm({values: ''})  
+            setErrors('')
+            setSuccess('Poprawnie Stworzono użytkownika, możesz przejsć do logowania')      
+
+            setTimeout(() => {
+              navigate("/login")
+            }, 2000);
+
+          }).catch((error) => { 
+
+            setErrors(error.response.data)
+            console.log(error.response.data)
+            setSuccess('');
+          })
 
         }).catch((error) => { 
       
@@ -65,8 +73,16 @@ function RegisterComponent() {
           <div className='register__image'>
             <img src = {Logo} alt = 'logo'/>
           </div>
-          {errors.email && <p className='error__register'>{errors.email}</p>}
-          {errors.login && <p className='error__register'>{errors.login}</p>}
+
+          {errors.email && <p style={{marginBottom:'0'}} className='error__register'>{errors.email}</p>}
+          {errors.login && <p style={{marginBottom:'0'}} className='error__register'>{errors.login}</p>}
+          {errors.name && <p style={{marginBottom:'0'}} className='error__register'>{errors.name}</p>}
+          {errors.surname && <p style={{marginBottom:'0'}} className='error__register'>{errors.surname}</p>}
+          {errors.address && <p style={{marginBottom:'0'}} className='error__register'>{errors.address}</p>}
+          {errors.password && <p style={{marginBottom:'0'}} className='error__register'>{errors.password}</p>}
+          {errors.housenumber && <p style={{marginBottom:'0'}} className='error__register'>{errors.housenumber}</p>}
+          {errors.postalCode && <p style={{marginBottom:'0'}} className='error__register'>{errors.postalCode}</p>}
+
           {success && <p className='correct__register'>{success}</p>}
           <div className='register__input'>
           <form onSubmit={formik.handleSubmit}>

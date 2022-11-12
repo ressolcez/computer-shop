@@ -127,6 +127,7 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
             rowsPerPageOptions={[11]}
             pagination
             page={page}
+            density={"comfortable"}
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}
             paginationMode="server"
