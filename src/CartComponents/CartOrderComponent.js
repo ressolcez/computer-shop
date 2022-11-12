@@ -40,7 +40,6 @@ function CartOrderComponent({user}) {
 
 
   useEffect(() => {
-    
     OrderServices.checkoutCart(items).then((response) => {
       setError([])
     })

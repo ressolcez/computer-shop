@@ -33,16 +33,10 @@ class OrderServices{
         return axios.delete("http://localhost:8080/api/orders/" + orderId);
     }
 
-    addOrder(userId,order,totalPrice){
-        const newOrder = {totalPrice: totalPrice, address: order.address, houseNumber: order.houseNumber, postalCode: order.postalCode}
+    addOrder(userId,order,totalPrice,items){
+        const newOrder = {totalPrice: totalPrice, address: order.address, houseNumber: order.houseNumber, postalCode: order.postalCode,cartDTOList: items}
         return axios.post(baseURLOrders+userId,newOrder)
     } 
-
-    addOrderProduct(orderId,userId,items){
-        console.log(orderId)
-        console.log(items)
-        return axios.post(baseURLOrderProduct+"addOrderProduct/"+orderId+"/"+userId,items)
-    }
 
     getUserOrders(userId){
         return axios.get(baseURLOrders + "userOrder/" + userId)

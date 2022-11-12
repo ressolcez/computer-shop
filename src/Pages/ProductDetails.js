@@ -27,7 +27,8 @@ export default function ProductDetails() {
   useEffect(() => {
       ProductDetailsServices.getProductById(id).then((response) => {
          setProduct(response.data.product);
-         setDetails(response.data.details)
+         setDetails(response.data.details);
+         window.scrollTo(0,0)
        });
 
        OpinionsService.getOpinionsToProduct(id,page-1).then((response) => {

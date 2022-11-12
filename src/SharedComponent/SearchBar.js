@@ -1,5 +1,6 @@
 import React from 'react';
 import StyledLink from './StyledLink';
+import {motion, AnimatePresence} from "framer-motion"
 import "./Searchbar.css";
 
 function SearchBar({products,setSearchWord }) {
@@ -10,7 +11,7 @@ function SearchBar({products,setSearchWord }) {
           <input type="text" className = "topbar__search" onChange={(e) => setSearchWord(e.target.value)}/>
         </div>
         {products.length !== 0 && (
-            <div className='data__result__wrapper'>
+            <motion.div layout animate = {{opacity: 1}} initial = {{opacity:0}} exit = {{opacity: 0}} className='data__result__wrapper'>
             {products.map((product) => {
               return (
                 <StyledLink to={"/"+product.categoryModel.categoryName+"/"+product.id} >
@@ -36,7 +37,7 @@ function SearchBar({products,setSearchWord }) {
                 </StyledLink> 
               );
             })}
-          </div>
+          </motion.div>
         )}
       </div>
     );

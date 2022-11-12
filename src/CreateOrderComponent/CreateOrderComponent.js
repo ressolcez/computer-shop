@@ -55,26 +55,27 @@ function CreateOrder({user,userdata}) {
       
         OrderServices.checkoutCart(items).then((response) => {
           setOpenBackdrop(true)
-          OrderServices.addOrder(user.userId,values,cartTotal).then((response) => {
+          OrderServices.addOrder(user.userId,values,cartTotal,items).then((response) => {
             
-              OrderServices.addOrderProduct(response.data,user.userId,items).then((response) => {
+              OrderServices.creteOrderMail(user.userId,response.data).then((response) => {
                 setOpenBackdrop(false);
                 setOpenModal(true);
-                setOpenBackdrop(false);
                 setErrors([]);
                 emptyCart();
-                formik.resetForm();
               })
-        
+
           }).catch((error) => {
-            setErrors(error.response.data)
+            setErrors(error.response.data);
+            emptyCart();
+            setOpenBackdrop(false);
+            setMsg("Błąd podczas dodawania zamówienia");
+            setOpenModalFail(true);
           })
         
       }).catch((error) => {
         setMsg('Nie posiadamy wystarczającej ilości przedmiotów w magazynie')
         setOpenModalFail(true);
       })
-      
   }
   },
 });
