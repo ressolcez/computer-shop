@@ -17,6 +17,7 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
   const [openModalProductDetails, setOpenModalProductDetails] = useState(false);
   const [success,setSuccess] = useState();  
   const [orderStatus, setOrderStatus] = useState('');
+  const [errors,setErrors] = useState('')
 
   const [order, setOrder] = useState();
   const [editOrder, setEditOrder] = useState();
@@ -99,6 +100,7 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
                     setEditOrder({id: params.id, status: params.row.status})
                     setOpenModalEditOrder(true)
                     setOrderStatus('')
+                    setErrors('')
                     setSuccess()
                   }
                   }
@@ -124,7 +126,7 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
     <div className='admin__product__wrapper'>
     <h1 style = {{fontFamily:'"Courier New", Courier, monospace', marginTop:'15px'}}>Zamówienia</h1>
       <div className='table__wrapper'>
-      {editOrder && <EditOrderModal orderStatus = {orderStatus} setOrderStatus = {setOrderStatus} openModal = {openModalEditOrder} handleCloseModal = {handleCloseModalEditOrder} order = {editOrder} success = {success} setSuccess = {setSuccess}/>}
+      {editOrder && <EditOrderModal errors = {errors} setErrors = {setErrors} orderStatus = {orderStatus} setOrderStatus = {setOrderStatus} openModal = {openModalEditOrder} handleCloseModal = {handleCloseModalEditOrder} order = {editOrder} success = {success} setSuccess = {setSuccess}/>}
       {order && <OrderDetailsModal openModal = {openModalProductDetails} handleCloseModal = {handleCloseModalProductDetails} order = {order}/>}
       <DataGrid
           rows={orders}

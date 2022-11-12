@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess,orderStatus,setOrderStatus}) {
+function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess,orderStatus,setOrderStatus,errors,setErrors}) {
 
     const [comment, setComment] = useState(null);
     const [openBackdrop, setOpenBackdrop] = useState(false);
@@ -20,6 +20,13 @@ function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess,ord
           setSuccess('Poprawnie zmieniono status');
           setOpenBackdrop(false);
           setComment(null)
+          setErrors('')
+
+        }).catch((error) => {
+          setSuccess([])
+          setOpenBackdrop(false)
+          setComment(null)
+          setErrors(error.response.data);
         })
     }
 
@@ -44,6 +51,7 @@ function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess,ord
                     <option value="Zrealizowano">Zrealizowano</option>
                     <option value="Anulowano">Anulowano</option>
                 </Form.Select>
+              {errors.status && <p style = {{color:'red'}}>{errors.status}</p>}
                {orderStatus === 'Anulowano' &&
                <>
                   <Form.Label className='pt-3'>Komentarz:</Form.Label>
