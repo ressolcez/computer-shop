@@ -28,10 +28,10 @@ function RegisterComponent() {
       postalCode: ''
     },
     validationSchema: validationSchema,
-    validateOnBlur: false,
     onSubmit: (values) => {
+      
 
-       AuthServices.checkEmailExist(values.email).then((response) => { 
+      AuthServices.checkEmailExist(values.email).then((response) => { 
       
         AuthServices.checkLoginExist(values.login).then((response) => { 
 
@@ -55,7 +55,6 @@ function RegisterComponent() {
         setErrors(error.response.data)
 
       })
-      
     },
   });
 

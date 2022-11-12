@@ -12,9 +12,12 @@ class UsersServices{
         return axios.delete("http://localhost:8080/api/user/" + userId)
     }
 
-    getAllUsers(page){
+    getAllUsers(page,searchWord){
         return axios.get('http://localhost:8080/api/user/Pageable',{ 
-            params: {pageNumber: page} 
+            params: {
+                pageNumber: page,
+                searchWord: searchWord
+            } 
             })
     }
 

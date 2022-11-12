@@ -20,7 +20,7 @@ function EditOpinionsModal({openModal,handleCloseModal,opinion,success,setSucces
 
       OpinionsService.editOpinions(values).then((response) => {
         setSuccess('Poprawnie zmieniono opinie');
-
+        setErrors([])
     }).catch((error) => {
       setErrors(error.response.data)
     })

@@ -19,10 +19,15 @@ class ProductServices{
         return axios.put("http://localhost:8080/api/products/"+productId + "/" + categoryId, product)
     }
 
-    getAllProducts(page){
+    getAllProducts(page,searchWord){
         return axios.get('http://localhost:8080/api/products/',       
         { 
-        params: {pageNumber: page} 
+        params: 
+        {
+            pageNumber: page,
+            searchWord: searchWord
+        
+        } 
         })
     }
 

@@ -1,15 +1,14 @@
 import React,{useState} from 'react';
-import {DataGrid } from '@mui/x-data-grid';
+import {DataGrid,GridToolbar } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
-import ProductServices from '../Services/ProductServices';
 import AddProductModal from '../SharedComponent/AddProductModal';
 import EditProductModal from '../SharedComponent/EditProductModal';
 import "./Products.css";
 
-function Products({products,openModalAddProduct,setOpenModalAddProduct,openModalEditProduct,setOpenModalEditProduct,page,setPage,rowCount,deleteProduct}) {
+function Products({products,openModalAddProduct,setOpenModalAddProduct,openModalEditProduct,setOpenModalEditProduct,page,setPage,rowCount,deleteProduct,onFilterChange}) {
 
   const [product,setProduct] = useState();
 
@@ -52,7 +51,7 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
       field: 'description',
       sortable: false,
       headerName: 'Opis',
-      width: 450,
+      width: 400,
     },
     {
       field: 'image',
@@ -133,6 +132,15 @@ function Products({products,openModalAddProduct,setOpenModalAddProduct,openModal
             paginationMode="server"
             onPageChange={(newPage) => setPage(newPage)}
             rowCount={rowCount}
+            filterMode="server"
+            onFilterModelChange={onFilterChange}
+            components={{ Toolbar: GridToolbar }}
+            componentsProps={{
+              toolbar: {
+                showQuickFilter: true,
+                quickFilterProps: { debounceMs: 500 },
+              },
+            }}
           />
           </div>
     </div>

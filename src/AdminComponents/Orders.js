@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {DataGrid} from '@mui/x-data-grid';
+import {DataGrid,GridToolbar } from '@mui/x-data-grid';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
@@ -10,7 +10,7 @@ import EditOrderModal from '../SharedComponent/EditOrderModal';
 import "./Orders.css";
 
 
-function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,rowCount,deleteOrder}) {
+function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,rowCount,deleteOrder,onFilterChange}) {
 
   const handleCloseModalEditOrder = () => setOpenModalEditOrder(false);
   const handleCloseModalProductDetails = () => setOpenModalProductDetails(false);
@@ -137,6 +137,15 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
           paginationMode="server"
           onPageChange={(newPage) => setPage(newPage)}
           rowCount={rowCount}
+          filterMode="server"
+          onFilterModelChange={onFilterChange}
+          components={{ Toolbar: GridToolbar }}
+          componentsProps={{
+            toolbar: {
+              showQuickFilter: true,
+              quickFilterProps: { debounceMs: 500 },
+            },
+          }}
       />
       </div>
     </div>

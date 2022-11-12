@@ -17,6 +17,7 @@ function AdminOpinions() {
 
     const deleteOpinion = (opinionId) =>{
       OpinionsService.deleteOpinion(opinionId)
+      window.location.reload(false)
     }
 
     useEffect(() => {  

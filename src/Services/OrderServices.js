@@ -5,10 +5,13 @@ const baseURLOrderProduct = "http://localhost:8080/api/orderProduct/"
 
 class OrderServices{
     
-    getAllOrdersWithDifference(page){
+    getAllOrdersWithDifference(page,searchWord){
         return axios.get("http://localhost:8080/api/orders/ordersWithDifference",
         { 
-            params: {pageNumber: page} 
+            params: {
+                pageNumber: page,
+                searchWord: searchWord
+            } 
         }
         )
     }
@@ -49,10 +52,7 @@ class OrderServices{
         return axios.get("http://localhost:8080/api/orders/" + orderId);
     }
 
-    changeOrderStatus(orderId,orderStatus,comment){
-        console.log(comment)
-        console.log(orderId)
-        
+    changeOrderStatus(orderId,orderStatus,comment){        
         return axios.put('http://localhost:8080/api/orders/' + orderId,{},
         { params: 
             { 

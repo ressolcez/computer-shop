@@ -41,7 +41,7 @@ function EditUserModal({openModal,handleCloseModal,user, success, setSuccess}) {
         <Modal show={openModal} onHide={handleCloseModal}>
         <Form onSubmit={formik.handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Edytowanie Produktu</Modal.Title>
+            <Modal.Title>Edytowanie Użytkownika</Modal.Title>
           </Modal.Header>
           <Modal.Body>
               <Form.Group className="mb-3" >
@@ -131,7 +131,7 @@ function EditUserModal({openModal,handleCloseModal,user, success, setSuccess}) {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="success" type="submit">
-              Dodaj Produkt
+              Edytuj użytkownika
             </Button>
           </Modal.Footer>
           </Form>

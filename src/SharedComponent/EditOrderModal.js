@@ -5,15 +5,22 @@ import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import OrdersServices from "../Services/OrderServices";
 import { useFormik } from 'formik';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess}) {
 
     const [orderStatus, setOrderStatus] = useState('');
     const [comment, setComment] = useState(null);
+    const [openBackdrop, setOpenBackdrop] = useState(false);
 
+    console.log(comment)
     const changeStatus = () => {
+        setOpenBackdrop(true)
         OrdersServices.changeOrderStatus(order.id,orderStatus,comment).then((response) => {
           setSuccess('Poprawnie zmieniono status');
+          setOpenBackdrop(false);
+          setComment(null)
         })
     }
 
@@ -57,6 +64,12 @@ function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess}) {
                 </Button>
             </Modal.Footer>
         </Modal>
+        <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={openBackdrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       </>
     </div>
   )

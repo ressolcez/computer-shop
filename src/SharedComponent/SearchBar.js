@@ -29,7 +29,7 @@ function SearchBar({products,setSearchWord }) {
                       <b>Producent:&nbsp;</b> {product.producent}
                     </div>
                     <div className='price__search'>
-                      <b>Cena:&nbsp;</b> {product.price}
+                      <b>Cena:&nbsp;</b> {product.price} PLN
                     </div>
                  </div>
                 </div>    

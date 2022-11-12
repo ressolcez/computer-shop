@@ -1,15 +1,14 @@
-import React,{useEffect,useState} from 'react';
-import {DataGrid } from '@mui/x-data-grid';
+import React,{useState} from 'react';
+import {DataGrid,GridToolbar } from '@mui/x-data-grid';
+import { Button } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
-import { Button } from '@mui/material';
 import AddUserModal from '../SharedComponent/AddUserModal';
 import EditUserModal from '../SharedComponent/EditUserModal';
 import "./Users.css"
-import UsersServices from '../Services/UsersServices';
 
-function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,setOpenModalEditUser,page,setPage,rowCount,deleteUser}) {
+function Users({users,openModalEditUser,openModalAddUser,setOpenModalAddUser,setOpenModalEditUser,page,setPage,rowCount,deleteUser,onFilterChange}) {
 
   const [id,setId] = useState(1);
   const [user,setUser] = useState();
@@ -129,6 +128,15 @@ return (
         paginationMode="server"
         onPageChange={(newPage) => setPage(newPage)}
         rowCount={rowCount}
+        filterMode="server"
+        onFilterModelChange={onFilterChange}
+        components={{ Toolbar: GridToolbar }}
+        componentsProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
       />
       </div>
   </div>

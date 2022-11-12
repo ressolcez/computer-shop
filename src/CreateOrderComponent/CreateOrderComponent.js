@@ -12,6 +12,7 @@ import StyledDivider from '../SharedComponent/StyledDivider';
 import OrderServices from '../Services/OrderServices';
 import CreateOrderSuccessModal from '../SharedComponent/CreateOrderSuccessModal';
 import CartModalFail from '../SharedComponent/CartModalFail';
+import StyledLink from '../SharedComponent/StyledLink';
 import "./CreateOrderComponent.css"
 
 
@@ -123,12 +124,11 @@ function CreateOrder({user,userdata}) {
 
                     <div className="mt-3">
                         <FormControlLabel style = {{display:'flex', justifyContent:'flex-end', margin:'0', padding:'0', paddingRight:'5px'}} 
-                        control={<Checkbox 
-                        alue = {accpetStatute} 
-                        onChange = {()=>setAcceptStatute(!accpetStatute)}/>} 
-                        label="Akceptuje regulamin sklepu" />
+                      control=
+                      {<div> <Checkbox value = {accpetStatute}  onChange = {()=>setAcceptStatute(!accpetStatute)}/> <StyledLink style={{textDecoration:'underline'}} to = {"/statute"}><a>Zaakceptuj regulamin sklepu</a></StyledLink></div>} 
+                       
+                       />
                     </div>
-
                     <div className="mt-3">
                       <Button className="float-end" type="submit" variant="success">Zrealizuj zamówienie</ Button>
                     </div>

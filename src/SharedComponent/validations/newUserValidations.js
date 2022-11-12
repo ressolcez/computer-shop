@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import AuthServices from "../../Services/AuthServices";
+import axios from "axios"
 
 const validationSchema = yup.object({
 
@@ -7,9 +8,7 @@ const validationSchema = yup.object({
       .string()
       .email('Wprowadź poprawny adres email')
       .required('Adres email jest wymagany'),
-    asd: yup
-    .string(),
-
+      
     password: yup
       .string()
       .matches(

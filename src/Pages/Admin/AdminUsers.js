@@ -14,6 +14,7 @@ function AdminUsers() {
     const [openModalEditUser, setOpenModalEditUser] = useState(false);
     const [page, setPage] = useState(0);
     const [rowCount,setrowCount] = useState(0);
+    const [searchWord,setSearchWord] = useState('');
 
     const navigate = useNavigate();
 
@@ -22,6 +23,10 @@ function AdminUsers() {
       UsersServices.deleteUser(userId);
       window.location.reload(false);
     }
+
+    const onFilterChange = React.useCallback((filterModel) => {
+      setSearchWord(filterModel.quickFilterValues.toString());
+    }, []);
 
     useEffect(() => {  
         if(localStorage.getItem('token')){
@@ -42,12 +47,12 @@ function AdminUsers() {
         navigate("/NotFound")
       }   
           
-          UsersServices.getAllUsers(page).then((response) => {
+          UsersServices.getAllUsers(page,searchWord).then((response) => {
             setUsers(response.data.users);
             setrowCount(response.data.rowCount);
            });
   
-      }, [openModalEditUser,openModalAddUser,page]);
+      }, [openModalEditUser,openModalAddUser,page,searchWord]);
 
 
   return (
@@ -63,6 +68,7 @@ function AdminUsers() {
       setPage = {setPage}
       rowCount = {rowCount}
       deleteUser = {deleteUser}
+      onFilterChange = {onFilterChange}
       />
     </>
   )

@@ -16,12 +16,16 @@ function AdminOrders() {
   const [openModalEditOrder, setOpenModalEditOrder] = useState(false);
   const [page, setPage] = useState(0);
   const [rowCount,setrowCount] = useState(0);
+  const [searchWord,setSearchWord] = useState('');
 
   const deleteOrder = (orderId) =>{
-    console.log(orderId)
     OrderServices.deleteOrder(orderId)
     window.location.reload(false)
   }
+
+  const onFilterChange = React.useCallback((filterModel) => {
+    setSearchWord(filterModel.quickFilterValues.toString());
+  }, []);
 
   useEffect(() => {  
         if(localStorage.getItem('token')){
@@ -42,14 +46,13 @@ function AdminOrders() {
           navigate("/NotFound")
         }
 
-        
-        OrderServices.getAllOrdersWithDifference(page).then((response) => {
+        OrderServices.getAllOrdersWithDifference(page,searchWord).then((response) => {
           setOrders(response.data.orders);
           setrowCount(response.data.rowCount);
          });
 
 
-   }, [openModalEditOrder,page]);
+   }, [openModalEditOrder,page,searchWord]);
 
   return (
     <>
@@ -62,6 +65,7 @@ function AdminOrders() {
         setPage = {setPage}
         rowCount = {rowCount}
         deleteOrder = {deleteOrder}
+        onFilterChange = {onFilterChange}
       />
     </>
     )

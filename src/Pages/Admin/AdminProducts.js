@@ -14,12 +14,17 @@ function AdminProducts() {
   const [openModalEditProduct, setOpenModalEditProduct] = useState(false);
   const [page, setPage] = useState(0);
   const [rowCount,setrowCount] = useState(0);
+  const [searchWord,setSearchWord] = useState('');
   const navigate = useNavigate();
 
   const deleteProduct = (productId) =>{
     ProductServices.deleteProduct(productId)
     window.location.reload(false)
   }
+
+  const onFilterChange = React.useCallback((filterModel) => {
+    setSearchWord(filterModel.quickFilterValues.toString());
+  }, []);
 
   useEffect(() => {  
 
@@ -41,13 +46,13 @@ function AdminProducts() {
           navigate("/NotFound")
         }   
 
-         ProductServices.getAllProducts(page).then((response) => {
+         ProductServices.getAllProducts(page,searchWord).then((response) => {
           setProducts(response.data.products);
           setrowCount(response.data.rowCount);
          });
 
 
-    }, [openModalEditProduct,openModalAddProduct,page]);
+    }, [openModalEditProduct,openModalAddProduct,page,searchWord]);
 
   return (
     <>
@@ -61,6 +66,7 @@ function AdminProducts() {
         page = {page}
         setPage = {setPage}
         rowCount = {rowCount}
+        onFilterChange = {onFilterChange}
         deleteProduct = {deleteProduct}
        />
     </>
