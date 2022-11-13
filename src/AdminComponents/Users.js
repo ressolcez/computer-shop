@@ -86,7 +86,7 @@ const columns = [
                 <IconButton onClick={() => {
                     setId(params.id);
                     setOpenModalEditUser(true);
-                    setUser({id: params.id, name: params.row.id, surname: params.row.surname, login: params.row.login, email: params.row.email, address: params.row.address, houseNumber: params.row.houseNumber, posalCode: params.row.postalCode})
+                    setUser({id: params.id, name: params.row.name, surname: params.row.surname, login: params.row.login, email: params.row.email, address: params.row.address, houseNumber: params.row.houseNumber, posalCode: params.row.postalCode})
                     setSuccessEdit()
                   }}>
                   <EditIcon />

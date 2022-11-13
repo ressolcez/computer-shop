@@ -38,6 +38,7 @@ function EditOrderModal({openModal,handleCloseModal,order,success,setSuccess,ord
                 <Modal.Title>Edytowanie Zamówienia numer {order.id}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+              {console.log(orderStatus)}
             {success && <p style = {{display:'flex', justifyContent:'center', color:'green', fontSize:'18px'}}>{success}</p>}
             <Form.Label className='pt-3' style = {{display:'flex', justifyContent:'center',fontSize:'20px'}}>Aktualny status zamówienia</Form.Label>
                  <Container>

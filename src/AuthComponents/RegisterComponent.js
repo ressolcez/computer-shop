@@ -30,11 +30,6 @@ function RegisterComponent() {
     validationSchema:validationSchema,
     onSubmit: (values) => {
       
-
-      AuthServices.checkEmailExist(values.email).then((response) => { 
-      
-        AuthServices.checkLoginExist(values.login).then((response) => { 
-
           AuthServices.registerUser(values).then((response) => { 
 
             formik.resetForm({values: ''})  
@@ -48,21 +43,10 @@ function RegisterComponent() {
           }).catch((error) => { 
 
             setErrors(error.response.data)
-            console.log(error.response.data)
+            console.log(error.response)
             setSuccess('');
           })
 
-        }).catch((error) => { 
-      
-          setErrors(error.response.data)
-          setSuccess('');
-        })
-  
-      }).catch((error) => { 
-        
-        setErrors(error.response.data)
-
-      })
     },
   });
 

@@ -99,7 +99,7 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
                   <IconButton onClick = {()=>{
                     setEditOrder({id: params.id, status: params.row.status})
                     setOpenModalEditOrder(true)
-                    setOrderStatus('')
+                    setOrderStatus('W trakcie realizacji')
                     setErrors('')
                     setSuccess()
                   }
