@@ -43,7 +43,7 @@ function AdminOpinions() {
         OpinionsService.getAllOpinions(page).then((response) => {
           setOpinions(response.data.opinions);
           setrowCount(response.data.rowCount);
-         });
+        });
 
 
    }, [page,openModalEditopinions]);

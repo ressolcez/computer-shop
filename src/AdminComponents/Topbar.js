@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import { Tooltip,Avatar } from '@mui/material';
+import { Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Leftbar from "./Leftbar";
 import Prof from "../Images/prof.jpg"
