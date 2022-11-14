@@ -6,6 +6,7 @@ import UsersServices from '../Services/UsersServices';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 import validationSchema from '../SharedComponent/validations/UserProfileValidations';
 import ProfileChoiceModal from "./ProfileChoiceModal";
+import "./ProfileComponent.css"
 
 function ProfileComponent({userdata}) {
 
@@ -14,8 +15,6 @@ function ProfileComponent({userdata}) {
   const handleCloseSnackbarSuccess = () => {setOpenSnackbarSuccess(false)};
   const [openModalChoice, setOpenModalChoice] = useState(false); 
   const handleCloseModalChoice = () => {setOpenModalChoice(false)};
-
-  console.log(openModalChoice)
 
   const formik = useFormik({
     initialValues: {
@@ -104,7 +103,7 @@ function ProfileComponent({userdata}) {
                     </div>
 
                     <div className="mt-3">
-                      <Button className="float-end" type="submit" variant="success">Zapisz dane</ Button>
+                      <Button className="profile__button__cont float-end" type="submit" variant="success">Zapisz dane</ Button>
                     </div>
 
                 </Form.Group>
@@ -136,7 +135,7 @@ function ProfileComponent({userdata}) {
                     </div>
                 </div>
 
-                <div className="mt-3 text-center">
+                <div className="profile__button__cont mt-3 text-center">
                 <Button className="float-end" type="submit" variant="success">Zapisz dane</ Button>
                 </div>
                 </Form>

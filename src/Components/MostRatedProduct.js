@@ -15,7 +15,7 @@ function MostRatedProduct({product}) {
   const [opinionsRate ,setOpinionsRate] = useState([]);
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
       OpinionsService.getOpinionToProductRate(product.id).then((response) => {
         setOpinionsRate(response.data);
         });

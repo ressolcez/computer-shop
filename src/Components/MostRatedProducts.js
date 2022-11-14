@@ -7,7 +7,7 @@ function MostRatedProducts({products}) {
 
   return (
     <div className='MostRatedProducts__wrappper'>
-       {products.map((product)=>(
+       {products && products.map((product)=>(
           <MostRatedProduct key={product.id} product = {product}/>
       ))}
     </div>

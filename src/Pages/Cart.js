@@ -13,6 +13,7 @@ function Cart() {
 
   useEffect(() => {
 
+    const authorizedFunction = () => {  
        if(localStorage.getItem('token')){
            AuthServices.isAuthorized().then((response) => {
              if(response.data.status === 'pass'){
@@ -24,6 +25,9 @@ function Cart() {
              }
            });
          }  
+      }
+
+      authorizedFunction();
 
     }, []);
 

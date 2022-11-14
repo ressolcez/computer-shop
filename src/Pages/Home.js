@@ -19,35 +19,21 @@ const Home = () => {
     const [recoomendedProducts, setRecommendedProducts] = useState([]);
     const [mostOrderProducts, setMostOrderProducts] = useState([]);
     const [mostRatedProducts, setMostRatedProducts] = useState([]);
-
     const {user,setUser } = useContext(UserContext);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
  
     useEffect(() => {
-       
-       HomePageServices.getSliderContent().then((response) => {
-           setSliderProduct(response.data);
-           setLoading(false);
-         });
-         
-         HomePageServices.getRecommendedProducts().then((response) => {
-            setRecommendedProducts(response.data);
-            setLoading(false);
-          });
-          
-          HomePageServices.getMostOrderProducts().then((response) => {
-            setMostOrderProducts(response.data);
-            setLoading(false);
-          });
+      
+      const getHomePageContent = async () => {
+        
+        const sliderContent = await HomePageServices.getSliderContent();
+        const recommendedProduct = await HomePageServices.getRecommendedProducts();
+        const mostOrderProducts = await HomePageServices.getMostOrderProducts();
+        const mostRatedProducts = await HomePageServices.getMostRatedProducts();
 
-          HomePageServices.getMostRatedProducts().then((response) => {
-            setMostRatedProducts(response.data);
-            setLoading(false);
-          });
-          
-
-          if(localStorage.getItem('token')){
-              AuthServices.isAuthorized().then((response) => {
+        const authorizedFunction = () => {
+            if(localStorage.getItem('token')){
+               AuthServices.isAuthorized().then((response) => {
                 if(response.data.status === 'pass'){
                   const user = {
                     userId: response.data.user_Id,
@@ -57,8 +43,24 @@ const Home = () => {
                 }
               });
             }
+        }
 
-       }, []);
+          Promise.all([sliderContent, recommendedProduct,mostOrderProducts,mostRatedProducts]).then(function(response) {   
+            authorizedFunction();
+            setSliderProduct(response[0].data);
+            setRecommendedProducts(response[1].data);
+            setMostOrderProducts(response[2].data);
+            setMostRatedProducts(response[3].data);
+          })
+      }
+
+        getHomePageContent().then (() =>{
+          setLoading(false)
+        }).catch (() =>{
+          setLoading(true)
+        })
+
+    }, []);
 
        if (loading) return <WaitPage/>
 

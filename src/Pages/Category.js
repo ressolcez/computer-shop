@@ -12,6 +12,8 @@ function Category() {
   const {user, setUser} = useContext(UserContext);
 
   useEffect(() => {
+   
+  const authorizedFunction = () => {  
     if(localStorage.getItem('token')){
         AuthServices.isAuthorized().then((response) => {
           if(response.data.status === 'pass'){
@@ -22,7 +24,11 @@ function Category() {
             setUser(user)
           }
         });
-      }  
+      }
+  }
+
+  authorizedFunction();
+    
  }, []);
 
   return (

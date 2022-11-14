@@ -5,7 +5,7 @@ import "./MostOrderProducts.css";
 function MostOrderProducts({products}) {
   return (
     <div className= "MostOrderProducts__wrappper">
-       {products.map((product)=>(
+       {products && products.map((product)=>(
           <MostOrderProduct  key={product.id} product = {product}/>
         ))}
     </div>

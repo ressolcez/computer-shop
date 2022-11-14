@@ -1,14 +1,9 @@
 import React from 'react';
 import Carousel from "react-multi-carousel";
-import Komputer from "../Images/komputer2.jpg";
 import StyledLink from '../SharedComponent/StyledLink';
 import "./Slider.css";
 import "react-multi-carousel/lib/styles.css";
-import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
-import { Button } from '@mui/material';
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import IconButton from "@mui/material/IconButton";
+
 
 function CustomRightArrow({ onClick }) {
   function handleClick() {
@@ -45,6 +40,7 @@ export default function Slider({products}) {
         }
       };
 
+  if(products){
   return (
     <Carousel responsive={responsive}
     customRightArrow={<CustomRightArrow />}
@@ -67,5 +63,5 @@ export default function Slider({products}) {
         </div>
         ))}
     </Carousel>
-  )
+  )}
 }

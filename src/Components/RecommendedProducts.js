@@ -29,6 +29,7 @@ function RecommendedProducts({products}) {
           }
       }
 
+  if(products){
   return (
     <div className='RecommendedProducts__wrappper'>
         <Carousel responsive={responsive}>
@@ -38,6 +39,7 @@ function RecommendedProducts({products}) {
         </Carousel>
         </div>
         )
+  }
 }
 
 
