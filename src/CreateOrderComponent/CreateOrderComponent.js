@@ -19,22 +19,21 @@ import "./CreateOrderComponent.css"
 function CreateOrder({user,userdata}) {
 
   const { items,cartTotal,totalItems,emptyCart  } = useCart();
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleCloseModal = () => setOpenModal(false);
   const [errors,setErrors] = useState([])
-  const navigate = useNavigate();
   const [msg, setMsg] = useState('');
+  const [openModal, setOpenModal] = useState(false);
   const [openModalFail, setOpenModalFail] = useState(false);
-  const handleCloseModalFail = () => setOpenModalFail(false);
   const [accpetStatute, setAcceptStatute] = useState(false);
   const [openBackdrop, setOpenBackdrop] = useState(false);
+  const handleCloseModal = () => setOpenModal(false);
+  const handleCloseModalFail = () => setOpenModalFail(false);
+  const navigate = useNavigate();
 
-  useEffect(() => {                                     
-   if(items.length === 0){
-      navigate("/cart")
-   }
- }, []);
+    useEffect(() => {                                     
+    if(items.length === 0){
+        navigate("/cart")
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -53,7 +52,7 @@ function CreateOrder({user,userdata}) {
 
       }else{
       
-        OrderServices.checkoutCart(items).then((response) => {
+        OrderServices.checkoutCart(items).then(() => {
           setOpenBackdrop(true)
           OrderServices.addOrder(user.userId,values,cartTotal,items).then((response) => {
             
@@ -72,7 +71,7 @@ function CreateOrder({user,userdata}) {
             setOpenModalFail(true);
           })
         
-      }).catch((error) => {
+      }).catch(() => {
         setMsg('Nie posiadamy wystarczającej ilości przedmiotów w magazynie')
         setOpenModalFail(true);
       })

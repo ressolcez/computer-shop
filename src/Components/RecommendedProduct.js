@@ -3,7 +3,6 @@ import {useCart} from "react-use-cart";
 import Rating from "@mui/material/Rating";
 import Button from '@mui/material/Button';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
-import computer from "../Images/komputer2.jpg";
 import OpinionsService from '../Services/OpinionsService';
 import StyledLink from '../SharedComponent/StyledLink';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
@@ -14,26 +13,18 @@ function RecommendedProduct({product}) {
     const {addItem} = useCart();
     const [opinionsRate ,setOpinionsRate] = useState([]);
     const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
+    const handleCloseSnackbarSuccess = () => setOpenSnackbarSuccess(false);
+
+    const handleAddToCart = () =>{
+      addItem(product);
+      setOpenSnackbarSuccess(true);
+    }
 
     useEffect(() => {
       OpinionsService.getOpinionToProductRate(product.id).then((response) => {
         setOpinionsRate(response.data);
         });
       }, [product.id]);
-
-      
-    const handleAddToCart = () =>{
-      addItem(product);
-      setOpenSnackbarSuccess(true);
-    }
-
-    const handleCloseSnackbarSuccess = (reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setOpenSnackbarSuccess(false);
-    };
-
 
     return (
       <>

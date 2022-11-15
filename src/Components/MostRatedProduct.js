@@ -6,7 +6,6 @@ import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 import StyledLink from '../SharedComponent/StyledLink';
 import OpinionsService from '../Services/OpinionsService';
-import computer from "../Images/komputer8.jpg"
 import "./MostRatedProduct.css"
 
 function MostRatedProduct({product}) {
@@ -14,24 +13,18 @@ function MostRatedProduct({product}) {
   const {addItem} = useCart();
   const [opinionsRate ,setOpinionsRate] = useState([]);
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
+  const handleCloseSnackbarSuccess = () =>  setOpenSnackbarSuccess(false);
+
+  const handleAddToCart = () =>{
+    addItem(product);
+    setOpenSnackbarSuccess(true);
+  }
 
   useEffect(() => {
       OpinionsService.getOpinionToProductRate(product.id).then((response) => {
         setOpinionsRate(response.data);
-        });
-      }, [product.id]);
-
-    const handleAddToCart = () =>{
-      addItem(product);
-      setOpenSnackbarSuccess(true);
-    }
-
-    const handleCloseSnackbarSuccess = (reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setOpenSnackbarSuccess(false);
-    };
+      });
+  }, [product.id]);
 
   return (
       <>

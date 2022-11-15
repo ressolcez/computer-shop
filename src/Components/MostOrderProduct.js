@@ -12,13 +12,13 @@ function MostOrderProduct({product}) {
 
     const [opinionsRate ,setOpinionsRate] = useState([]);
     const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
+    const handleCloseSnackbarSuccess = () => {setOpenSnackbarSuccess(false)};
     const {addItem} = useCart();
 
     const handleAddToCart = () =>{
         addItem(product);
         setOpenSnackbarSuccess(true);
     }
-    const handleCloseSnackbarSuccess = () => {setOpenSnackbarSuccess(false)};
 
     useEffect(() => {
         OpinionsService.getOpinionToProductRate(product.id).then((response) => {

@@ -4,22 +4,6 @@ import StyledLink from '../SharedComponent/StyledLink';
 import "./Slider.css";
 import "react-multi-carousel/lib/styles.css";
 
-
-function CustomRightArrow({ onClick }) {
-  function handleClick() {
-    console.log('Right button clicked, go to next slide');
-    onClick();
-  }
-
-  return (
-    <button
-      onClick={handleClick}
-      aria-label="Go to next slide"
-      className="react-multiple-carousel__arrow react-multiple-carousel__arrow--right"
-    />
-  );
-}
-
 export default function Slider({products}) {
     const responsive = {
         superLargeDesktop: {
@@ -42,26 +26,24 @@ export default function Slider({products}) {
 
   if(products){
   return (
-    <Carousel responsive={responsive}
-    customRightArrow={<CustomRightArrow />}
-    >
-         {products.map((product)=>(
-          <div key={product.id} className='carousel__wrappper'>
-              <div>
-              <StyledLink to={"/"+product.categoryModel.categoryName+"/"+product.id}>
-                  <img className='inside__img'  src = {require(`../Images/${product.image}`)} alt = "computer"/>
-              </StyledLink>
+      <Carousel responsive={responsive}>
+          {products.map((product)=>(
+            <div key={product.id} className='carousel__wrappper'>
+                <div>
+                <StyledLink to={"/"+product.categoryModel.categoryName+"/"+product.id}>
+                    <img className='inside__img'  src = {require(`../Images/${product.image}`)} alt = "computer"/>
+                </StyledLink>
+                </div>
+              <div className='carousel__wrapper__description'>
+                  <div className='carousel__wrapper__title'>
+                      {product.name}
+                  </div>
+                  <div className='carousel__wrapper__desc'>
+                      {product.description}
+                  </div>
               </div>
-            <div className='carousel__wrapper__description'>
-                <div className='carousel__wrapper__title'>
-                    {product.name}
-                </div>
-                <div className='carousel__wrapper__desc'>
-                    {product.description}
-                </div>
-            </div>
-        </div>
-        ))}
-    </Carousel>
+          </div>
+          ))}
+      </Carousel>
   )}
 }

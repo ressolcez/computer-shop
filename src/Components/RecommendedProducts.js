@@ -30,15 +30,15 @@ function RecommendedProducts({products}) {
       }
 
   if(products){
-  return (
-    <div className='RecommendedProducts__wrappper'>
-        <Carousel responsive={responsive}>
-        {products.map((product)=>(
-            <RecommendedProduct product = {product} key={product.id}/>
-             ))}
-        </Carousel>
-        </div>
-        )
+    return (
+      <div className='RecommendedProducts__wrappper'>
+          <Carousel responsive={responsive}>
+          {products.map((product)=>(
+              <RecommendedProduct product = {product} key={product.id}/>
+              ))}
+          </Carousel>
+          </div>
+         )
   }
 }
 
