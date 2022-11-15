@@ -4,24 +4,23 @@ import TextField from '@mui/material/TextField';
 import Rating from "@mui/material/Rating";
 import OpinionsService from '../Services/OpinionsService';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
-import './AddOpinion.css';
 import SnackbarFail from '../SharedComponent/SnackbarFail';
-
+import './AddOpinion.css';
 
 function AddOpinion({productId,user}) {
 
+   const [comment,setComment] = useState('');
+   const [messageFail, setMessageFail] = useState('');
+   const [rate,setRate] = useState(0);
    const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
    const [openSnackbarFail, setOpenSnackbarFail] = useState(false);
-   const [comment,setComment] = useState('');
-   const [messageFail, setMessageFail] = useState('')
-   const [rate,setRate] = useState(0)
 
+   const handleCloseSnackbarSuccess = () => setOpenSnackbarSuccess(false);
+   const handleCloseSnackbarFail = () =>  setOpenSnackbarFail(false);
 
    const handleAddOpinion = () =>{
-
       const opinion = {comment,rate};
-
-      OpinionsService.addOpinionToProduct(opinion,productId,user.userId).then((response) => {
+      OpinionsService.addOpinionToProduct(opinion,productId,user.userId).then(() => {
           setOpenSnackbarSuccess(true);
           setTimeout(() => {
             window.location.reload("false");
@@ -30,26 +29,10 @@ function AddOpinion({productId,user}) {
          setMessageFail(error.response.data)
          setOpenSnackbarFail(true);
       })
-
    }
 
-   const handleCloseSnackbarSuccess = (reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setOpenSnackbarSuccess(false);
-    };
-
-    const handleCloseSnackbarFail = (reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setOpenSnackbarFail(false);
-    };
-
-
   return (
-   <>
+   <div>
    {user ? ( 
       <div className='addOpinion__wrappper'>
             <Rating
@@ -72,7 +55,7 @@ function AddOpinion({productId,user}) {
       }
       <SnackbarSuccess openSnackbarSuccess = {openSnackbarSuccess} handleCloseSnackbarSuccess = {handleCloseSnackbarSuccess} message = "Dodano Opinie"/>
       <SnackbarFail openSnackbarFail = {openSnackbarFail} handleCloseSnackbarFail = {handleCloseSnackbarFail} message = {messageFail}/>
-   </>
+   </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {useCart} from "react-use-cart";
-import { useFormik } from 'formik';
+import {useFormik} from 'formik';
 import {useNavigate} from "react-router-dom"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -18,7 +18,7 @@ import "./CreateOrderComponent.css"
 
 function CreateOrder({user,userdata}) {
 
-  const { items,cartTotal,totalItems,emptyCart  } = useCart();
+  const {items,cartTotal,totalItems,emptyCart  } = useCart();
   const [errors,setErrors] = useState([])
   const [msg, setMsg] = useState('');
   const [openModal, setOpenModal] = useState(false);
@@ -29,10 +29,12 @@ function CreateOrder({user,userdata}) {
   const handleCloseModalFail = () => setOpenModalFail(false);
   const navigate = useNavigate();
 
-    useEffect(() => {                                     
-    if(items.length === 0){
-        navigate("/cart")
-    }
+    useEffect(() => {      
+
+      if(items.length === 0){
+          navigate("/cart")
+      }
+
   }, []);
 
   const formik = useFormik({
@@ -55,14 +57,12 @@ function CreateOrder({user,userdata}) {
         OrderServices.checkoutCart(items).then(() => {
           setOpenBackdrop(true)
           OrderServices.addOrder(user.userId,values,cartTotal,items).then((response) => {
-            
-              OrderServices.creteOrderMail(user.userId,response.data).then((response) => {
+              OrderServices.creteOrderMail(user.userId,response.data).then(() => {
                 setOpenBackdrop(false);
                 setOpenModal(true);
                 setErrors([]);
                 emptyCart();
               })
-
           }).catch((error) => {
             setErrors(error.response.data);
             emptyCart();
@@ -89,7 +89,6 @@ function CreateOrder({user,userdata}) {
         </div>
         <Form onSubmit={formik.handleSubmit}>
                 <Form.Group className="row mt-2">
-
                     <div className="col-md-6"><Form.Label>Imie</Form.Label>
                     <Form.Control
                       id= 'name' 

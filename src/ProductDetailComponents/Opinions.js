@@ -1,15 +1,10 @@
-import React from 'react'
+import React from 'react';
 import Rating from "@mui/material/Rating";
 import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import styled from 'styled-components';
-import "./Opinions.css"
-import Divider from '@mui/material/Divider';
+import StyledDivider from '../SharedComponent/StyledDivider';
 import Pagination from '@mui/material/Pagination';
-
-const StyledDivider = styled(Divider)`
-  background-color: black;
-`
+import "./Opinions.css"
 
 function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
 
@@ -27,7 +22,7 @@ function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
               <Rating value= {parseFloat(opinionRate.finalRate)} readOnly precision={0.5} />
             <div className='NumberOfAllOpinions'>Liczba opinii({opinionRate.numberOfOpinions}) </div>
             <div className='opinion__number__divider'>
-                  <StyledDivider/>
+              <StyledDivider/>
             </div>
             <div className='opinions__wrapper'>
             {opinions.map((opinion)=>(

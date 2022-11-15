@@ -3,32 +3,18 @@ import {useCart} from "react-use-cart";
 import ImageGallery from 'react-image-gallery';
 import SnackbarSuccess from '../SharedComponent/SnackbarSuccess';
 import "react-image-gallery/styles/css/image-gallery.css";
-import Image from  "../Images/laptop1.jpg"
 import "./ItemDetail.css";
-import { lazy } from 'react';
 
-
-function ItemDetail({product}) {
+export default function ItemDetail({product}) {
 
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
+  const handleCloseSnackbarSuccess = () => setOpenSnackbarSuccess(false);
   const {addItem} = useCart();
-  const [imageSrc, setImageSrc] = useState('');
-
-  
-  const MyComponent = lazy(() => import('../Images/laptop1.jpg'));
-
   
   const handleAddToCart = () =>{
     addItem(product);
     setOpenSnackbarSuccess(true);
   }
-
-  const handleCloseSnackbarSuccess = (reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenSnackbarSuccess(false);
-  };
 
   return (
     <div className='ItemDetail__wrapper'>
@@ -49,5 +35,3 @@ function ItemDetail({product}) {
     </div>
   )
 }
-
-export default ItemDetail
