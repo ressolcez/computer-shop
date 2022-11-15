@@ -73,7 +73,7 @@ function Orders({orders,openModalEditOrder,setOpenModalEditOrder,page,setPage,ro
     {
       field: 'address',
       headerName: 'Adres',
-      width: 470,
+      width: 450,
       sortable: false,
     },
     {

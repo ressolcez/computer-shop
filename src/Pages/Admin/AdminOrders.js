@@ -5,6 +5,7 @@ import Topbar from '../../AdminComponents/TopBar';
 import OrderServices from '../../Services/OrderServices';
 import Orders from '../../AdminComponents/Orders';
 import AuthServices from '../../Services/AuthServices';
+import WaitPage from '../../SharedComponent/WaitPage';
 
 
 function AdminOrders() {
@@ -17,6 +18,7 @@ function AdminOrders() {
   const [page, setPage] = useState(0);
   const [rowCount,setrowCount] = useState(0);
   const [searchWord,setSearchWord] = useState('');
+  const [loading, setLoading] = useState(true);
 
   const deleteOrder = (orderId) =>{
     OrderServices.deleteOrder(orderId)
@@ -28,31 +30,47 @@ function AdminOrders() {
   }, []);
 
   useEffect(() => {  
-        if(localStorage.getItem('token')){
-          AuthServices.isAuthorized().then((response) => {
-            if(response.data.status === 'pass' && response.data.role === 'Admin'){
-              const user = {
-                userId: response.data.user_Id,
-                role: response.data.role
-              }
-              setUser(user)
-            }else{
-             navigate("/NotFound")
-            }
-          }).catch((error) => {
-            navigate("/Login")
-        })
-        }else{
-          navigate("/NotFound")
+
+    const getHomePageContent = async () => {
+
+      const allOrders = await OrderServices.getAllOrdersWithDifference(page,searchWord);
+    
+      const authorizedFunction = () => {
+              if(localStorage.getItem('token')){
+                AuthServices.isAuthorized().then((response) => {
+                  if(response.data.status === 'pass' && response.data.role === 'Admin'){
+                    const user = {
+                      userId: response.data.user_Id,
+                      role: response.data.role
+                    }
+                    setUser(user)
+                  }else{
+                  navigate("/NotFound")
+                  }
+                }).catch(() => {
+                navigate("/Login")
+            })
+              }else{
+              navigate("/NotFound")
+            }   
+          }
+    
+          Promise.all([allOrders]).then(function(response) {   
+            setOrders(response[0].data.orders);
+            setrowCount(response[0].data.rowCount);
+            authorizedFunction();
+          })
         }
 
-        OrderServices.getAllOrdersWithDifference(page,searchWord).then((response) => {
-          setOrders(response.data.orders);
-          setrowCount(response.data.rowCount);
-         });
-
+        getHomePageContent().then (() =>{
+          setLoading(false)
+        }).catch (() =>{
+          setLoading(true)
+        })
 
    }, [openModalEditOrder,page,searchWord]);
+
+   if (loading) return <WaitPage/>
 
   return (
     <>

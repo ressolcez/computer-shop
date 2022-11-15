@@ -34,8 +34,8 @@ function AdminProducts() {
 const getHomePageContent = async () => {
 
   const AllProducts = await ProductServices.getAllProducts(page,searchWord);
-  const authorizedFunction = () => {
 
+  const authorizedFunction = () => {
           if(localStorage.getItem('token')){
             AuthServices.isAuthorized().then((response) => {
               if(response.data.status === 'pass' && response.data.role === 'Admin'){
