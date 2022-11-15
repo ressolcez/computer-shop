@@ -22,10 +22,21 @@ function Topbar({user,setUser}) {
     const [searchWord, setSearchWord] = useState('');
     const [anchorEl, setAnchorEl] = useState(null);
 
+    const handleClickMenu = (event) => setAnchorEl(event.currentTarget);
+    const handleCloseMenu = () => setAnchorEl(null);
+   
+    const open = Boolean(anchorEl);
+
     useEffect(() => {
-        TopBarServices.getProductsFiltered(searchWord).then((response) => {
+
+        const getTopbarContent = async() =>{
+         await TopBarServices.getProductsFiltered(searchWord).then((response) => {
             setAllProducts(response.data);
-         });
+         })
+        }
+
+        getTopbarContent();
+
        }, [searchWord]);
 
        const logoutUser = () =>
@@ -35,16 +46,6 @@ function Topbar({user,setUser}) {
             setUser(null);
             window.location.reload(false)
        }
-
-       const handleClickMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-      };
-    
-      const handleCloseMenu = () => {
-        setAnchorEl(null);
-      };
-  
-      const open = Boolean(anchorEl);
 
     return (
         <div className="topbar__wrapper" role="navigation">       

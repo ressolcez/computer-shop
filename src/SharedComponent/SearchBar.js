@@ -1,9 +1,9 @@
 import React from 'react';
 import StyledLink from './StyledLink';
-import {motion, AnimatePresence} from "framer-motion"
+import {motion} from "framer-motion"
 import "./Searchbar.css";
 
-function SearchBar({products,setSearchWord }) {
+function SearchBar({products,setSearchWord}) {
   
     return (
       <div>

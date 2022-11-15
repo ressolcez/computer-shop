@@ -55,11 +55,10 @@ function CreateOrder({user,userdata}) {
         OrderServices.checkoutCart(items).then(() => {
           setOpenBackdrop(true)
           OrderServices.addOrder(user.userId,values,cartTotal,items).then((response) => {
-
+            setErrors([]);
               OrderServices.creteOrderMail(user.userId,response.data).then(() => {
                 setOpenBackdrop(false);
                 setOpenModal(true);
-                setErrors([]);
                 emptyCart();
               })
 
