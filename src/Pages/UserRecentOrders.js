@@ -9,19 +9,16 @@ import StyledDivider from '../SharedComponent/StyledDivider';
 import OrderServices from '../Services/OrderServices';
 import "./UserRecentOrders.css";
 
-
 function UserRecentOrders() {
 
-    const navigate = useNavigate();
     const {user,setUser } = useContext(UserContext);
-    const [orders, setOrders] = useState([])
-  
-    const getUserOders = (userId) => {
-             
+    const [orders, setOrders] = useState([]);
+    const navigate = useNavigate();
+
+    const getUserOders = (userId) => {           
       OrderServices.getUserOrders(userId).then((response) => {
         setOrders(response.data);
       });
-
     }
 
     useEffect(() => {

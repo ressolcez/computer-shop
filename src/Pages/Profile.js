@@ -1,17 +1,16 @@
-import ProfileComponent from '../ProfileComponents/ProfileComponent';
-import React, { useState,useEffect,useContext } from 'react'
+import React,{useState,useEffect,useContext } from 'react'
 import { UserContext } from '../Context/UserContext';
 import AuthServices from '../Services/AuthServices';
 import Footer from '../Components/Footer';
 import Topbar from '../Components/Topbar';
 import StyledDivider from '../SharedComponent/StyledDivider';
 import UsersServices from '../Services/UsersServices';
+import ProfileComponent from '../ProfileComponents/ProfileComponent';
 import "./Profile.css"
 
 function Profile() {
 
     const {user,setUser } = useContext(UserContext);
-    
     const [userData,setUserData] = useState()
 
     useEffect(() => {

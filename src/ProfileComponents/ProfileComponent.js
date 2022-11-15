@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { useFormik } from 'formik';
+import {useFormik} from 'formik';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import UsersServices from '../Services/UsersServices';
@@ -12,9 +12,9 @@ function ProfileComponent({userdata}) {
 
   const [errors,setErrors] = useState([])
   const [openSnackbarSuccess, setOpenSnackbarSuccess] = useState(false);
-  const handleCloseSnackbarSuccess = () => {setOpenSnackbarSuccess(false)};
   const [openModalChoice, setOpenModalChoice] = useState(false); 
   const handleCloseModalChoice = () => {setOpenModalChoice(false)};
+  const handleCloseSnackbarSuccess = () => {setOpenSnackbarSuccess(false)};
 
   const formik = useFormik({
     initialValues: {

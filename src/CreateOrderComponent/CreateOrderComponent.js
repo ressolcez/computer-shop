@@ -30,11 +30,9 @@ function CreateOrder({user,userdata}) {
   const navigate = useNavigate();
 
     useEffect(() => {      
-
       if(items.length === 0){
           navigate("/cart")
       }
-
   }, []);
 
   const formik = useFormik({
@@ -57,15 +55,16 @@ function CreateOrder({user,userdata}) {
         OrderServices.checkoutCart(items).then(() => {
           setOpenBackdrop(true)
           OrderServices.addOrder(user.userId,values,cartTotal,items).then((response) => {
+
               OrderServices.creteOrderMail(user.userId,response.data).then(() => {
                 setOpenBackdrop(false);
                 setOpenModal(true);
                 setErrors([]);
                 emptyCart();
               })
+
           }).catch((error) => {
             setErrors(error.response.data);
-            emptyCart();
             setOpenBackdrop(false);
             setMsg("Błąd podczas dodawania zamówienia");
             setOpenModalFail(true);

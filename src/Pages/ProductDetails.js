@@ -1,10 +1,9 @@
-import React, { useState,useEffect,useContext } from 'react';
-import { UserContext } from '../Context/UserContext';
+import React, {useState,useEffect,useContext} from 'react';
+import {UserContext} from '../Context/UserContext';
 import {useParams} from "react-router-dom";
 import Topbar from '../Components/Topbar';
 import Footer from '../Components/Footer';
 import ItemDetail from '../ProductDetailComponents/ItemDetail';
-import Specyfication from '../ProductDetailComponents/Specyfication';
 import Opinions from '../ProductDetailComponents/Opinions';
 import AddOpinion from '../ProductDetailComponents/AddOpinion';
 import ProductDetailsServices from "../Services/ProductDetailsServices";
