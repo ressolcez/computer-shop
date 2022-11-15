@@ -26,7 +26,7 @@ function ProfileComponent({userdata}) {
     },
     onSubmit: (values) => {
 
-      UsersServices.changeUserDataByUser(userdata.id,values).then((response) => {
+      UsersServices.changeUserDataByUser(userdata.id,values).then(() => {
         setOpenSnackbarSuccess(true);
         setErrors([])
         }).catch((error) => {
@@ -43,7 +43,6 @@ function ProfileComponent({userdata}) {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-
       UsersServices.changeUserPassword(userdata.id,values).then((response) => {
           setOpenSnackbarSuccess(true);
           formikPassword.resetForm({values: ''})  

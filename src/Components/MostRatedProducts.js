@@ -1,7 +1,7 @@
-import React from 'react'
-import "./MostRatedProducts.css"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
 import MostRatedProduct from './MostRatedProduct';
+import "./MostRatedProducts.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MostRatedProducts({products}) {
 

@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useContext } from 'react'
-import { UserContext } from '../Context/UserContext';
+import {UserContext} from '../Context/UserContext';
 import Footer from '../Components/Footer';
 import Topbar from '../Components/Topbar';
 import StyledDivider from '../SharedComponent/StyledDivider';

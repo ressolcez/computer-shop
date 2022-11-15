@@ -20,6 +20,7 @@ import CreateOrder from "./Pages/CreateOrder";
 import PageNotFound from "./SharedComponent/PageNotFound";
 import Statute from "./Pages/Statute";
 import ContactForm from "./Pages/ContactForm";
+import ScrollToTop from "./SharedComponent/ScrollToTop";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
     <CartProvider>
     <UserContext.Provider value={value}>
       <BrowserRouter>
+        <ScrollToTop/>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route path="/:name/:id" element={<ProductDetails/>}/>
