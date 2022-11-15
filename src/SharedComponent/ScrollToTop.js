@@ -4,9 +4,8 @@ import { useLocation } from 'react-router-dom'
 const ScrollToTop = () => {
     const { pathname } = useLocation()
     useEffect(() => {
-        console.log(pathname)
         setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
+            window.scrollTo({ top: 0, behavior: 'auto' })
         }, 0)
     }, [pathname])
     return null
