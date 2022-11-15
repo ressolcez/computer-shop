@@ -3,13 +3,17 @@ import { Button } from '@mui/material';
 import Modal from 'react-bootstrap/Modal';
 import AuthServices from '../Services/AuthServices';
 import UsersServices from '../Services/UsersServices';
+import {useNavigate} from 'react-router-dom';
 
 function EditOrderModal({openModal,handleCloseModal,user}) {
+
+    const navigate = useNavigate();
 
     const deleteUserAccount = () =>{
         AuthServices.logoutUser();
         UsersServices.deleteUser(user.id);
         window.location.reload(false);
+        navigate("/")
     }
 
   return (
