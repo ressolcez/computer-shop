@@ -21,15 +21,14 @@ function AddProductModal({openModal,handleCloseModal,success,setSuccess}) {
       category: 1,
     },
     onSubmit: (values) => {
-
-      console.log(values.quantityAvailable);
-
       ProductServices.addProduct(values.category,values).then((response) => {
           setSuccess('Poprawnie dodano przedmiot')
           formik.resetForm()
           setErrors([])
       }).catch((error) => {
+        console.log(error)
         setErrors(error.response.data)
+
     })
     },
 

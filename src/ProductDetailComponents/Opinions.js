@@ -4,14 +4,11 @@ import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlin
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import StyledDivider from '../SharedComponent/StyledDivider';
 import Pagination from '@mui/material/Pagination';
+import CancelIcon from '@mui/icons-material/Cancel';
+import IconButton from '@mui/material/IconButton';
 import "./Opinions.css"
 
-function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
-
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-
+function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate,deleteOpinion,user}) {
 
   if(opinions.length !== 0){
     return (
@@ -32,7 +29,14 @@ function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
                      {opinion.userModel.name}
                   </div>
                   <div className='opinion__rating__comment'>
+                  <div style = {{display:'flex', justifyContent:'space-between'}}>
                     <Rating value={opinion.rate} readOnly precision={0.5} size = "small" />
+                    {user && user.role === 'Admin' &&
+                      <IconButton sx = {{margin:0,padding:0}} onClick = {() => deleteOpinion(opinion.id)}>
+                        <CancelIcon sx = {{color:'red'}}/>
+                      </IconButton>
+                    }
+                    </div>
                     <div className='comment'>
                       {opinion.comment}
                     </div>
@@ -44,7 +48,7 @@ function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
                   ))}
 
               <div className='pagination__cont'>
-                <Pagination count={totalNumberOfPages} page={page} onChange={handleChange}/>
+                <Pagination count={totalNumberOfPages} page={page} onChange= {(event,value) => setPage(value)}/>
               </div>
 
             </div>
@@ -52,8 +56,7 @@ function Opinions({opinions,setPage,page,totalNumberOfPages, opinionRate}) {
       )
     }
 
-      return <div className='info__zero__opinion'>Ten produkt nie ma jeszcze opinii</div>
-
+    return <div className='info__zero__opinion'>Ten produkt nie ma jeszcze opinii</div>
 }
 
 export default Opinions
