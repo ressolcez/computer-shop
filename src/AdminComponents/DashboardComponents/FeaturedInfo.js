@@ -1,8 +1,6 @@
 import React from 'react'
 import "./FeaturedInfo.css"
 import { Avatar,Box } from '@mui/material';
-import MoneyIcon from '@mui/icons-material/Money';
-import PersonIcon from '@mui/icons-material/Person';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';

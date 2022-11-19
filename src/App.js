@@ -1,26 +1,26 @@
-import React, { useState, useMemo,useEffect} from "react";
+import React, { useState, useMemo} from "react";
 import {HashRouter, Routes, Route} from "react-router-dom";
-import {UserContext} from "./Context/UserContext";
+import {UserContext} from "./SharedComponent/Context/UserContext";
 import { CartProvider } from "react-use-cart";
-import Home from "./Pages/Home"
-import ProductDetails from './Pages/ProductDetails';
-import Cart from './Pages/Cart';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Category from "./Pages/Category";
-import WaitPage from "./SharedComponent/WaitPage";
-import UserRecentOrders from "./Pages/UserRecentOrders";
-import AdminHome from "./Pages/Admin/AdminHome";
-import AdminProducts from "./Pages/Admin/AdminProducts";
-import AdminUsers from "./Pages/Admin/AdminUsers";
-import AdminOrders from "./Pages/Admin/AdminOrders";
-import AdminOpinions from "./Pages/Admin/AdminOpinions";
-import Profile from "./Pages/Profile";
-import CreateOrder from "./Pages/CreateOrder";
-import PageNotFound from "./SharedComponent/PageNotFound";
-import Statute from "./Pages/Statute";
-import ContactForm from "./Pages/ContactForm";
-import ScrollToTop from "./SharedComponent/ScrollToTop";
+import Home from "./UserComponents/Pages/Home"
+import ProductDetails from './UserComponents/Pages/ProductDetails';
+import Cart from './UserComponents/Pages/Cart';
+import Login from './UserComponents/Pages/Login';
+import Register from './UserComponents/Pages/Register';
+import Category from "./UserComponents/Pages/Category";
+import WaitPage from "./SharedComponent/SharedPages/WaitPage";
+import UserRecentOrders from "./UserComponents/Pages/UserRecentOrders";
+import AdminHome from "./AdminComponents/Pages/AdminHome";
+import AdminProducts from "./AdminComponents/Pages/AdminProducts";
+import AdminUsers from "./AdminComponents/Pages/AdminUsers";
+import AdminOrders from "./AdminComponents/Pages/AdminOrders";
+import AdminOpinions from "./AdminComponents/Pages/AdminOpinions";
+import Profile from "./UserComponents/Pages/Profile";
+import CreateOrder from "./UserComponents/Pages/CreateOrder";
+import PageNotFound from "./SharedComponent/SharedPages/PageNotFound";
+import Statute from "./UserComponents/Pages/Statute";
+import ContactForm from "./UserComponents/Pages/ContactForm";
+import ScrollToTop from "./SharedComponent/PagesLayoutComponents/ScrollToTop";
 
 function App() {
 
